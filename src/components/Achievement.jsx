@@ -4,14 +4,14 @@ import AchievementTabs from "./AchievementTabs";
 
 function Achievement() {
   return (
-    <div className="flex  w-full h-[550px]  justify-center overflow-hidden">
-      <div className="w-[1080px] items-center flex">
-        <div className="w-[60%]">
-          <h1 className="text-4xl font-[500]">
+    <div className=" p-10 flex  w-full min-h-[550px]  justify-center overflow-hidden">
+      <div className="w-[1080px] items-center flex flex-col md:flex-row ">
+        <div className="md:w-[60%] flex flex-col md:items-start items-center">
+          <h1 className="text-4xl font-[500] text-center md:text-left">
             Our{" "}
             <mark className="bg-transparent text-[#20B486]">Achievement</mark>{" "}
           </h1>
-          <h2 className="mt-2">
+          <h2 className=" mt-2 text-center md:text-left max-w-[500px] md:max-w-full md:w-full">
             At Star Speakers Academy, we pride ourselves on our outstanding
             track record of excellence and growth. Over the years,{" "}
             <strong className="font-[500]">
@@ -23,8 +23,8 @@ function Achievement() {
             that reflect our commitment to quality education and professional
             development.
           </h2>
-          <div className="flex flex-col gap-4 mt-5">
-            <div className="flex gap-4">
+          <div className="flex flex-col lg:gap-4 mt-5">
+            <div className="flex gap-2 lg:gap-4">
               <AchievementTabs
                 total="50000+"
                 subject="Students"
@@ -36,7 +36,7 @@ function Achievement() {
                 icon={<TvMinimalPlay color="white" />}
               />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-2 lg:gap-4">
               <AchievementTabs
                 total="400"
                 subject="Instructors"
@@ -50,9 +50,9 @@ function Achievement() {
             </div>
           </div>
         </div>
-        <div className="w-[40%]">
+        <div className="w-[350px] md:w-[40%]">
           <img
-            className="scale-[80%]"
+            className=" lg:scale-[80%]"
             src="./assets/Images/pfpatul.png"
             alt=""
           />

@@ -11,13 +11,20 @@ import styled from "styled-components";
 
 function Trainers() {
   return (
-    <div className="flex w-full h-[550px] items-center justify-center bg-[#EAEAEA]">
-      <div className="w-[1080px]">
-        <h1 className="mb-5 text-[#212832] text-4xl font-[500] text-center [&>mark]:text-[#20B486] [&>mark]:bg-transparent">
-          Join a Community of <mark> 3000+ Professional Trainers </mark>&
-          Coaches
-        </h1>
-        <SwiperContainer className="relative">
+    <div className="px-8 py-10 flex w-full min-h-[550px] items-center overflow-hidden justify-center bg-[#EAEAEA]">
+      <div className="w-[1080px] ">
+        <div className="flex flex-col justify-center items-center">
+          <h1 className=" text-[#212832] text-lg  text-center uppercase ">
+            Join a Community of
+          </h1>
+          <div className="justify-center  flex flex-col lg:flex-row lg:gap-2 mb-5 text-3xl md:text-4xl  w-[400px] md:w-full font-[500] text-center  text-[#20B486]">
+            <h1 className=" text-4xl font-[500] text-center  text-[#20B486]">
+              3000+ Professional Trainers{" "}
+            </h1>
+            <h1 className=" text-[#212832] bg-transparent">& Coaches</h1>
+          </div>
+        </div>
+        <SwiperContainer className="relative ">
           <Swiper
             slidesPerView={4}
             spaceBetween={100}
@@ -76,7 +83,7 @@ const SwiperContainer = styled.div`
   }
 
   .swiper-overlay-left {
-    left: 0;
+    left: -1%;
     background: linear-gradient(
       to right,
       rgba(234, 234, 234, 0.8),
@@ -85,7 +92,7 @@ const SwiperContainer = styled.div`
   }
 
   .swiper-overlay-right {
-    right: 0;
+    right: -1%;
     background: linear-gradient(
       to left,
       rgba(234, 234, 234, 0.8),

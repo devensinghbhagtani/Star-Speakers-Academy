@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 function SearchSection() {
   return (
-    <div className="flex w-full min-h-[320px]  justify-center ">
-      <div className="  selection h-full w-[1080px] ">
-        <div className="top-28 relative">
-          <h1 className="text-3xl text-[#212832] font-medium">
+    <div className="pt-28 pb-10 px-10 flex w-full justify-center ">
+      <div className=" h-full w-[1080px] ">
+        <div className="relative">
+          <h1 className=" text-3xl text-[#212832] font-medium">
             Let‘s start learning,{" "}
             <mark className="bg-transparent text-[#20B486]">Atul Shinde!</mark>
           </h1>
@@ -15,13 +15,13 @@ function SearchSection() {
             Browse through our extensive range of courses to enhance your skills
             and knowledge.
           </h1>
-          <div className="w-full h-14  mt-4 flex items-center ">
+          <div className="w-full h-14  mt-4 flex items-center  ">
             <input
               placeholder="Search"
-              className="h-full w-full p-4 text-lg rounded-xl text-[#212832] border-2 border-zinc-300 "
+              className="h-full w-full p-4 text-md md:text-lg rounded-xl text-[#212832] border-2 border-zinc-300 "
               type="text"
             />
-            <button className="absolute right-0 flex items-center justify-center h-14  w-20 rounded-r-xl bg-[#20B486] hover:bg-[#0d865f]">
+            <button className="absolute right-0 flex items-center justify-center h-14 w-16  md:w-20 rounded-r-xl bg-[#20B486] hover:bg-[#0d865f]">
               <Search color="white" />
             </button>
           </div>

@@ -36,7 +36,7 @@ export default ProgramCard;
 const Card = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  width: 270px;
+  max-width: 270px;
   height: 300px;
   border-radius: 15px;
   transition: all ease-in 0.1s;

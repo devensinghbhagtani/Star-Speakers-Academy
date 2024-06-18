@@ -18,7 +18,7 @@ function Feedback() {
   return (
     <div className="flex w-full py-10 h-auto  relative bg-[#EAEAEA] justify-center items-center overflow-hidden px-12 lg:px-6">
       <div className="w-full max-w-[1080px] flex flex-col justify-center items-center">
-        <h1 className="text-3xl lg:text-4xl font-[500] text-center lg:text-left">
+        <h1 className="text-4xl lg:text-4xl font-[500] text-center lg:text-left">
           Student{" "}
           <mark className="bg-transparent text-[#20B486]">Feedback</mark>
         </h1>
