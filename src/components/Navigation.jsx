@@ -1,134 +1,167 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { CircleUser } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isProfileOpen, setProfileOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <nav className="z-10 bg-zinc-800 flex fixed w-full items-center justify-center h-[72px] ">
-      <div className="w-[1080px]  flex justify-between">
-        <NavLink to="/">
-          <img className="h-12" src="./assets/Icons/logo.svg" alt="" />
-        </NavLink>
-        <div className="text-sm flex items-center float-right">
-          <ul className="flex text-white gap-10 mr-10 ">
-            <li>
+    <nav
+      className={`px-6 md:px-10 z-10 bg-zinc-800 flex flex-col fixed w-full lg:h-[75px]  ${
+        isOpen ? "h-[240px] rounded-b-2xl lg:rounded-none" : "h-[75px] "
+      } transition-all ease-in-out duration-500  `}
+    >
+      <div className="py-1 flex w-full min-h-[75px] items-center justify-center">
+        <div className="w-[1080px] relative flex justify-between">
+          <NavLink to="/">
+            <img className="h-12" src="./assets/Icons/logo.svg" alt="" />
+          </NavLink>
+          <div className="lg:hidden flex items-center">
+            <button onClick={toggleMenu} className="text-white">
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+          <div className=" hidden lg:flex items-center float-right">
+            <ul className="flex items-center text-white gap-10 ">
+              <li>
+                <NavLink
+                  to="/courses"
+                  className={({ isActive }) =>
+                    `text-white ${
+                      isActive ? "text-[#ffffff8f]" : "text-white"
+                    } hover:text-[#ffffff8f]`
+                  }
+                >
+                  Courses
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/support"
+                  className={({ isActive }) =>
+                    `text-white ${
+                      isActive ? "text-[#ffffff8f]" : "text-white"
+                    } hover:text-[#ffffff8f]`
+                  }
+                >
+                  Support
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    `text-white ${
+                      isActive ? "text-[#ffffff8f]" : "text-white"
+                    } hover:text-[#ffffff8f]`
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
               <NavLink
-                to="/courses"
-                className={({ isActive }) =>
-                  `text-white ${
-                    isActive ? "text-[#ffffff8f]" : "text-white"
-                  } hover:text-[#ffffff8f]`
-                }
+                onClick={() => {
+                  setProfileOpen(!isProfileOpen);
+                }}
+                to="#"
               >
-                Courses
+                <div className="flex items-center gap-1 ">
+                  <CircleUser size={30} />
+                  <ChevronDown
+                    className={`${
+                      isProfileOpen ? "rotate-180" : "rotate-0"
+                    } transition-all ease-in-out duration-200 `}
+                    size={15}
+                  />
+                </div>
               </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/support"
-                className={({ isActive }) =>
-                  `text-white ${
-                    isActive ? "text-[#ffffff8f]" : "text-white"
-                  } hover:text-[#ffffff8f]`
-                }
-              >
-                Support
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  `text-white ${
-                    isActive ? "text-[#ffffff8f]" : "text-white"
-                  } hover:text-[#ffffff8f]`
-                }
-              >
-                About
-              </NavLink>
-            </li>
-          </ul>
-          <ul className="flex gap-5">
-            <Button>
-              <a>Login</a>
-              <div className="hoverdiv"></div>
-            </Button>
-            <Button>
-              <a>Signup</a>
-              <div className="hoverdiv"></div>
-            </Button>
-          </ul>
+            </ul>
+          </div>
+          {isProfileOpen && (
+            <div className="hidden min-w-36 px-5 py-3 gap-2 rounded-md   lg:flex lg:flex-col overflow-hidden bg-zinc-100 top-[120%] absolute right-0 [&>*]:w-full ">
+              {isLoggedIn ? (
+                <>
+                  <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
+                  <Link to="#">Edit Profile</Link>
+                  <Link to="#">Membership & Purchase History</Link>
+                  <Link to="#">Purchase History</Link>
+                  <Link to="#">Add / Change Credit Card </Link>
+                  <Link to="#">Address </Link>
+                  <Link to="#">Contact </Link>
+                  <Link to="#">Log Out </Link>
+                </>
+              ) : (
+                <>
+                  <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
+                  <Link to="#">Login</Link>
+                  <Link to="#">Signup</Link>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
+      {isOpen && (
+        <div className=" border-t-[1px] border-zinc-600 pt-2 lg:hidden w-full">
+          <ul className="flex text-xl flex-col text-white gap-1 w-full ">
+            <div className="flex text-xl flex-col text-white gap-1 items-end">
+              <li className="">
+                <NavLink to="#">
+                  <div className="flex items-center gap-1 ">
+                    <CircleUser size={30} />
+                  </div>
+                </NavLink>
+              </li>
+
+              <li className="border-b-[1px]">
+                <NavLink
+                  to="/courses"
+                  className={({ isActive }) =>
+                    `text-white ${
+                      isActive ? "text-[#ffffff8f]" : "text-white"
+                    } hover:text-[#ffffff8f]`
+                  }
+                >
+                  Courses
+                </NavLink>
+              </li>
+              <li className="border-b-[1px]">
+                <NavLink
+                  to="/support"
+                  className={({ isActive }) =>
+                    `text-white ${
+                      isActive ? "text-[#ffffff8f]" : "text-white"
+                    } hover:text-[#ffffff8f]`
+                  }
+                >
+                  Support
+                </NavLink>
+              </li>
+              <li className="border-b-[1px]">
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    `text-white ${
+                      isActive ? "text-[#ffffff8f]" : "text-white"
+                    } hover:text-[#ffffff8f]`
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
+            </div>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
 
 export default Navigation;
-
-const Navbutton = styled.li`
-  /* a {
-    display: block;
-    position: relative;
-    padding: 0.2em 0;
-  }
-
-  a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0.1em;
-    background-color: white;
-    opacity: 0;
-    transition: opacity 300ms, transform 300ms;
-  }
-
-  a {
-    overflow: hidden;
-  }
-
-  a::after {
-    opacity: 1;
-    transform: translate3d(-110%, 0, 0);
-  }
-
-  a:hover::after,
-  a:focus::after {
-    transform: translate3d(0, 0, 0);
-  } */
-`;
-const Button = styled.button`
-  border: 2px solid white;
-  padding: 5px 15px;
-  border-radius: 50px;
-  position: relative;
-  overflow: hidden;
-  a {
-    position: relative;
-    color: white;
-    z-index: 1;
-  }
-  .hoverdiv {
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: -100%;
-    transition: all ease 0.3s;
-    border-radius: 100%;
-  }
-
-  &:hover {
-    a {
-      color: rgb(39 39 42);
-      font-weight: 500;
-    }
-    .hoverdiv {
-      bottom: 0;
-      border-radius: 0;
-    }
-  }
-`;

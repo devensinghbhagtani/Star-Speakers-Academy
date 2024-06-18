@@ -12,12 +12,12 @@ function Main() {
   return (
     <main>
       <Hero />
-      <Colleges />
+      {/* <Colleges />
       <PopularCourses />
       <Trainers />
       <Achievement />
       <Feedback />
-      <VideoSection />
+      <VideoSection /> */}
     </main>
   );
 }

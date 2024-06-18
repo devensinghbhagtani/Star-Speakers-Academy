@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import AboutCard from "./AboutCard";
-
 function AboutCourse() {
   return (
     <div className=" flex w-full min-h-[700px] relative justify-center md:px-24 lg:p-0">

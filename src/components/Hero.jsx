@@ -1,29 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function Hero() {
+  const [bgImage, setBgImage] = useState(true);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)"); // Adjust as needed
+
+    const handleMediaChange = (e) => {
+      setBgImage(!e.matches);
+    };
+
+    // Initial check
+    handleMediaChange(mediaQuery);
+
+    // Listener for changes
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    // Cleanup
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
+  }, []);
+
+  console.log(bgImage);
   return (
-    <div className="w-full h-[730px] flex justify-center relative">
-      <div className="w-full h-full">
+    <div
+      className={`px-6 w-full h-[780px] md:h-[620px] lg:h-[720px] flex justify-center relative`}
+    >
+      <div className="absolute w-full h-full">
         <img
-          className="w-full h-full object-cover"
-          src="./assets/Images/Hero2.jpg"
+          className="w-full h-full object-cover lg:object-center"
+          src={
+            bgImage
+              ? "./assets/Images/Hero2.jpg"
+              : "./assets/Images/heromobile.jpg"
+          }
           alt="Hero"
         />
       </div>
-      <div className="px-10 w-[1080px]  absolute top-1/2 ">
-        <div className="w-[52%] float-right relative">
-          <h2 className="text-white text-4xl font-[500] tracking-tight">
+      <div className="px-5 md:px-10 w-full lg:w-[1080px] z-[1] flex  justify-center md:justify-end md:w-[700px] lg:justify-end">
+        <div className="items-center md:items-start leading-tight flex flex-col top-[20%] md:top-[40%] md:max-w-[50%]  relative">
+          <h2 className="text-white text-2xl lg:text-3xl lg:font-[500] tracking-tight">
             master the art of
           </h2>
-          <h1 className="mt-[-7px] text-white text-7xl font-[500] tracking-tighter">
+          <h1 className="mt-[-7px] text-white text-[3em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter">
             communication
           </h1>
-          <p className="text-white mt-2 font-[200]">
+          <p className="w-[350px] lg:w-full text-white lg:mt-2 font-[200] md:text-sm md:text-left text-center lg:text-base">
             Explore Our Courses to Hone Your Verbal and Interpersonal Skills.
             Empower Yourself to Lead, Influence, and Succeed.
           </p>
-          <div className="mt-5 flex gap-3">
+          <div className="mt-5 flex  md:flex-row gap-1 md:gap-3">
             <Button>
               <a href="">Get Started</a>
               <div className="hoverdiv"></div>
