@@ -20,7 +20,12 @@ function Navigation() {
     >
       <div className="py-1 flex w-full min-h-[75px] items-center justify-center">
         <div className="w-[1080px] relative flex justify-between">
-          <NavLink to="/">
+          <NavLink
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            to="/"
+          >
             <img className="h-12" src="./assets/Icons/logo.svg" alt="" />
           </NavLink>
           <div className="lg:hidden flex items-center">
@@ -112,7 +117,12 @@ function Navigation() {
         <div className=" border-t-[1px] border-zinc-600 pt-2 lg:hidden w-full">
           <ul className="flex text-xl flex-col text-white gap-1 w-full ">
             <div className="flex text-xl flex-col text-white gap-1 items-end">
-              <li className="">
+              <li
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+                className=""
+              >
                 <NavLink to="#">
                   <div className="flex items-center gap-1 ">
                     <CircleUser size={30} />
@@ -120,7 +130,12 @@ function Navigation() {
                 </NavLink>
               </li>
 
-              <li className="border-b-[1px]">
+              <li
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+                className="border-b-[1px]"
+              >
                 <NavLink
                   to="/courses"
                   className={({ isActive }) =>
@@ -132,7 +147,12 @@ function Navigation() {
                   Courses
                 </NavLink>
               </li>
-              <li className="border-b-[1px]">
+              <li
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+                className="border-b-[1px]"
+              >
                 <NavLink
                   to="/contact"
                   className={({ isActive }) =>
@@ -144,7 +164,12 @@ function Navigation() {
                   Contact
                 </NavLink>
               </li>
-              <li className="border-b-[1px]">
+              <li
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+                className="border-b-[1px]"
+              >
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>

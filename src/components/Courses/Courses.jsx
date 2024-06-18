@@ -8,7 +8,6 @@ function Courses() {
     <>
       <SearchSection />
       <DisplayCourses />
-      <Feedback />
     </>
   );
 }

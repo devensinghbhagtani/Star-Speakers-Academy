@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
 
-import ProfCard from "./ProfCard";
+import ProfCard from "./HomePage/ProfCard";
 import styled from "styled-components";
 
 function Trainers() {
