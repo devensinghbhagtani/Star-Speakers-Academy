@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Hero() {
+function AboutHero({ heading }) {
   const [bgImage, setBgImage] = useState(true);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function Hero() {
 
   return (
     <div
-      className={`px-6 w-full h-[780px] md:h-[620px] lg:h-[720px] flex justify-center relative`}
+      className={`px-6 w-full h-[600px] md:h-[500px] lg:h-[600px] flex justify-center relative`}
     >
       <div className="absolute w-full h-full">
         <img
@@ -38,35 +38,18 @@ function Hero() {
           alt="Hero"
         />
       </div>
-      <div className="px-5 md:px-10 w-full lg:w-[1080px] z-[1] flex  justify-center md:justify-end md:w-[700px] lg:justify-end">
-        <div className="items-center md:items-start leading-tight flex flex-col top-[20%] md:top-[40%] md:max-w-[50%]  relative">
-          <h2 className="text-white text-2xl lg:text-3xl lg:font-[500] tracking-tight">
-            master the art of
-          </h2>
-          <h1 className="mt-[-7px] text-white text-[3em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter">
-            communication
+      <div className="pt-20  px-5 md:px-10 w-full lg:w-[1080px] z-[1] flex  justify-center md:items-center md:justify-end  ">
+        <div className="text-center pt-20 md:pt-0 items-center md:items-start leading-tight flex flex-col   ]  relative">
+          <h1 className="mt-[-7px] text-white text-5xl lg:text-6xl font-[500] md:leading-tight lg:leading-none tracking-tighter">
+            {heading}
           </h1>
-          <p className="w-[350px] lg:w-full text-white lg:mt-2 font-[200] md:text-sm md:text-left text-center lg:text-base">
-            Explore Our Courses to Hone Your Verbal and Interpersonal Skills.
-            Empower Yourself to Lead, Influence, and Succeed.
-          </p>
-          <div className="mt-5 flex  md:flex-row gap-1 md:gap-3">
-            <Button>
-              <a href="">Get Started</a>
-              <div className="hoverdiv"></div>
-            </Button>
-            <Button>
-              <a href="">Get Free Trial</a>
-              <div className="hoverdiv"></div>
-            </Button>
-          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default Hero;
+export default AboutHero;
 
 const Button = styled.button`
   border: 1px solid white;

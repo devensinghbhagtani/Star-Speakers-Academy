@@ -1,7 +1,13 @@
-import React from "react";
+import CommonHero from "../CommonHero";
+import AboutDetails from "./AboutDetails";
 
 function About() {
-  return <div>About</div>;
+  return (
+    <>
+      <CommonHero heading={"about section"} />
+      <AboutDetails />
+    </>
+  );
 }
 
 export default About;

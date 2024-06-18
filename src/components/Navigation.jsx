@@ -44,14 +44,14 @@ function Navigation() {
               </li>
               <li>
                 <NavLink
-                  to="/support"
+                  to="/contact"
                   className={({ isActive }) =>
                     `text-white ${
                       isActive ? "text-[#ffffff8f]" : "text-white"
                     } hover:text-[#ffffff8f]`
                   }
                 >
-                  Support
+                  Contact
                 </NavLink>
               </li>
               <li>
@@ -134,14 +134,14 @@ function Navigation() {
               </li>
               <li className="border-b-[1px]">
                 <NavLink
-                  to="/support"
+                  to="/contact"
                   className={({ isActive }) =>
                     `text-white ${
                       isActive ? "text-[#ffffff8f]" : "text-white"
                     } hover:text-[#ffffff8f]`
                   }
                 >
-                  Support
+                  Contact
                 </NavLink>
               </li>
               <li className="border-b-[1px]">

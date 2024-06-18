@@ -13,6 +13,7 @@ import Main from "./components/Main.jsx";
 import About from "./components/About/About.jsx";
 import MasterClass from "./components/MasterClass/MasterClass.jsx";
 import Courses from "./components/Courses/Courses.jsx";
+import Contact from "./components/ContactPage/Contact.jsx";
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
         <Route index element={<Main />} />
         <Route path="about" element={<About />} />
         <Route path="courses" element={<Courses />} />
+        <Route path="contact" element={<Contact />} />
       </Route>
       <Route path="/master-class" element={<MasterClass />} />
     </>
