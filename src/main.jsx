@@ -14,6 +14,7 @@ import About from "./components/About/About.jsx";
 import MasterClass from "./components/MasterClass/MasterClass.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import Contact from "./components/ContactPage/Contact.jsx";
+import CourseDetails from "./components/CourseContent/CourseDetails.jsx";
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -32,8 +33,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route index element={<Main />} />
         <Route path="about" element={<About />} />
-        <Route path="courses" element={<Courses />} />
+        <Route path="courses/" element={<Courses />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="1" element={<CourseDetails />} />
       </Route>
       <Route path="/master-class" element={<MasterClass />} />
     </>
