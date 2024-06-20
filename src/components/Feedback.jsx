@@ -2,6 +2,7 @@ import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Quote } from "lucide-react";
+import axios from "axios";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,11 +11,31 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
+import { useState, useEffect,useCallback } from "react";
 
 import FeedbackCard from "./FeedbackCard";
 import styled from "styled-components";
 
 function Feedback() {
+  const [feedback, setFeedback] = useState([]);
+
+  async function fetchfeedback() {
+    try {
+      const response = await axios.get(
+        "http://localhost:8081/feedback/getfeedback"
+      );
+      if(response.data.feedback){
+        setFeedback(response.data.feedback);
+      }
+      console.log("Response:", response.data.feedback);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    }
+  }
+  useEffect(() => {
+    fetchfeedback();
+  }, []);
+
   return (
     <div className="flex w-full py-10 h-auto  relative bg-[#EAEAEA] justify-center items-center overflow-hidden px-12 lg:px-6">
       <div className="w-full max-w-[1080px] flex flex-col justify-center items-center">
@@ -44,21 +65,23 @@ function Feedback() {
             modules={[Pagination, Navigation]}
             className="swiper-container mt-5 pb-10"
           >
-            <SwiperSlide>
-              <FeedbackCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FeedbackCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FeedbackCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FeedbackCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FeedbackCard />
-            </SwiperSlide>
+           
+              {
+                feedback.map((info) => {
+                  
+                  return (
+                    <SwiperSlide>
+                    <FeedbackCard
+                      name={info.name?.S || ""}
+                      date={info.date?.S || ""}
+                      feedback={info.feedback?.S || ""}
+                      designation={info.designation?.S || ""}
+                      photo={info.image?.S || ""}
+                    />
+                    </SwiperSlide>
+                  );
+                })
+              }
           </Swiper>
         </SwiperContainer>
       </div>

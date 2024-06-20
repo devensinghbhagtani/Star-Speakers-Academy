@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import styled from "styled-components";
 import { ArrowUpRight } from "lucide-react";
 
-function CourseTab() {
+function CourseTab(props) {
   return (
     <div>
       <Card>
         <div className="pfp">
-          <img src="./assets/Images/pfp1.png" alt="" />
+          <img src={props.video} alt="" />
         </div>
         <h3 className="mt-3 mb-3 text-md leading-5 font-[500]">
           The Complete guide to Starting up

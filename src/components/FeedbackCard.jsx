@@ -1,7 +1,8 @@
 import React from "react";
 import { Quote } from "lucide-react";
 
-function FeedbackCard() {
+function FeedbackCard(props) {
+  console.log(props.name);
   return (
     <div className="bg-white w-full h-auto  rounded-2xl p-6 flex flex-col justify-between">
       <div className="flex justify-between items-center">
@@ -9,13 +10,13 @@ function FeedbackCard() {
           <div className="w-12 h-12 lg:w-16 lg:h-16 flex rounded-full overflow-hidden mr-3">
             <img
               className="object-cover"
-              src="./assets/Images/pfp3.png"
+              src={props.photo}
               alt=""
             />
           </div>
           <div>
-            <h2 className="text-sm lg:text-lg font-medium">Jenny Wilson</h2>
-            <h3 className="text-xs leading-4">UI-UX Designer</h3>
+            <h2 className="text-sm lg:text-lg font-medium">{props.name}</h2>
+            <h3 className="text-xs leading-4">{props.designation}</h3>
           </div>
         </div>
         <div>
@@ -24,13 +25,11 @@ function FeedbackCard() {
       </div>
       <div className="h-auto  ">
         <p className="ml-10 text-xs lg:text-sm max-w-[80%] mt-5">
-          "The courses at Star Speakers Academy have been a game changer for my
-          career. The instructors are top-notch, and I've gained invaluable
-          communication skills."
+        {props.feedback}
         </p>
       </div>
       <hr className="h-px border-0 bg-gray-300 mt-4" />
-      <h3 className="flex justify-end mt-2 italic text-xs">20-10-2004</h3>
+      <h3 className="flex justify-end mt-2 italic text-xs">{props.date}</h3>
     </div>
   );
 }
