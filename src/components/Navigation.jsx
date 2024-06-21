@@ -26,7 +26,7 @@ function Navigation() {
             }}
             to="/"
           >
-            <img className="h-12" src="./assets/Icons/logo.svg" alt="" />
+            <img className="h-12" src=".././assets/Icons/logo.svg" alt="" />
           </NavLink>
           <div className="lg:hidden flex items-center">
             <button onClick={toggleMenu} className="text-white">

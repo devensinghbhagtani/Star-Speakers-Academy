@@ -7,7 +7,8 @@ import {
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function CourseHero() {
+function CourseHero(props) {
+  console.log(props.name);
   return (
     <div
       className={`px-6 py-6 w-full min-h-[600px] md:min-h-[500px] lg:h-[500px] flex items-center justify-center relative`}
@@ -15,7 +16,7 @@ function CourseHero() {
       <div className="absolute w-full h-full">
         <img
           className="w-full h-full object-cover lg:object-center"
-          src="./assets/Images/coursebanner.jpg"
+          src=".././assets/Images/coursebanner.jpg"
           alt="Hero"
         />
       </div>
@@ -34,7 +35,7 @@ function CourseHero() {
           </div>
           <div className=" w-[350px]  md:w-[80%] text-center lg:text-left lg:w-full flex flex-col items-center justify-center lg:items-start gap-4">
             <h1 className="  mt-[-7px] text-white text-4xl  md:text-5xl font-[500]  md:leading-tight lg:leading-none tracking-tighter">
-              Launch Your Dream Start-up In 8 steps.
+              {props.name?.folder?.course_name}
             </h1>
             <div>
               <Button className="lg:bg-white text-white lg:text-zinc-800  bg-[#20b486] ">
