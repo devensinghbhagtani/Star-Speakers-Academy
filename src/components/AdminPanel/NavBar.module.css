@@ -1,0 +1,10 @@
+nav{
+    padding: 1.4rem !important;
+    color: white !important;
+    font-size: 1rem !important;
+    position: fixed !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    background-color: #e2d6d6 !important;
+    
+}
