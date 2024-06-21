@@ -35,6 +35,7 @@ const router = createBrowserRouter(
         <Route path="about" element={<About />} />
         <Route path="courses/" element={<Courses />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="/course/:folder" element={<CourseDetails/>} />
         <Route path="1" element={<CourseDetails />} />
       </Route>
       <Route path="/master-class" element={<MasterClass />} />
