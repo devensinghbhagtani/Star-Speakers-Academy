@@ -15,6 +15,12 @@ import MasterClass from "./components/MasterClass/MasterClass.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import Contact from "./components/ContactPage/Contact.jsx";
 import CourseDetails from "./components/CourseContent/CourseDetails.jsx";
+import AdminHome from "./components/AdminPanel/AdminHome.jsx";
+import AddCourse from "./components/AdminPanel/addCourse.jsx";
+import ViewCourses from "./components/AdminPanel/ViewCourses.jsx";
+import MasterClassEdit from "./components/AdminPanel/MasterClassEdit.tsx";
+import EditHome from "./components/AdminPanel/EditHome.jsx";
+
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -39,6 +45,13 @@ const router = createBrowserRouter(
         <Route path="1" element={<CourseDetails />} />
       </Route>
       <Route path="/master-class" element={<MasterClass />} />
+      <Route path="/admin" element={<AdminHome/>} >
+      <Route path="/admin/addCourse" element={<AddCourse />} />
+      <Route path="/admin/viewCourses" element={<ViewCourses />} />
+      <Route path="/admin/MasterClassEdit" element={<MasterClassEdit />} />
+      <Route path="/admin/EditHome" element={<EditHome />} />
+      </Route>
+
     </>
   )
 );
