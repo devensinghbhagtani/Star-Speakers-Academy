@@ -8,11 +8,14 @@ function FeedbackCard(props) {
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <div className="w-12 h-12 lg:w-16 lg:h-16 flex rounded-full overflow-hidden mr-3">
-            <img
+            { 
+              <img
               className="object-cover"
-              src={props.photo}
+              src={props.image ? props.image : "https://www.w3schools.com/howto/img_avatar.png"}
               alt=""
             />
+            }
+          
           </div>
           <div>
             <h2 className="text-sm lg:text-lg font-medium">{props.name}</h2>
