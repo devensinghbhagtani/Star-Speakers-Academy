@@ -18,7 +18,8 @@ export default function NavBar() {
                             <NavLink to="/admin/MasterClassEdit" className="nav-link">Master Class</NavLink>
                             <NavLink to="/admin/addCourse" className="nav-link">Add</NavLink>
                             <NavLink to="/admin/viewCourses" className="nav-link">View</NavLink>
-                            <NavLink to="/admin/editCourse" className="nav-link">Edit</NavLink>
+                            <NavLink to="/admin/editCourse" className="nav-link">Edit Course</NavLink>
+                            <NavLink to="/admin/EditHome" className="nav-link">Edit Home</NavLink>
                         </div>
                     </div>
                 </div>
