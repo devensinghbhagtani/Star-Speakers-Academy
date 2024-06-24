@@ -6,7 +6,7 @@ function AboutDetails() {
       <div className="flex  w-full   justify-center  items-center overflow-hidden ">
         <div className="w-[1080px]  flex flex-col  gap-7  p-10 text-md md:text-lg leading-7  text-zinc-600 ">
           <div className="flex flex-col md:flex-row justify-center items-center">
-            <div className="w-[340px] md:w-[60%] flex flex-col md:gap-5 items-end">
+            <div className=" w-[340px] md:w-[60%] flex flex-col md:gap-5 items-end">
               <h1 className="text-3xl font-semibold italic tracking-tighter ">
                 “Make sure all the choices you make in life come{" "}
                 <mark className="text-zinc-600 bg-[#FFC27A]">

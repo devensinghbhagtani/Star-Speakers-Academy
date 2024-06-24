@@ -80,7 +80,7 @@ const Button = styled.button`
     position: absolute;
     left: 0;
     bottom: -100%;
-    transition: all ease 0.1s;
+    transition: all ease 0.3s;
     border-radius: 100%;
   }
 
