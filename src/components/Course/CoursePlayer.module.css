@@ -1,0 +1,63 @@
+.moduleItem {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.moduleItem summary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
+
+.mobileContent{
+    display: none;
+
+}
+
+.lecture-item {
+    align-items: center;
+    padding: 5px 0;
+}
+
+.lecture-item input[type="checkbox"] {
+    margin-right: px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.verticleLine {
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+}
+
+.floatingDiv {
+    position: sticky;
+    top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.lecture-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1rem;
+}
+
+
+/* mobile view */
+@media (max-width: 768px) {
+    .mobileContent{
+        display: block;
+    }
+    .verticleLine {
+        display: none;
+    }
+    .floatingDiv {
+        display: none;
+    }
+}

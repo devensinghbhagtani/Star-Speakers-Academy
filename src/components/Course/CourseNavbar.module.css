@@ -1,0 +1,42 @@
+
+.navbarChange {
+  background-color: #26272b !important;
+  color: white !important;
+
+}
+.verticleLine {
+  border-left: 1px solid white;
+  height: 20px;
+  margin-left: 10px;
+}
+
+.courseName{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+
+}
+
+.displayProgress {
+  padding: 10px; 
+  cursor: pointer;
+  /* display to the right of the screen */
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+
+
+@media (max-width: 768px) and (max-width: 1024px) {
+  .verticleLine {
+    border-left: none;
+    display: none;
+  }
+  .courseName{
+    margin-left: 0px;
+  }
+  .displayProgress {
+    display: none;
+  }
+  
+}
