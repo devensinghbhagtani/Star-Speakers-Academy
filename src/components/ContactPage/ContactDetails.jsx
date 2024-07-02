@@ -19,7 +19,7 @@ function ContactDetails() {
       <div
         className={`${showGallery ? "lg:block hidden opacity-0" : "hidden "} ${
           opacity ? "opacity-100" : "opacity-0 "
-        } w-[600px] opacity-0   bg-transparent h-[400px] fixed top-1/4 rounded-3xl overflow-hidden left-1/3  z-20 inset-0 transition-all duration-300 ease-in-out`}
+        } w-[600px] opacity-0   bg-transparent h-[400px] fixed top-1/4 rounded-3xl overflow-hidden left-1/3  z-10 inset-0 transition-all duration-300 ease-in-out`}
       >
         <img
           className={`h-full w-full object-cover`}
@@ -149,7 +149,7 @@ function ContactDetails() {
               />
             </div>
             <div
-              className={`lg:hidden w-full mt-10 md:mt-0 md:w-[70%] bg-transparent h-[320px]  top-1/4 rounded-2xl overflow-hidden left-1/3  z-20 inset-0 transition-all  duration-300 ease-in-out`}
+              className={`lg:hidden w-full mt-10 md:mt-0 md:w-[70%] bg-transparent h-[320px]  top-1/4 rounded-2xl overflow-hidden left-1/3  z-10 inset-0 transition-all  duration-300 ease-in-out`}
             >
               <img
                 className={`h-full w-full object-cover`}

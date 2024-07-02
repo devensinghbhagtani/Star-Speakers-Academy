@@ -6,7 +6,7 @@ function AboutCourse() {
   return (
     <div className="p-10 md:p-10 text-zinc-800 w-full  flex justify-center ">
       <div className=" flex flex-col items-center h-full w-[1080px] ">
-        <h1 className="text-4xl  font-[500]  mb-5 text-zinc-700">
+        <h1 className="text-4xl text-center font-[500]  mb-5 text-zinc-700">
           About the{" "}
           <mark className="bg-transparent text-[#20b486]">Course</mark>
         </h1>

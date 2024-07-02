@@ -44,13 +44,13 @@ function Achievement() {
               />
               <AchievementTabs
                 total="2000"
-                subject="Hours of Content"
+                subject="Hours"
                 icon={<TvMinimalPlay color="white" />}
               />
             </div>
           </div>
         </div>
-        <div className="w-[350px] md:w-[40%]">
+        <div className="w-[290px] md:w-[40%]">
           <img
             className=" lg:scale-[80%]"
             src="./assets/Images/pfpatul.png"

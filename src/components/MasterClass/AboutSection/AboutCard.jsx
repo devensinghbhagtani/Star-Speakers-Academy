@@ -3,7 +3,7 @@ import React from "react";
 function AboutCard({ n, text, b = true }) {
   return (
     <div className={`flex gap-3 ${b ? " border-b-2" : ""} pb-5 items-center `}>
-      <div className="min-w-[60px] h-[60px] md:min-w-[80px] md:h-[80px] bg-emerald-100 rounded-full">
+      <div className="w-[80px] md:min-w-[80px] md:h-[80px] bg-emerald-100 rounded-full">
         <img
           className="w-full h-full"
           src={`./assets/Illustrations/${n}.png`}
