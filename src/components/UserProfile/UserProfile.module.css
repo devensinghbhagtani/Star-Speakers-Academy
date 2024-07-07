@@ -1,0 +1,75 @@
+.changeBtn {
+    background-color: white;
+    border: 1px solid #212832;
+    color: black;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none !important;
+    transition: all 0.3s;
+}
+
+.changeBtn:hover {
+    background-color: #212832;
+    color: white;
+    border: 1px solid #212832;
+}
+
+.verticleLine {
+    border-left: 2px solid #ddd;
+    padding-left: 15px;
+}
+
+h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.updateBtn{
+    padding: 10px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.planCard {
+    /* height */
+    height: 400px;
+}
+
+.imgCard{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.displayHistory{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 590px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+
+}
+
+/* mobile and tablet */
+@media (max-width: 768px) {
+    .planCard {
+        height: auto;
+        margin: 10px;
+    }
+}
+
+/* small desktop upti 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .planCard {
+        display: none;
+    }
+}

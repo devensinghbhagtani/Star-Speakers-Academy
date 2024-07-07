@@ -22,9 +22,9 @@ function CourseHero(props) {
       </div>
       <div className="pt-20 h-full px-5 md:px-10 w-full lg:w-[1080px]  z-[1] flex  justify-center md:items-center ">
         <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10 ">
-          <div className=" min-w-[360px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0">
+          <div className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0">
             <iframe
-              className=" rounded-[20px] w-full h-full"
+              className=" rounded-[20px] w-full h-full border-none"
               src="https://www.youtube.com/embed/pi1xphhntF0?si=79Djoc9kVcSaokHS"
               title="YouTube video player"
               frameBorder="0"
@@ -80,7 +80,7 @@ const Button = styled.button`
     position: absolute;
     left: 0;
     bottom: -100%;
-    transition: all ease 0.1s;
+    transition: all ease 0.3s;
     border-radius: 100%;
   }
 

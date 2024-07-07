@@ -21,6 +21,9 @@ import ViewCourses from "./components/AdminPanel/ViewCourses.jsx";
 import MasterClassEdit from "./components/AdminPanel/MasterClassEdit.jsx";
 import EditHome from "./components/AdminPanel/EditHome.jsx";
 
+import ErrorPage from "./components/ErrorPage.jsx";
+import Login from "./components/LoginSignup/Login.jsx";
+import Signup from "./components/LoginSignup/Signup.jsx";
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -36,22 +39,21 @@ import EditHome from "./components/AdminPanel/EditHome.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
         <Route index element={<Main />} />
         <Route path="about" element={<About />} />
         <Route path="courses/" element={<Courses />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="/course/:folder" element={<CourseDetails/>} />
+        <Route path="/course/:folder" element={<CourseDetails />} />
         <Route path="1" element={<CourseDetails />} />
       </Route>
       <Route path="/master-class" element={<MasterClass />} />
-      <Route path="/admin" element={<AdminHome/>} >
-      <Route path="/admin/addCourse" element={<AddCourse />} />
-      <Route path="/admin/viewCourses" element={<ViewCourses />} />
-      <Route path="/admin/MasterClassEdit" element={<MasterClassEdit />} />
-      <Route path="/admin/EditHome" element={<EditHome />} />
+      <Route path="/admin" element={<AdminHome />}>
+        <Route path="/admin/addCourse" element={<AddCourse />} />
+        <Route path="/admin/viewCourses" element={<ViewCourses />} />
+        <Route path="/admin/MasterClassEdit" element={<MasterClassEdit />} />
+        <Route path="/admin/EditHome" element={<EditHome />} />
       </Route>
-
     </>
   )
 );

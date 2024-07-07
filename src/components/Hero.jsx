@@ -25,7 +25,7 @@ function Hero() {
 
   return (
     <div
-      className={`px-6 w-full h-[780px] md:h-[620px] lg:h-[720px] flex justify-center relative`}
+      className={`px-6 w-full h-[700px] md:h-[620px] lg:h-[720px] flex justify-center relative`}
     >
       <div className="absolute w-full h-full">
         <img
@@ -43,10 +43,10 @@ function Hero() {
           <h2 className="text-white text-2xl lg:text-3xl lg:font-[500] tracking-tight">
             master the art of
           </h2>
-          <h1 className="mt-[-7px] text-white text-[3em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter">
+          <h1 className="mt-[-7px] text-white text-[2.6em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter">
             communication
           </h1>
-          <p className="w-[350px] lg:w-full text-white lg:mt-2 font-[200] md:text-sm md:text-left text-center lg:text-base">
+          <p className="max-w-[350px] lg:w-full text-white lg:mt-2 font-[200] md:text-sm md:text-left text-center text-sm lg:text-base">
             Explore Our Courses to Hone Your Verbal and Interpersonal Skills.
             Empower Yourself to Lead, Influence, and Succeed.
           </p>
@@ -69,7 +69,7 @@ function Hero() {
 export default Hero;
 
 const Button = styled.button`
-  border: 1px solid white;
+  border: 0.5px solid white;
   padding: 5px 15px;
   border-radius: 10px;
   position: relative;

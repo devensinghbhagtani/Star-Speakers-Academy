@@ -6,11 +6,11 @@ import { useParams } from "react-router-dom";
 import ModuleContentTab from "./ModuleContentTab";
 
 function CourseCurriculum(props) {
-//  console.log(props.courseData);
+  //  console.log(props.courseData);
   return (
     <div className="w-full p-10 justify-center items-center flex bg-zinc-100">
       <div className="flex flex-col w-[1024px] justify-center items-center">
-        <h1 className="text-4xl  font-[500]  mb-5 text-zinc-700">
+        <h1 className="text-4xl text-center font-[500]  mb-5 text-zinc-700">
           Course{" "}
           <mark className="bg-transparent text-[#20b486]">Curriculum</mark>
         </h1>
@@ -21,19 +21,12 @@ function CourseCurriculum(props) {
               <h1>Lessons</h1>
             </div>
             <div className="flex flex-col ">
-              {props.data?.folder?.videos.map((video,key) => (
-                
-                <ModuleContentTab
-                  key={key}
-                  title={video.split("/")[1]}
-                />
-              ))
-              }
+              {props.data?.folder?.videos.map((video, key) => (
+                <ModuleContentTab key={key} title={video.split("/")[1]} />
+              ))}
             </div>
           </div>
-          <div className="w-full md:w-[80%] rounded-md overflow-hidden text-zinc-700">
-          
-          </div>
+          <div className="w-full md:w-[80%] rounded-md overflow-hidden text-zinc-700"></div>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ function ContactDetails() {
       <div
         className={`${showGallery ? "lg:block hidden opacity-0" : "hidden "} ${
           opacity ? "opacity-100" : "opacity-0 "
-        } w-[600px] opacity-0   bg-transparent h-[400px] fixed top-1/4 rounded-3xl overflow-hidden left-1/3  z-20 inset-0 transition-all duration-300 ease-in-out`}
+        } w-[600px] opacity-0   bg-transparent h-[400px] fixed top-1/4 rounded-3xl overflow-hidden left-1/3  z-10 inset-0 transition-all duration-300 ease-in-out`}
       >
         <img
           className={`h-full w-full object-cover`}
@@ -31,7 +31,7 @@ function ContactDetails() {
       <div className="flex w-full p-10 lg:justify-center  lg:items-center overflow-hidden ">
         <div className="w-[1080px] lg:items-center h-full flex flex-col lg:flex-row gap-7   text-md md:text-lg leading-7 lg:justify-between text-zinc-600 ">
           <div className="h-full w-full ">
-            <h1 className="text-4xl tracking-tight font-semibold">
+            <h1 className="text-3xl tracking-tight font-medium">
               Send us an Email
             </h1>
             {/* <div className="flex gap-2 mt-2">
@@ -51,14 +51,17 @@ function ContactDetails() {
                 <Youtube />
               </div>
             </div> */}
-            <form className="w-full  flex flex-col gap-2 items-start" action="">
+            <form
+              className="w-full text-sm flex flex-col gap-2 items-start"
+              action=""
+            >
               <div className="w-full flex mt-5 gap-3 text-md">
                 <div className="w-full gap-3 flex  flex-col lg:flex-row">
                   <div className="md:flex md:gap-3 w-full">
                     <div className=" flex flex-col w-full ">
                       <label htmlFor="">Name</label>
                       <input
-                        className="p-2 border-2 w-full border-zinc-400 rounded-md"
+                        className="p-2 border-2 w-full  rounded-lg"
                         type="name"
                         id="name"
                       />
@@ -66,7 +69,7 @@ function ContactDetails() {
                     <div className="flex w-full  flex-col">
                       <label htmlFor="email">Email</label>
                       <input
-                        className="w-full p-2 border-2 border-zinc-400 rounded-md"
+                        className="w-full p-2 border-2  rounded-lg"
                         type="email"
                         id="email"
                       />
@@ -75,7 +78,7 @@ function ContactDetails() {
                   <div className="flex flex-col">
                     <label htmlFor="">Phone</label>
                     <input
-                      className="max-w-[500px] lg:w-auto p-2 border-2 border-zinc-400 rounded-md"
+                      className="max-w-[500px] lg:w-auto p-2 border-2  rounded-lg"
                       type="phone"
                       id="phone"
                     />
@@ -86,7 +89,7 @@ function ContactDetails() {
                 <div className="flex max-w-[500px] flex-col">
                   <label htmlFor="">Subject</label>
                   <input
-                    className="p-2 border-2 border-zinc-400 rounded-md"
+                    className="p-2 border-2  rounded-lg"
                     type="subject"
                     id="subject"
                   />
@@ -96,14 +99,14 @@ function ContactDetails() {
                 <label htmlFor="">Message</label>
                 <textarea
                   rows="4"
-                  className="p-2 w-full border-2 border-zinc-400 rounded-md"
+                  className="p-2 w-full border-2  rounded-lg"
                   type="subject"
                   id="subject"
                 />
               </div>
               <button
                 type="submit"
-                className="mt-2 px-20 py-2 rounded-md text-white bg-[#20B486]"
+                className="mt-2 px-20 py-2 rounded-lg text-white bg-[#20B486] hover:bg-[#1e9771] active:bg-[#1e9771]"
               >
                 Submit
               </button>
@@ -146,7 +149,7 @@ function ContactDetails() {
               />
             </div>
             <div
-              className={`lg:hidden w-full mt-10 md:mt-0 md:w-[70%] bg-transparent h-[320px]  top-1/4 rounded-2xl overflow-hidden left-1/3  z-20 inset-0 transition-all  duration-300 ease-in-out`}
+              className={`lg:hidden w-full mt-10 md:mt-0 md:w-[70%] bg-transparent h-[320px]  top-1/4 rounded-2xl overflow-hidden left-1/3  z-10 inset-0 transition-all  duration-300 ease-in-out`}
             >
               <img
                 className={`h-full w-full object-cover`}

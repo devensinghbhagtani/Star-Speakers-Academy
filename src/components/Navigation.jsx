@@ -14,9 +14,9 @@ function Navigation() {
   };
   return (
     <nav
-      className={`px-6 md:px-10 z-10 bg-zinc-800 flex flex-col fixed w-full lg:h-[75px]  ${
+      className={`px-6 md:px-10 z-30 bg-zinc-800 flex flex-col fixed w-full lg:h-[75px]  ${
         isOpen ? "h-[240px] rounded-b-2xl lg:rounded-none" : "h-[75px] "
-      } transition-all ease-in-out duration-500  `}
+      } transition-all ease-in-out duration-300  `}
     >
       <div className="py-1 flex w-full min-h-[75px] items-center justify-center">
         <div className="w-[1080px] relative flex justify-between">
