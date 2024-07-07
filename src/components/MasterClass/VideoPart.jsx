@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 function VideoPart(props) {
+  console.log(props.masterclasstitle.videolink.S);
 
-  
   return (
     <div className="lg:pt-24 pt-24 md:pt-24 p-5 flex w-full h-auto lg:min-h-[450px] relative justify-center overflow-hidden    ">
       <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row lg:justify-center lg:items-center items-center lg:gap-10 ">
         <div className=" min-w-[340px] w-[30px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10 lg:h-[320px] md:mb-3 lg:m-0">
           <iframe
             className=" rounded-[20px] w-full h-full"
-            src="https://www.youtube.com/embed/pi1xphhntF0?si=79Djoc9kVcSaokHS"
+            src={props.masterclasstitle.videolink.S}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
