@@ -1,7 +1,7 @@
 import React from "react";
 import { BadgePercent } from "lucide-react";
 
-function DiscountLine() {
+function DiscountLine(props) {
   return (
     <div className="bg-[#20b486] w-full h-[25px] md:h-[32px] items-center flex justify-center gap-2">
       <img
@@ -10,7 +10,7 @@ function DiscountLine() {
         alt=""
       />
       <h1 className="text-white text-sm md:text-lg">
-        14-Day, 100% Money-Back Guarantee
+        {props.discount.N},100% Money-Back Guarantee
       </h1>
     </div>
   );

@@ -46,9 +46,12 @@ export default function AddCourse() {
 
     const handleSubmit = () => {
         // Send courseData to backend or log it
+       /// senddata(courseData.title,courseData.date,courseData.speaker,courseData.time,courseData.venue,courseData.language,courseData.price,courseData.enroll_link,courseData.enroll_text,courseData.access_at,courseData.video_link,courseData.event_type);
         console.log(courseData);
     };
 
+
+  
     return (
         <div className="container text-center">
             <h1>Add Course</h1>

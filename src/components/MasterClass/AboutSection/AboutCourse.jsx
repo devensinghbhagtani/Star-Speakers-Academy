@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import AboutCard from "./AboutCard";
-function AboutCourse() {
+function AboutCourse(props) {
   return (
     <div className=" flex w-full min-h-[700px] relative justify-center md:px-24 lg:p-0">
       <div className="py-7 w-full max-w-[1080px] h-full flex flex-col justify-center items-center">
@@ -11,32 +11,13 @@ function AboutCourse() {
         </h1>
 
         <div className="w-[300px] flex flex-col gap-7 md:w-full lg:w-[80%] mt-3 h-full justify-center">
-          <AboutCard
-            n="1"
-            text="Learn techniques to control stress, anxiety, and negative emotions, leading to a more balanced and peaceful life."
-          />
-          <AboutCard
-            n="2"
-            text="Enhance your communication skills and understand others better, diving towards healthier and more meaningful relationships."
-          />
-          <AboutCard
-            n="3"
-            text="Develop a strong sense of self-esteem and confidence, empowering you to take on new challenges with ease."
-          />
-          <AboutCard
-            n="4"
-            text="Learn effective goal-setting techniques and strategies to turn your dreams into achievable plans."
-          />
-          <AboutCard
-            n="5"
-            b={false}
-            text={
-              <>
-                Become an NLP trainer helping people on the journey, solving
-                their problems, and building a business out of it.
-              </>
-            }
-          />
+          {Object.keys(props.skill).map((key, index) => (
+            <AboutCard
+              key={index}
+              n={index + 1}
+              text={props.skill[key].S}
+            />
+          ))}
         </div>
       </div>
     </div>

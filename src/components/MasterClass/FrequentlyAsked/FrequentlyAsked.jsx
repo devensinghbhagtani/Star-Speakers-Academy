@@ -2,7 +2,8 @@ import React from "react";
 import FrequentyAskedCard from "./FrequentyAskedCard";
 import styled from "styled-components";
 
-function FrequentlyAsked() {
+function FrequentlyAsked(props) {
+  console.log(props.faq);
   return (
     <div className="p-8 w-full min-h-[500px] flex justify-center  md:p-10">
       <div className="flex flex-col items-center w-full md:w-[1080px] h-full">
@@ -11,11 +12,16 @@ function FrequentlyAsked() {
           <mark className="bg-transparent text-[#20b486]">Asked Questions</mark>{" "}
         </h1>
         <div className="mt-5 w-full flex flex-col gap-3 mb-5">
+          {
+            props.faq.map((faq, index) => (
+              <FrequentyAskedCard key={index} question={faq.M.Question} answer={faq.M.Answer} />
+            ))
+          }
+          {/* <FrequentyAskedCard />
           <FrequentyAskedCard />
           <FrequentyAskedCard />
           <FrequentyAskedCard />
-          <FrequentyAskedCard />
-          <FrequentyAskedCard />
+          <FrequentyAskedCard /> */}
         </div>
         <Button1 className=" px-20 py-2 md:px-52 md:py-4 lg:px-24 lg:py-2 md:text-xl">
           <a href="">ENROLL NOW</a>

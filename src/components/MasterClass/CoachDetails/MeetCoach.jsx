@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Instagram, Youtube, Twitter, Linkedin } from "lucide-react";
 import SocialMediaCoach from "./SocialMediaCoach";
 
-function MeetCoach() {
+function MeetCoach(props) {
   const [readHeight, setReadHeight] = useState(false);
   return (
     <>
@@ -27,19 +27,19 @@ function MeetCoach() {
             <div className="flex gap-3 mt-4">
               <SocialMediaCoach
                 icon={<Instagram size={35} color="#20b486 " />}
-                followers={"120k"}
+                followers={props.followers.instagram.N}
               />
               <SocialMediaCoach
                 icon={<Youtube size={35} color="#20b486 " />}
-                followers={"100k"}
+                followers={props.followers.youtube.N}
               />
               <SocialMediaCoach
                 icon={<Twitter size={35} color="#20b486 " />}
-                followers={"120k"}
+                followers={props.followers.twitter.N}
               />
               <SocialMediaCoach
                 icon={<Linkedin size={35} color="#20b486 " />}
-                followers={"20k"}
+                followers={props.followers.linkedin.N}
               />
             </div>
           </div>

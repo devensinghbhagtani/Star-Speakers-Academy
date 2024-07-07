@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import WorkshopCard from "./WorkshopCard";
 import styled from "styled-components";
 
-function WorkshopFor() {
+function WorkshopFor(props) {
   const [image, setImage] = useState(1);
 
   return (
@@ -17,17 +17,23 @@ function WorkshopFor() {
           <div className="h-full gap-5 md:h-[400px] w-full md:w-[50%] flex flex-col justify-between z-20">
             <div className="flex justify-center md:justify-end w-full">
               <div onMouseEnter={() => setImage(1)}>
-                <WorkshopCard />
+                <WorkshopCard 
+                text={props.foryou.ip1.S}
+                />
               </div>
             </div>
             <div className="flex justify-center w-full">
               <div onMouseEnter={() => setImage(2)}>
-                <WorkshopCard />
+                <WorkshopCard  
+                 text={props.foryou.ip2.S}
+                />
               </div>
             </div>
             <div className="flex justify-center md:justify-end w-full">
               <div onMouseEnter={() => setImage(3)}>
-                <WorkshopCard />
+                <WorkshopCard 
+                 text={props.foryou.ip3.S}
+                />
               </div>
             </div>
           </div>
@@ -41,17 +47,23 @@ function WorkshopFor() {
           <div className="h-full gap-5 md:h-[400px] w-full md:w-[50%] flex flex-col justify-between z-20">
             <div className="flex justify-center w-full">
               <div onMouseEnter={() => setImage(4)}>
-                <WorkshopCard />
+                <WorkshopCard
+                 text={props.foryou.ip4.S}
+                />
               </div>
             </div>
             <div className="flex justify-center md:justify-end w-full">
               <div onMouseEnter={() => setImage(5)}>
-                <WorkshopCard />
+                <WorkshopCard
+                 text={props.foryou.ip5.S}
+                />
               </div>
             </div>
             <div className="flex justify-center w-full">
               <div onMouseEnter={() => setImage(6)}>
-                <WorkshopCard />
+                <WorkshopCard 
+                 text={props.foryou.ip6.S}
+                />
               </div>
             </div>
           </div>

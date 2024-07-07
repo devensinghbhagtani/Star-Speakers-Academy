@@ -18,7 +18,7 @@ import CourseDetails from "./components/CourseContent/CourseDetails.jsx";
 import AdminHome from "./components/AdminPanel/AdminHome.jsx";
 import AddCourse from "./components/AdminPanel/addCourse.jsx";
 import ViewCourses from "./components/AdminPanel/ViewCourses.jsx";
-import MasterClassEdit from "./components/AdminPanel/MasterClassEdit.tsx";
+import MasterClassEdit from "./components/AdminPanel/MasterClassEdit.jsx";
 import EditHome from "./components/AdminPanel/EditHome.jsx";
 
 // const router = createBrowserRouter([

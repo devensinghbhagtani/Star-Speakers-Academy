@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { CircleArrowUp } from "lucide-react";
 import React, { useState } from "react";
 
-function FrequentyAskedCard() {
+function FrequentyAskedCard({question,answer}) {
+  console.log(question);
   const [display, setDisplay] = useState(false);
   return (
     <Card
@@ -18,7 +19,7 @@ function FrequentyAskedCard() {
         className="min-h-24 h-24 lg:min-h-16 pl-6 w-full p-5 cursor-pointer flex justify-center items-center"
       >
         <h1 className="w-full text">
-          When and where is the 3-day NLP Bootcamp, and how long would it be?
+          {question.S}
         </h1>
         <div
           className={`${
@@ -36,10 +37,7 @@ function FrequentyAskedCard() {
       <h2
         className={`h-full py-5 flex items-center px-5 bg-zinc-100 pr-14 overflow-hidden pl-6`}
       >
-        This NLP Bootcamp is for anyone looking to make a positive change in
-        their life. Whether you’re struggling with anxiety, seeking personal
-        growth, or simply curious about NLP, this workshop will empower you with
-        the knowledge and tools to transform your life for the better.
+       {answer.S}
       </h2>
     </Card>
   );

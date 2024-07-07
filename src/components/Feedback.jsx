@@ -22,16 +22,18 @@ function Feedback() {
   async function fetchfeedback() {
     try {
       const response = await axios.get(
-        "http://localhost:8081/feedback/getfeedback"
+        "http://localhost:8081/masterclass/getmasterclassfeedbackss"
       );
-      if(response.data.feedback){
-        setFeedback(response.data.feedback);
-      }
-      console.log("Response:", response.data.feedback);
+      console.log("Response:", response);
+      console.log("Response:", response.data.masterclassfeedback);
+      setFeedback(response.data.masterclassfeedback);
     } catch (error) {
       console.error("Error fetching videos:", error);
     }
   }
+
+
+
   useEffect(() => {
     fetchfeedback();
   }, []);
@@ -65,20 +67,10 @@ function Feedback() {
             modules={[Pagination, Navigation]}
             className="swiper-container mt-5 pb-10"
           >
-           
               {
-                feedback.map((info) => {
-                  
+                feedback.map((info,key) => {
                   return (
-                    <SwiperSlide>
-                    <FeedbackCard
-                      name={info.name?.S || ""}
-                      date={info.date?.S || ""}
-                      feedback={info.feedback?.S || ""}
-                      designation={info.designation?.S || ""}
-                      photo={info.image?.S || ""}
-                    />
-                    </SwiperSlide>
+                    <img src={info} key={key} alt="" />
                   );
                 })
               }
