@@ -2,51 +2,48 @@ import React from "react";
 import styled from "styled-components";
 
 function VideoPart(props) {
-    console.log(props.masterclasstitle.title);
-    return ( <
-        div className = "lg:pt-24 pt-24 md:pt-24 p-5 flex w-full h-auto lg:min-h-[450px] relative justify-center overflow-hidden    " >
-        <
-        div className = "w-full max-w-[1080px]  h-full flex flex-col lg:flex-row lg:justify-center lg:items-center items-center lg:gap-10 " >
-        <
-        div className = " min-w-[340px] w-[30px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10 lg:h-[320px] md:mb-3 lg:m-0" >
-        <
-        iframe className = " rounded-[20px] w-full h-full"
-        src = "https://www.youtube.com/embed/pi1xphhntF0?si=79Djoc9kVcSaokHS"
-        title = "YouTube video player"
-        frameBorder = "0"
-        allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy = "strict-origin-when-cross-origin"
-        allowFullScreen >
-        < /iframe> <
-        /div>
 
-        <
-        div className = "mt-3 lg:mt-0 w-full lg:w-[40%] text-center flex flex-col items-center lg:items-start lg:text-left" >
-        <
-        h1 className = "text-2xl md:w-full md:text-3xl  font-[500] tracking-tight" > { props.masterclasstitle.title.S } <
-        /h1> <
-        h1 className = "font-[500] w-72  md:w-full tracking-tight bg-transparent md:text-5xl text-4xl text-[#20b486]" > { props.masterclasstitle.title.S } <
-        /h1> <
-        hr className = "w-[200px] my-2 border-zinc-400 mx-auto lg:mx-0" / >
-        <
-        h2 className = " leading-5 mt-1 max-w-[320px]  md:max-w-[340px] lg:-w-full" >
-        Speak with confidence, in any setting, with no nervousness.Learn in
-        just 4 hours. <
-        /h2> <
-        Button1 className = " mt-4 px-20 py-2 md:px-52 md:py-4 lg:px-14 lg:py-2 md:text-xl" >
-        <
-        a href = { props.masterclasstitle.enrolllink.S } > { props.masterclasstitle.enrolltext.S } < /a> <
-        div className = "hoverdiv" > < /div> <
-        /Button1> <
-        /div> <
-        /div> <
-        /div>
-    );
+  
+  return (
+    <div className="lg:pt-24 pt-24 md:pt-24 p-5 flex w-full h-auto lg:min-h-[450px] relative justify-center overflow-hidden    ">
+      <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row lg:justify-center lg:items-center items-center lg:gap-10 ">
+        <div className=" min-w-[340px] w-[30px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10 lg:h-[320px] md:mb-3 lg:m-0">
+          <iframe
+            className=" rounded-[20px] w-full h-full"
+            src="https://www.youtube.com/embed/pi1xphhntF0?si=79Djoc9kVcSaokHS"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
+
+        <div className="mt-3 lg:mt-0 w-full lg:w-[40%] text-center flex flex-col items-center lg:items-start lg:text-left">
+          <h1 className="text-2xl md:w-full md:text-3xl  font-[500] tracking-tight">
+           {props.masterclasstitle.title.S}
+          </h1>
+          <h1 className="font-[500] w-72  md:w-full tracking-tight bg-transparent md:text-5xl text-4xl text-[#20b486]">
+            {props.masterclasstitle.title.S}
+          </h1>
+          <hr className="w-[200px] my-2 border-zinc-400 mx-auto lg:mx-0" />
+          <h2 className=" leading-5 mt-1 max-w-[320px]  md:max-w-[340px] lg:-w-full">
+            Speak with confidence, in any setting, with no nervousness. Learn in
+            just 4 hours.
+          </h2>
+          <Button1 className=" mt-4 px-20 py-2 md:px-52 md:py-4 lg:px-14 lg:py-2 md:text-xl">
+            <a href={props.masterclasstitle.enrolllink.S}>{props.masterclasstitle.enrolltext.S}</a>
+            <div className="hoverdiv"></div>
+          </Button1>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default VideoPart;
 
-const Button1 = styled.button `
+const Button1 = styled.button`
   border: 2px solid #20b486;
   background-color: #20b486;
   border-radius: 10px;
