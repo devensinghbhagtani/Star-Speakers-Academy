@@ -52,7 +52,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         type="file"
                         className="form-control"
                         id="course-video"
-                        name="videoUrl"
+                        name="coursevideo"
                         onChange={handleInputChange}
                     />
                 </div>

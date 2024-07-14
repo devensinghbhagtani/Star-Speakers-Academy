@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ModuleAdd from './ModuleAdd';
 import CourseDetails from './CourseDetails';
+import axios from 'axios';
 
 export default function AddCourse() {
     const [courseData, setCourseData] = useState({
@@ -16,8 +17,10 @@ export default function AddCourse() {
         discount: '',
         modules: [],
     });
+    const [moduleCount, setModuleCount] = useState(0);
 
     const handleAddModule = () => {
+        setModuleCount(moduleCount + 1);
         setCourseData((prevData) => ({
             ...prevData,
             modules: [...prevData.modules, { modname: '', moddescription: '', modvideoUrl: '', lectures: [{ lectitle: '', lecdescription: '', lecvideoUrl: ''}] }],
@@ -25,6 +28,7 @@ export default function AddCourse() {
     };
 
     const handleLectureChange = (moduleIndex, lectureIndex, event) => {
+        
         const { name, value } = event.target;
         setCourseData((prevData) => {
             const modules = [...prevData.modules];
@@ -44,35 +48,64 @@ export default function AddCourse() {
         });
     };
 
-    const handleSubmit = () => {
-        // Send courseData to backend or log it
-       /// senddata(courseData.title,courseData.date,courseData.speaker,courseData.time,courseData.venue,courseData.language,courseData.price,courseData.enroll_link,courseData.enroll_text,courseData.access_at,courseData.video_link,courseData.event_type);
-        console.log(courseData);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+
+        const modules = courseData.modules.map((module, i) => ({
+            modname: data.get(`modname${i}`),
+            moddescription: data.get(`moddescription${i}`),
+            modvideoUrl: data.get(`modvideoUrl${i}`),
+            lectures: module.lectures.map((lecture, j) => ({
+                lectitle: data.get(`lectitle${i}${j}`),
+                lecdescription: data.get(`lecdescription${i}${j}`),
+                lecvideoUrl: data.get(`lecvideoUrl${i}${j}`),
+            })),
+        }));
+
+        const courseDataToSend = {
+            ...courseData,
+            modules,
+        };
+
+        sendCourse(courseDataToSend);
+        console.log(courseDataToSend);
     };
 
+    const sendCourse = async (data) => {
+        const url = 'http://localhost:8081/masterclass/addcourse';
+        const response = await axios.post(url, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        console.log(response);
+    };
 
-  
     return (
         <div className="container text-center">
             <h1>Add Course</h1>
-            <CourseDetails courseData={courseData} setCourseData={setCourseData} />
-            {courseData.modules.map((module, moduleIndex) => (
-                <ModuleAdd
-                    key={moduleIndex}
-                    module={module}
-                    moduleIndex={moduleIndex}
-                    handleLectureChange={handleLectureChange}
-                    handleModuleChange={handleModuleChange}
-                />
-            ))}
-            <hr className="m-4" />
-            <button className="btn btn-secondary m-auto col-auto" onClick={handleAddModule}>
-                + Add Module
-            </button>
-            <hr />
-            <button className="btn btn-primary" onClick={handleSubmit}>
-                Submit
-            </button>
+            <form onSubmit={handleSubmit}>
+                <CourseDetails courseData={courseData} setCourseData={setCourseData} />
+                {courseData.modules.map((module, moduleIndex) => (
+                    <ModuleAdd
+                        key={moduleIndex}
+                        module={module}
+                        moduleIndex={moduleIndex}
+                        handleLectureChange={handleLectureChange}
+                        handleModuleChange={handleModuleChange}
+                        moduleCount={moduleCount}
+                    />
+                ))}
+                <hr className="m-4" />
+                <button className="btn btn-secondary m-auto col-auto" type="button" onClick={handleAddModule}>
+                    + Add Module
+                </button>
+                <hr />
+                <button className="btn btn-primary">
+                    Submit
+                </button>
+            </form>
             <hr />
         </div>
     );

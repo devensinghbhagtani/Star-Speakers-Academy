@@ -1,14 +1,23 @@
 import React from 'react';
+import { useState } from 'react';
 import LectureAdd from './LectureAdd';
 
-export default function ModuleAdd({ module, moduleIndex, handleLectureChange, handleModuleChange }) {
+export default function ModuleAdd({ module, moduleIndex, handleLectureChange, handleModuleChange , modulecount}) {
+
+    const [lectureCount, setlectureCount] = useState(0);
+
+    // function work(){
+    //     handleLectureChange(moduleIndex)
+    //     setlectureCount(lectureCount+1)
+    // }
+
     return (
         <div>
             <hr />
             <div key={moduleIndex} className="card mb-3">
                 <div className="card-header d-flex justify-content-between">
                     <h5 className="card-title">Course Module {moduleIndex + 1}</h5>
-                    <button className="btn btn-sm btn-primary" onClick={() => handleLectureChange(moduleIndex)}>
+                    <button className="btn btn-sm btn-primary" onClick={()=>handleLectureChange(moduleIndex)}>
                         + Add Lecture
                     </button>
                 </div>
@@ -23,10 +32,9 @@ export default function ModuleAdd({ module, moduleIndex, handleLectureChange, ha
                                     type="text"
                                     className="form-control"
                                     id={`module-name-${moduleIndex}`}
-                                    name="modname"
+                                    name={`modname`+moduleIndex}
                                     placeholder="Enter Module Name"
-                                    value={module.modname}
-                                    onChange={(event) => handleModuleChange(moduleIndex, event)}
+                                    
                                 />
                             </div>
                         </div>
@@ -40,11 +48,9 @@ export default function ModuleAdd({ module, moduleIndex, handleLectureChange, ha
                                 <textarea
                                     className="form-control"
                                     id={`module-description-${moduleIndex}`}
-                                    name="moddescription"
+                                    name={"moddescription"+moduleIndex}
                                     rows="3"
                                     placeholder="Enter Module Description"
-                                    value={module.moddescription}
-                                    onChange={(event) => handleModuleChange(moduleIndex, event)}
                                 />
                             </div>
                         </div>
@@ -59,7 +65,7 @@ export default function ModuleAdd({ module, moduleIndex, handleLectureChange, ha
                                     type="file"
                                     className="form-control"
                                     id={`module-video-${moduleIndex}`}
-                                    name="modvideoUrl"
+                                    name={"modvideoUrl"+moduleIndex}
                                     placeholder="Enter Module Video URL (Optional)"
                                     onChange={(event) => handleModuleChange(moduleIndex, event)}
                                 />
@@ -72,6 +78,7 @@ export default function ModuleAdd({ module, moduleIndex, handleLectureChange, ha
                         <LectureAdd
                             key={lectureIndex}
                             lecture={lecture}
+                            lectureCount={lectureCount}
                             lectureIndex={lectureIndex}
                             handleLectureChange={(event) => handleLectureChange(moduleIndex, lectureIndex, event)}
                         />

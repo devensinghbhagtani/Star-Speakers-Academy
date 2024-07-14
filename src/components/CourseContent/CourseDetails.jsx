@@ -15,6 +15,8 @@ function CourseDetails() {
   const { folder } = useParams();
   
   const getCourseInfo = useCallback(async () => {
+    alert("Folder:" + folder)
+    console.log("Folder:", folder); 
     try {
       const cacheddata = sessionStorage.getItem(`courseData-${folder}`);
       if (cacheddata) {

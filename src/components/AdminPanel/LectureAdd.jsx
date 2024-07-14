@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LectureAdd({ lecture, lectureIndex, handleLectureChange }) {
+export default function LectureAdd({ lecture, lectureIndex, handleLectureChange, lectureCount }) {
     return (
         <div key={lectureIndex} className="card mb-3">
             <div className="card-body">
@@ -15,10 +15,8 @@ export default function LectureAdd({ lecture, lectureIndex, handleLectureChange 
                                 type="text"
                                 className="form-control"
                                 id={`lecture-title-${lectureIndex}`}
-                                name="lectitle"
+                                name={"lectitle"+lectureCount}
                                 placeholder="Enter Lecture Title"
-                                value={lecture.lectitle}
-                                onChange={handleLectureChange}
                             />
                         </div>
                     </div>
@@ -33,9 +31,8 @@ export default function LectureAdd({ lecture, lectureIndex, handleLectureChange 
                                 type="file"
                                 className="form-control"
                                 id={`lecture-video-${lectureIndex}`}
-                                name="lecvideoUrl"
+                                name={"lecvideoUrl"+lectureCount}
                                 placeholder="Enter Lecture Video URL"
-                                onChange={handleLectureChange}
                             />
                         </div>
                     </div>
@@ -49,11 +46,9 @@ export default function LectureAdd({ lecture, lectureIndex, handleLectureChange 
                             <textarea
                                 className="form-control"
                                 id={`lecture-description-${lectureIndex}`}
-                                name="lecdescription"
+                                name={"lecdescription"+lectureCount}
                                 rows="3"
                                 placeholder="Enter Lecture Description"
-                                value={lecture.lecdescription}
-                                onChange={handleLectureChange}
                             />
                         </div>
                     </div>
