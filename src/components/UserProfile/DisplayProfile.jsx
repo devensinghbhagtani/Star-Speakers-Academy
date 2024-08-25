@@ -8,10 +8,10 @@ import PurchaseHistory from "./PurchaseHistory";
 import ChangeCards from "./ChangeCards";
 import ViewCards from "./ViewCards";
 
-export default function DisplayProfile() {
-
+export default function DisplayProfile(props) {
+    console.log(props.user);
     // i want state to change to edit profile or membership or purchase history or credit/debit card
-
+    
     const [changePage, setchangePage] = useState("Edit Profile");
 
     const gotoEditProfile = () => {
@@ -96,9 +96,9 @@ export default function DisplayProfile() {
                     <div className={`col-md-5 fixed-right ${styles.verticleLine}`}>
                         <hr />
                         {/* based on state i want to display the pages */}
-                        {changePage === "Edit Profile" && <EditProfile />}
+                        {changePage === "Edit Profile" && <EditProfile user={props.user}/>}
                         {changePage === "Membership" && <Membership />}
-                        {changePage === "Purchase History" && <PurchaseHistory />}
+                        {changePage === "Purchase History" && <PurchaseHistory user={props.user} />}
                         {changePage === "Credit / Debit Card" && <ChangeCards />}
                         {changePage === "View Credit / Debit Card" && <ViewCards />}
                     </div>

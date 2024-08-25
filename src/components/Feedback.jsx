@@ -11,15 +11,18 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
-import { useState, useEffect,useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import FeedbackCard from "./FeedbackCard";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 function Feedback() {
   const [feedback, setFeedback] = useState([]);
+  const [isMasterclass, setIsMasterclass] = useState(false);
+  const location = useLocation();
 
-  async function fetchfeedback() {
+  async function fetchfeedbackss() {
     try {
       const response = await axios.get(
         "http://localhost:8081/masterclass/getmasterclassfeedbackss"
@@ -27,16 +30,33 @@ function Feedback() {
       console.log("Response:", response);
       console.log("Response:", response.data.masterclassfeedback);
       setFeedback(response.data.masterclassfeedback);
+      setIsMasterclass(true);
     } catch (error) {
       console.error("Error fetching videos:", error);
     }
   }
 
-
+  async function fetchfeedback() {
+    try {
+      const response = await axios.get(
+        "http://localhost:8081/feedback/getfeedback"
+      );
+      if (response.data.feedback) {
+        setFeedback(response.data.feedback);
+      }
+      console.log("Response:", response.data.feedback);
+      setIsMasterclass(false);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    }
+  }
 
   useEffect(() => {
+    if (location.pathname == "/master-class") {
+      fetchfeedbackss();
+    }
     fetchfeedback();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="flex w-full py-10 h-auto  relative bg-[#EAEAEA] justify-center items-center overflow-hidden px-12 lg:px-6">
@@ -67,13 +87,36 @@ function Feedback() {
             modules={[Pagination, Navigation]}
             className="swiper-container mt-5 pb-10"
           >
-              {
+            {/* {
                 feedback.map((info,key) => {
                   return (
-                    <img src={info} key={key} alt="" />
+                   
+                    <SwiperSlide key={key}>
+                     // <img src={info} key={key} alt="" />
+                    </SwiperSlide>
                   );
                 })
-              }
+              } */}
+            {isMasterclass
+              ? feedback.map((info, key) => (
+                  <SwiperSlide key={key}>
+                    <img
+                      src={info}
+                      alt={'Feedback Image'}
+                    />
+                  </SwiperSlide>
+                ))
+              : feedback.map((info, key) => (
+                  <SwiperSlide key={key}>
+                    <FeedbackCard
+                      name={info.name?.S || ""}
+                      date={info.date?.S || ""}
+                      feedback={info.feedback?.S || ""}
+                      designation={info.designation?.S || ""}
+                      photo={info.image?.S || ""}
+                    />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </SwiperContainer>
       </div>

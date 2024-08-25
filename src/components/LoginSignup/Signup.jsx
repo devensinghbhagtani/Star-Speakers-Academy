@@ -1,7 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
+
+  function handleform(event){
+    event.preventDefault();
+    const data=new FormData(event.target);
+    console.log(data.get("name"));
+    console.log(data.get("email"));
+    console.log(data.get("password"));
+    sendregister(data.get("name"),data.get("email"),data.get("password"));
+
+  }
+
+  async function sendregister(name,email,pass){
+    const url='http://localhost:8081/email/send'
+    const {data}=axios.post(url,{
+        name: name,
+        email: email,
+        password: pass
+    });
+    console.log(data);
+}
+
+async function handlegoogle() {
+  console.log("Google login");
+  window.open("http://localhost:8081/auth/google/callback", "_self");
+}
+
+
   return (
     <>
       <div className="w-full h-[80px] md:h-[60px] bg-zinc-700 fixed flex items-center justify-center">
@@ -21,18 +49,18 @@ function Signup() {
               continue!
             </h1>
           </div>
-          <form className="w-full mt-6 flex flex-col gap-4" action="">
+          <form className="w-full mt-6 flex flex-col gap-4" onSubmit={handleform}>
             <div className="flex flex-col w-full">
               <label className="text-sm text-zinc-500" htmlFor="name">
                 Name
               </label>{" "}
-              <input className=" rounded-md p-2 border-2 w-full" type="name" />
+              <input className=" rounded-md p-2 border-2 w-full" type="name" name="name"/>
             </div>
             <div className="flex flex-col w-full">
               <label className="text-sm text-zinc-500" htmlFor="email">
                 Email
               </label>{" "}
-              <input className=" rounded-md p-2 border-2 w-full" type="email" />
+              <input className=" rounded-md p-2 border-2 w-full" type="email" name="email" />
             </div>
             <div className="flex flex-col w-full">
               <label className="text-sm text-zinc-500" htmlFor="password">
@@ -41,6 +69,7 @@ function Signup() {
               <input
                 className="rounded-md p-2 border-2 w-full"
                 type="password"
+                name="password"
               />
             </div>
             <div className="flex justify-between">
@@ -53,17 +82,17 @@ function Signup() {
               </div>
             </div>
             <div className="flex mt-2 flex-col gap-5">
-              <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white ">
+              <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white" type="submit">
                 Signup
               </button>
               <hr className="border-[1px] border-zinc-200" />
-              <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3">
+              <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3" type="button" onClick={handlegoogle}>
                 <img src="./assets/Icons/google.svg" alt="" />
                 Continue with Google
               </button>
               <div className="w-full justify-center flex text-sm gap-1">
                 <h1>Already have an account?</h1>
-                <a className="text-[#20b486] underline" href="">
+                <a className="text-[#20b486] underline" href="/login">
                   Sign in
                 </a>
               </div>

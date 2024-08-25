@@ -4,11 +4,17 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { CircleUser } from "lucide-react";
 import { ChevronDown } from "lucide-react";
+import { useUser } from "./UserContext"
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isProfileOpen, setProfileOpen] = useState(false);
+  const { user } = useUser();
+  console.log(user);
+
+
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -94,13 +100,9 @@ function Navigation() {
               {isLoggedIn ? (
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
-                  <Link to="#">Edit Profile</Link>
-                  <Link to="#">Membership & Purchase History</Link>
+                  <Link to="/profile">Edit Profile</Link>
                   <Link to="#">Purchase History</Link>
-                  <Link to="#">Add / Change Credit Card </Link>
-                  <Link to="#">Address </Link>
-                  <Link to="#">Contact </Link>
-                  <Link to="#">Log Out </Link>
+                  <Link to="#">{user && user.email.S ? "Log out": "Login"} </Link>
                 </>
               ) : (
                 <>

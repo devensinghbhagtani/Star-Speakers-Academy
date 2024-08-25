@@ -45,6 +45,20 @@ export default function CourseDetails({ courseData, setCourseData }) {
             </div>
             <div className="row my-4">
                 <div className="col-md-6">
+                    <label htmlFor="course-video" className="courseDetail">Course Image: </label>
+                </div>
+                <div className="col-md-4">
+                    <input
+                        type="file"
+                        className="form-control"
+                        id="course-video"
+                        name="courseimage"
+                        onChange={handleInputChange}
+                    />
+                </div>
+            </div>
+            <div className="row my-4">
+                <div className="col-md-6">
                     <label htmlFor="course-video" className="courseDetail">Course Video: </label>
                 </div>
                 <div className="col-md-4">

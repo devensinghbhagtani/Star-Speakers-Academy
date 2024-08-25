@@ -18,6 +18,7 @@ export default function AddCourse() {
         modules: [],
     });
     const [moduleCount, setModuleCount] = useState(0);
+    const [files,handlefiles]=useState([])
 
     const handleAddModule = () => {
         setModuleCount(moduleCount + 1);
@@ -27,17 +28,41 @@ export default function AddCourse() {
         }));
     };
 
-    const handleLectureChange = (moduleIndex, lectureIndex, event) => {
+    // const handleLectureChange = (moduleIndex, lectureIndex, event) => {
         
-        const { name, value } = event.target;
+    //     const { name, value } = event.target;
+    //     setCourseData((prevData) => {
+    //         const modules = [...prevData.modules];
+    //         const lectures = [...modules[moduleIndex].lectures];
+    //         lectures[lectureIndex] = { ...lectures[lectureIndex], [name]: value };
+    //         modules[moduleIndex].lectures = lectures;
+    //         return { ...prevData, modules };
+    //     });
+    // };
+
+
+
+
+    const handleAddLecture = (moduleIndex) => {
         setCourseData((prevData) => {
             const modules = [...prevData.modules];
-            const lectures = [...modules[moduleIndex].lectures];
-            lectures[lectureIndex] = { ...lectures[lectureIndex], [name]: value };
-            modules[moduleIndex].lectures = lectures;
+            modules[moduleIndex].lectures = [...modules[moduleIndex].lectures, { lectitle: '', lecdescription: '', lecvideoUrl: '' }];
             return { ...prevData, modules };
         });
     };
+    
+    const handleLectureChange = (moduleIndex, lectureIndex, event) => {
+        const { name, value } = event.target;
+        setCourseData((prevData) => {
+            const modules = [...prevData.modules];
+            modules[moduleIndex].lectures[lectureIndex] = {
+                ...modules[moduleIndex].lectures[lectureIndex],
+                [name]: value,
+            };
+            return { ...prevData, modules };
+        });
+    };
+    
 
     const handleModuleChange = (moduleIndex, event) => {
         const { name, value } = event.target;
@@ -51,7 +76,7 @@ export default function AddCourse() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-
+    
         const modules = courseData.modules.map((module, i) => ({
             modname: data.get(`modname${i}`),
             moddescription: data.get(`moddescription${i}`),
@@ -62,25 +87,62 @@ export default function AddCourse() {
                 lecvideoUrl: data.get(`lecvideoUrl${i}${j}`),
             })),
         }));
-
+    
         const courseDataToSend = {
             ...courseData,
             modules,
         };
-
+    
         sendCourse(courseDataToSend);
-        console.log(courseDataToSend);
+    
+        const formData = new FormData();
+        formData.append('coursevideo', data.get('coursevideo'));
+        formData.append('courseimage', data.get('courseimage'));
+        formData.append('courseData', JSON.stringify(courseDataToSend));
+    
+        courseDataToSend.modules.forEach((module, i) => {    
+            module.lectures.forEach((lecture, j) => {
+                const lectureVideo = data.get(`lecvideoUrl${i}${j}`);
+                if (lectureVideo) {
+                    formData.append(`module${i} lecture${j}`, lectureVideo);
+                }
+            });
+        });
+    
+        handlefilesupload(formData);
     };
-
+    
+    async function handlefilesupload(formData,) {
+        console.log(formData);
+    
+        const url = 'http://localhost:8081/masterclass/addcoursevideos';
+        try {
+            const response = await axios.post(url,formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response);
+        } catch (error) {
+            console.error('Error uploading files:', error);
+        }
+    }
+    
     const sendCourse = async (data) => {
         const url = 'http://localhost:8081/masterclass/addcourse';
-        const response = await axios.post(url, data, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        console.log(response);
+        try {
+            const response = await axios.post(url, data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response);
+        } catch (error) {
+            console.error('Error sending course data:', error);
+        }
     };
+    
+    
 
     return (
         <div className="container text-center">
@@ -94,7 +156,9 @@ export default function AddCourse() {
                         moduleIndex={moduleIndex}
                         handleLectureChange={handleLectureChange}
                         handleModuleChange={handleModuleChange}
+                        handleAddLecture={handleAddLecture}
                         moduleCount={moduleCount}
+                        handlefilesupload={handlefilesupload}
                     />
                 ))}
                 <hr className="m-4" />

@@ -18,9 +18,9 @@ function SearchSection() {
             </button>
           </div>
           <div className="mt-4 flex gap-2">
-            <Tab className="bg-[#20B486] text-white">All</Tab>
-            <Tab className="bg-[#f3f3f3]">In Progress</Tab>
-            <Tab className="bg-[#f3f3f3]">Completed</Tab>
+            {/* <Tab className="bg-[#f3f3f3]">All</Tab> */}
+            {/* <Tab className="bg-[#f3f3f3]">In Progress</Tab>
+            <Tab className="bg-[#f3f3f3]">Completed</Tab> */}
           </div>
         </div>
       </div>

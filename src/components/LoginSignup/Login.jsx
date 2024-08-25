@@ -2,6 +2,46 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
+
+  function handlelogin(event){
+    event.preventDefault();
+    const data=new FormData(event.target);
+    console.log(data.get("email"));
+    console.log(data.get("password"));
+    redirectlogin(data.get("email"),data.get("password"));
+  }
+
+  async function redirectlogin(email, password) {
+    try {
+      const response = await fetch("http://localhost:8081/auth/login", {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        window.location.href = "http://localhost:5173";
+      } else {
+        alert("Login failed");
+        console.log("Login failed");
+      }
+    } catch (error) {
+      alert("Error during login");
+      console.error("Error during login:", error);
+    }
+  }
+
+  async function handlegoogle() {
+    console.log("Google login");
+    window.open("http://localhost:8081/auth/google/callback", "_self");
+  }
+
   return (
     <>
       <div className="w-full h-[80px] md:h-[60px] bg-zinc-700 fixed flex items-center justify-center">
@@ -23,18 +63,18 @@ function Login() {
               and start learning.
             </h1>
           </div>
-          <form className="w-full mt-6 flex flex-col gap-4" action="">
+          <form className="w-full mt-6 flex flex-col gap-4" onSubmit={handlelogin}>
             <div className="flex flex-col w-full">
               <label className="text-sm text-zinc-500" htmlFor="email">
                 Email
               </label>{" "}
-              <input className=" rounded-md p-2 border-2 w-full" type="text" />
+              <input className=" rounded-md p-2 border-2 w-full" type="email" name="email"/>
             </div>
             <div className="flex flex-col w-full">
               <label className="text-sm text-zinc-500" htmlFor="email">
                 Password
               </label>{" "}
-              <input className="rounded-md p-2 border-2 w-full" type="text" />
+              <input className="rounded-md p-2 border-2 w-full" type="password" name="password" />
             </div>
             <div className="flex justify-between">
               <div className="flex gap-1 text-zinc-500 text-sm">
@@ -46,11 +86,11 @@ function Login() {
               </a>
             </div>
             <div className="flex mt-3 flex-col gap-5">
-              <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white ">
+              <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white" type="submit">
                 Login
               </button>
               <hr className="border-[1px] border-zinc-200" />
-              <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3">
+              <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3"type="button"  onClick={handlegoogle}>
                 <img src="./assets/Icons/google.svg" alt="" />
                 Login with Google
               </button>

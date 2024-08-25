@@ -1,75 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useUser } from "../UserContext";
 import styles from './UserProfile.module.css';
-import { useState } from 'react';
 
 export default function PurchaseHistory() {
+    const { user } = useUser();
+    const [coursesData, setCoursesData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const [purchaseHistories, setPurchaseHistory] = useState({})
-    const purchaseHistory = {
-        courseName: "",
-        courseDesc: "",
-        duration: "",
-        price: "",
-    }
+    useEffect(() => {
+        const fetchCoursesData = async () => {
+            try {
+                if (user && user.coursesinfo && user.coursesinfo.M) {
+                    const courses = Object.keys(user.coursesinfo.M);
+                    const coursesPromises = courses.map(async (course) => {
+                        const response = await axios.get(
+                            `http://localhost:8081/videos/getvideodetails?folder=${course}`
+                        );
+                        
+                        const imageurl=await axios.get(`http://localhost:8081/masterclass/getcourseimage?course=${response.data.tableout.course_image.S}`)
+                        console.log(imageurl)
+                        return {
+                            courseName: course,
+                            imageUrl: imageurl.data.courseimage,
+                            ...response.data.tableout
+                        };
+                    });
 
-    const purchases = [
-        {
-            courseName: "Beginner's Guide to Python",
-            courseDesc: "Learn Python from scratch",
-            duration: "2 months",
-            price: "$100"
-        },
-        {
-            courseName: "Beginner's Guide to Java",
-            courseDesc: "Learn Java from scratch",
-            duration: "2 months",
-            price: "$100"
-        },
-        {
-            courseName: "Beginner's Guide to C++",
-            courseDesc: "Learn C++ from scratch",
-            duration: "2 months",
-            price: "$100"
-        },
-        {
-            courseName: "Beginner's Guide to C",
-            courseDesc: "Learn C from scratch",
-            duration: "2 months",
-            price: "$100"
-        },
-        {
-            courseName: "Beginner's Guide to JavaScript",
-            courseDesc: "Learn JavaScript from scratch",
-            duration: "2 months",
-            price: "$100"
-        },
-    ]
+                    const coursesDetails = await Promise.all(coursesPromises);
+                    console.log(coursesDetails);
+                    setCoursesData(coursesDetails);
+                }
+            } catch (err) {
+                setError(err);
+                console.error("Error fetching course information:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    const renderContent = () => {
-        return purchases.map((purchase, index) => {
-            return (
-                <div className="row" key={index}>
-                    <div className="card mb-3">
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src='../../../assets/Gallery/pfp2.png' className={`img-fluid rounded-start ${styles.imgCard}`} alt='Example' />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h4 className="card-title">{purchase.courseName}</h4>
-                                    <p className="card-text">{purchase.courseDesc}</p>
-                                    <p className="card-text"><small className="text-body-secondary">{purchase.duration}</small></p>
-                                    <p className="card-text"><i><b>{purchase.price}</b></i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )
-        })
-    }
+        fetchCoursesData();
+    }, [user]);
 
-
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error loading data: {error.message}</p>;
 
     return (
         <div>
@@ -79,25 +54,37 @@ export default function PurchaseHistory() {
                 <h1 className="text-center">Purchase History</h1>
                 <div className={`${styles.displayHistory}`}>
                     <div className="row">
-                        {renderContent()}
-                        {/* <div className="card mb-3">
-                            <div className="row g-0">
-                                <div className="col-md-4">
-                                    <img src='../../../assets/Gallery/pfp2.png' className={`img-fluid rounded-start ${styles.imgCard}`} alt='Example' />
-                                </div>
-                                <div className="col-md-8">
-                                    <div className="card-body">
-                                        <h4 className="card-title">Course Name</h4>
-                                        <p className="card-text">Course DESC.</p>
-                                        <p className="card-text"><small className="text-body-secondary">Duration</small></p>
-                                        <p className="card-text"><i><b>$100</b></i></p>
+                        {coursesData.length === 0 ? (
+                            <p>No purchase history available.</p>
+                        ) : (
+                            coursesData.map((course, index) => (
+                                <div className="row" key={index}>
+                                    <div className="card mb-3">
+                                        <div className="row g-0">
+                                            <div className="col-md-4">
+                                                <img
+                                                    src={course.imageUrl}
+                                                    className={`img-fluid rounded-start ${styles.imgCard}`}
+                                                    alt='Example'
+                                                />
+                                            </div>
+                                            <div className="col-md-8">
+                                                <div className="card-body">
+                                                    <h4 className="card-title">{course.courseName}</h4>
+                                                    <p className="card-text">
+                                                        <i><b>{course.price?.N ? `${course.price.N} RS` : "Price not available"}</b></i>
+                                                    </p>
+                                                    {/* Add more details here if needed */}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> */}
+                            ))
+                        )}
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

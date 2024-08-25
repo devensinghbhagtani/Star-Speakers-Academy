@@ -5,37 +5,68 @@ import { useCallback } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Helper from "../VideoPlayer/main";
 // import Helper from "../Play Course/main";
-function CoursePlayer() {
+function CoursePlayer(props) {
 
     const [courseData, setCourseData] = useState(null);
     const { folder } = useParams();
   const [selectedTab, setSelectedTab] = useState("Description");
   const [checkedLectures, setCheckedLectures] = useState([]);
   const [obfuscatedURL, setObfuscatedURL] = useState(null);
+  const [videoname,setvideoname]=useState(null);
 
+  console.log(folder)
+  // console.log(props.user);
 
+  function logincheck(){
+    if(props.user==null){
+      alert("Please login to view the course");
+      return false;
+    }
+    else{
+      return true
+  }
+}
 
- 
+  const fetchObfuscatedURL = async (video_name) => {
 
+    console.log("Video Name:", video_name);
+  //  if(checkvideo(video_name)){
+      console.log("Fetching obfuscated URL for video:", video_name);
+
+      //console.log(checkvideo(video_name));
+    try {
+     
+      const response = await axios.get(
+         `http://localhost:8081/videos/api/obfuscate-url?video_name=${video_name}`
+      );
+      setObfuscatedURL(response.data.obfuscatedURL);
+      console.log("Obfuscated URL:", response.data.obfuscatedURL);
+    } catch (error) {
+      console.error("Error fetching obfuscated URL:", error);
+    }
+ // }
+};
 
 
   const getCourseInfo = useCallback(async () => {
     console.log("Folder:", folder);
     try {
       const cacheddata = sessionStorage.getItem(`courseData-${folder}`);
-      console.log("Cached Data:", cacheddata);
+      //console.log("Cached Data:", cacheddata);
 
       const response = await axios.get(
         `http://localhost:8081/videos/getvideodetails?folder=${folder}`
       );
       console.log("Response:", response.data);
-
+      setvideoname(response.data.tableout.course_video.S);
       sessionStorage.setItem(
         `courseData-${folder}`,
         JSON.stringify(response.data)
       )
       setCourseData(response.data);
+      console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
       
     } catch (error) {
@@ -50,131 +81,44 @@ function CoursePlayer() {
 
 
 
-    const fetchObfuscatedURL = async (video_name) => {
-      try {
-        const response = await axios.get(
-           `http://localhost:8081/videos/api/obfuscate-url?video_name=${video_name}`
-        );
-        setObfuscatedURL(response.data.obfuscatedURL);
-        console.log("Obfuscated URL:", response.data.obfuscatedURL);
-      } catch (error) {
-        console.error("Error fetching obfuscated URL:", error);
+ 
+
+    function handlecomments(event){
+      event.preventDefault();
+      const data= new FormData(event.target);
+      console.log(data);
+      submitcomment(data.get('name'),data.get('email'),data.get('comment'),folder);
+    }
+
+    async function submitcomment(name, email, comment,folder){
+      try{
+        const url='http://localhost:8081/videos/addcomment';
+        const {data} = await axios.post(url, {
+          name: name,
+          email: email,
+          comment: comment,
+          folder: folder,
+        });
+        alert(data.message)
       }
-    };
+      catch(error){
+        console.error("Error in submitting comment:", error);
+    }
+  }
 
-
-
-
-
-
-  const modules = [
-    {
-      title: "Module 1: Introduction",
-      description: "...",
-      lectures: [
-        { id: "1.1", title: "Lecture 1.1: Introduction to the Course" },
-        {
-          id: "1.2",
-          title: "Lecture 1.2: Course Objectives and Learning Outcomes",
-        },
-        {
-          id: "1.3",
-          title: "Lecture 1.3: Setting Up Your Development Environment",
-        },
-      ],
-    },
-    {
-      title: "Module 2: Core Concepts",
-      description: "...",
-      lectures: [
-        { id: "2.1", title: "Lecture 2.1: Understanding React Fundamentals" },
-        { id: "2.2", title: "Lecture 2.2: Components and Props in React" },
-        { id: "2.3", title: "Lecture 2.3: State Management in React" },
-      ],
-    },
-    {
-      title: "Module 3: Advanced Concepts",
-      description: "...",
-      lectures: [
-        { id: "3.1", title: "Lecture 3.1: Advanced State Management" },
-        { id: "3.2", title: "Lecture 3.2: Context API" },
-      ],
-    },
-    {
-      title: "Module 4: Performance Optimization",
-      description: "...",
-      lectures: [
-        { id: "4.1", title: "Lecture 4.1: Optimizing Performance in React" },
-        { id: "4.2", title: "Lecture 4.2: Code Splitting" },
-      ],
-    },
-    {
-      title: "Module 5: Routing",
-      description: "...",
-      lectures: [
-        { id: "5.1", title: "Lecture 5.1: React Router Basics" },
-        { id: "5.2", title: "Lecture 5.2: Nested Routes" },
-      ],
-    },
-    {
-      title: "Module 6: State Management Libraries",
-      description: "...",
-      lectures: [
-        { id: "6.1", title: "Lecture 6.1: Redux Introduction" },
-        { id: "6.2", title: "Lecture 6.2: Redux Thunk" },
-      ],
-    },
-    {
-      title: "Module 7: Testing",
-      description: "...",
-      lectures: [
-        { id: "7.1", title: "Lecture 7.1: Unit Testing with Jest" },
-        { id: "7.2", title: "Lecture 7.2: Integration Testing" },
-      ],
-    },
-    {
-      title: "Module 8: Forms and Validations",
-      description: "...",
-      lectures: [
-        { id: "8.1", title: "Lecture 8.1: Managing Forms in React" },
-        { id: "8.2", title: "Lecture 8.2: Validation with Formik" },
-      ],
-    },
-    {
-      title: "Module 9: Server-Side Rendering",
-      description: "...",
-      lectures: [
-        {
-          id: "9.1",
-          title: "Lecture 9.1: Introduction to Server-Side Rendering",
-        },
-        { id: "9.2", title: "Lecture 9.2: Next.js Basics" },
-      ],
-    },
-    {
-      title: "Module 10: Deployment",
-      description: "...",
-      lectures: [
-        { id: "10.1", title: "Lecture 10.1: Deploying to Vercel" },
-        {
-          id: "10.2",
-          title: "Lecture 10.2: Continuous Integration/Continuous Deployment",
-        },
-      ],
-    },
-  ];
+  const modules = [];
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
 
-  const handleCheckboxChange = (lectureId) => {
-    setCheckedLectures((prevCheckedLectures) =>
-      prevCheckedLectures.includes(lectureId)
-        ? prevCheckedLectures.filter((id) => id !== lectureId)
-        : [...prevCheckedLectures, lectureId]
-    );
-  };
+  // const handleCheckboxChange = (lectureId) => {
+  //   setCheckedLectures((prevCheckedLectures) =>
+  //     prevCheckedLectures.includes(lectureId)
+  //       ? prevCheckedLectures.filter((id) => id !== lectureId)
+  //       : [...prevCheckedLectures, lectureId]
+  //   );
+  // };
 
   const justifyText = {
     textAlign: "justify",
@@ -195,7 +139,7 @@ function CoursePlayer() {
       case "Description":
         return (
           <div className="m-3 ">
-            <h3>Course Description</h3>
+            <h3>Course Description: </h3>
             <p style={justifyText}>
                 {courseData && courseData.tableout.course_description.S}
             </p>
@@ -209,23 +153,17 @@ function CoursePlayer() {
               </h3>
             </div>
             <hr />
-            <h3>Course Objectives</h3>
+            <h3>Course Objectives: </h3>
             <ul style={justifyText}>
-              <li>Understand the core concepts of React</li>
-              <li>Learn how to build React applications</li>
-              <li>...</li>
+              <li>{courseData && courseData.tableout.course_line.S}</li>
             </ul>
             <hr />
             <div className="row my-2">
               <div className="col-md-3">
                 <h4>Course Duration:</h4>
                 <p>
-                    {courseData && courseData.tableout.course_duration.N}
+                    {courseData && courseData.tableout.course_duration.S}
                 </p>
-              </div>
-              <div className="col-md-3">
-                <h4>Course Level:</h4>
-                <p>Beginner</p>
               </div>
               <div className="col-md-3">
                 <h4>Course Language:</h4>
@@ -242,6 +180,11 @@ function CoursePlayer() {
                     )}
                 </p>
               </div>
+              <div className="col-md-3">
+                <h4>Course Price: </h4>
+                <p>{courseData && courseData.tableout.price.N}</p>
+                <button className="btn btn-primary" onClick={displayRazorpay}>Buy Now</button>
+              </div>
             </div>
             <hr />
           </div>
@@ -252,19 +195,20 @@ function CoursePlayer() {
           <div className="m-3">
             <h3>Comments</h3>
             {/* in this form i need name, email, textarea, submit */}
-            <form>
+            <form onSubmit={handlecomments}>
               <div className="form-group">
                 <label htmlFor="name">Name:</label>
-                <input type="text" className="form-control" id="name" />
+                <input type="text" className="form-control" id="name" name="name" />
                 <br />
                 <label htmlFor="email">Email:</label>
-                <input type="email" className="form-control" id="email" />
+                <input type="email" className="form-control" id="email" name="email" />
                 <br />
                 <label htmlFor="comment">Comment:</label>
                 <textarea
                   className="form-control"
                   id="comment"
                   rows="3"
+                  name="comment"
                 ></textarea>
                 <br />
                 <button type="submit" className="btn btn-primary">
@@ -327,47 +271,20 @@ function CoursePlayer() {
     }
   };
 
-//   const renderLectures = (lectures) => (
-//     <ol className="list-unstyled">
-//       {lectures.map((lecture) => (
-//         <li key={lecture.id} className="lecture-item">
-//           <div className="col-md-12 d-flex align-items-start flex-column">
-//             <div className="d-flex align-items-center">
-//               <input
-//                 type="checkbox"
-//                 checked={checkedLectures.includes(lecture.id)}
-//                 onChange={() => handleCheckboxChange(lecture.id)}
-//                 style={{
-//                   width: "20px",
-//                   height: "20px",
-//                   marginLeft: "10px",
-//                   cursor: "pointer",
-//                 }}
-//               />
-//               <a href="#" className="" style={{ marginLeft: "20px" }}>
-//                 {lecture.title}
-//               </a>
-//             </div>
-//           </div>
-//           <hr />
-//         </li>
-//       ))}
-//     </ol>
-//   );
-
-// function how(){
-
-// }
+const handleClick = (video_name) => {
+    if (logincheck()) {
+      fetchObfuscatedURL(video_name);
+    }
+  };
 
 const renderLectures = (moduleName, lectures) => {
     return lectures.map((lecture, index) => (
-      <div key={index} onClick={() => fetchObfuscatedURL(lecture.S)}>
-        <input
+      <div key={index} onClick={() => handleClick(lecture.S)}>
+        {/* <input
           type="checkbox"
           id={`${moduleName}-lecture${index}`}
           value={lecture.S.split("/")[1]}
-          // Add any necessary event handlers or props here
-        />
+        /> */}
         <label htmlFor={`${moduleName}-lecture${index}`}>{lecture.S.split("/")[2]}</label>
       </div>
     ));
@@ -381,20 +298,6 @@ const renderLectures = (moduleName, lectures) => {
   );
   const checkedCount = checkedLectures.length;
 
-//   const renderModuleProgress = () =>
-//     {
-//         for( let modules in (courseData &&  courseData.tableout.Modules.M)){
-//             (
-//                 <li className={`list-group-item module-item ${styles.moduleItem}`}>
-//                   <details>
-//                     <summary className="m-2">{modules}</summary>
-//                     <hr />
-//                     {renderLectures(courseData.tableout.Modules.M[modules].L)}
-//                   </details>
-//                 </li>
-//               );
-//         }
-//     }
 const renderModuleProgress = () => {
     const modulesArray = [];
   
@@ -419,24 +322,6 @@ const renderModuleProgress = () => {
     return modulesArray;
 }
     
-
-    // modules.map((module, index) => {
-    //   const moduleCheckedCount = module.lectures.filter((lecture) =>
-    //     checkedLectures.includes(lecture.id)
-    //   ).length;
-    //   return (
-    //     <li
-    //       key={index}
-    //       className={`list-group-item module-item ${styles.moduleItem}`}
-    //     >
-    //       <details>
-    //         <summary className="m-2">{module.title}</summary>
-    //         <hr />
-    //         {renderLectures(module.lectures)}
-    //       </details>
-    //     </li>
-    //   );
-    // });
 
   const handleTrigger = () => {
     var x = document.getElementById("content");
@@ -469,18 +354,102 @@ const renderModuleProgress = () => {
     cursor: "pointer",
   };
 
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => {
+            resolve(true);
+        };
+        script.onerror = () => {
+            resolve(false);
+        };
+        document.body.appendChild(script);
+    });
+}
+
+async function displayRazorpay() {
+    const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+        alert("Razorpay SDK failed to load. Are you online?");
+        return;
+    }
+
+    const result = await axios.post("http://localhost:8081/payment/orders" ,
+    {folder:folder, 
+      email:props.user.email,
+    amount:courseData.tableout.price.N}
+    );
+
+    if (!result) {
+        alert("Server error. Are you online?");
+        return;
+    }
+
+    const { amount, id: order_id, currency } = result.data;
+
+    const options = {
+        key: "rzp_live_d5ZVQOUIw3XRX6",
+        amount: amount.toString(),
+        currency: currency,
+        name: "StarSpeakers.",
+        description: "Test Transaction",
+        
+        order_id: order_id,
+        handler: async function (response) {
+            const data = {
+                orderCreationId: order_id,
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature,
+            };
+
+            const result = await axios.post("http://localhost:8081/payment/success", data);
+
+            alert(result.data.msg);
+        },
+        prefill: {
+            name: "Star Speakers",
+            email: "starspeaker@gmail.com",
+            contact: "9999999999",
+        },
+        notes: {
+            address: "chembur, Mumbai",
+        },
+        theme: {
+            color: "#61dafb",
+        },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+}
+
+
+
   return (
     <div className="container-fluid course-player">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <div className={`row `}>
         <div className="col-md-8 col-lg-9 video-player">
             {/* <Helper
             url={obfuscatedURL}
             /> */}
-            <ReactPlayer
+            <Helper
+            obfuscatedURL={obfuscatedURL}
+            />
+            {/* <ReactPlayer
             url={`http://localhost:8081/videos/sendvideo/${obfuscatedURL}`}
             controls
             ontrols width={'100%'} height={'600px'} 
-            />
+            /> */}
           <hr />
           <div className="">
             <div className="tabs mt-3">
@@ -496,7 +465,7 @@ const renderModuleProgress = () => {
                   </button>
                 </li>
                 {/* for mobile view course */}
-                <li className={`nav-item ${styles.mobileContent}`}>
+                {/* <li className={`nav-item ${styles.mobileContent}`}>
                   <button
                     className={`nav-link ${
                       selectedTab === "Course Content" ? "active" : ""
@@ -505,26 +474,26 @@ const renderModuleProgress = () => {
                   >
                     Progress
                   </button>
-                </li>
+                </li> */}
                 <li className="nav-item">
-                  <button
+                  {/* <button
                     className={`nav-link ${
                       selectedTab === "Bookmarks" ? "active" : ""
                     }`}
                     onClick={() => handleTabClick("Bookmarks")}
                   >
                     Bookmarks
-                  </button>
+                  </button> */}
                 </li>
                 <li className="nav-item">
-                  <button
+                  {/* <button
                     className={`nav-link ${
                       selectedTab === "Comments" ? "active" : ""
                     }`}
                     onClick={() => handleTabClick("Comments")}
                   >
                     Comments
-                  </button>
+                  </button> */}
                 </li>
                 <li className="nav-item">
                   <button
@@ -544,15 +513,15 @@ const renderModuleProgress = () => {
         <div className={`col-md-4 col-lg-3 fixed-right ${styles.verticleLine}`}>
           <div className="d-flex justify-content-between">
             <h2>Course Contents</h2>
-            <div
+            {/* <div
               class="trigger"
               className={`{styles.displayProgress} flex-item`}
             >
               <button className="btn btn-outline-dark" onClick={handleTrigger}>
                 Progress
               </button>
-            </div>
-            <div
+            </div> */}
+            {/* <div
               id="content"
               style={FloatingDiv}
               className={`{styles.FloatingDiv} flex-item`}
@@ -561,7 +530,7 @@ const renderModuleProgress = () => {
               <p>
                 {Math.round((checkedCount / totalLectures) * 100)}% completed
               </p>
-            </div>
+            </div> */}
           </div>
           <hr />
           {/* how to get this div afixed height for a dynamic website */}

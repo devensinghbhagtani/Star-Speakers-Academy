@@ -2,16 +2,18 @@
 import React from "react";
 import styled from "styled-components";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function CourseTab(props) {
+  const navigate=useNavigate();
   return (
     <div>
       <Card>
         <div className="pfp">
-          <img src={props.video} alt="" />
+          <img src={props.course_image} alt="" />
         </div>
         <h3 className="mt-3 mb-3 text-md leading-5 font-[500]">
-          The Complete guide to Starting up
+          {props.coursename}
         </h3>
         <div className="mt-3 star flex gap-2 items-center ">
           <div className="total-stars w-[120px] flex justify-center ">
@@ -21,8 +23,8 @@ function CourseTab(props) {
         </div>
         <hr className="h-px mt-2 border-0 bg-gray-300" />
         <div className="price flex items-center justify-between content-center">
-          <h2 className="mt-3 text-2xl font-[500]">$500</h2>
-          <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300">
+          <h2 className="mt-3 text-2xl font-[500]">{props.price} Rs</h2>
+          <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/${props.coursename}`)}}>
             Enroll
             <ArrowUpRight color="white" />
           </button>

@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
 import {
   Route,
   RouterProvider,
@@ -20,52 +18,85 @@ import AddCourse from "./components/AdminPanel/addCourse.jsx";
 import ViewCourses from "./components/AdminPanel/ViewCourses.jsx";
 import MasterClassEdit from "./components/AdminPanel/MasterClassEdit.jsx";
 import EditHome from "./components/AdminPanel/EditHome.jsx";
-
 import ErrorPage from "./components/ErrorPage.jsx";
 import Login from "./components/LoginSignup/Login.jsx";
 import Signup from "./components/LoginSignup/Signup.jsx";
 import CourseHome from "./components/Course/CourseHome.jsx";
 import DisplayCourses from "./components/Course/displayCourse.jsx";
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Layout />,
-//     children: [
-//       { path: "", element: <Main /> },
-//       { path: "about", element: <About /> },
-//       { path: "master-class", element: <MasterClass /> },
-//     ],
-//   },
-// ]);
+import DisplayProfile from "./components/UserProfile/DisplayProfile.jsx";
+import axios from "axios";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
-        <Route index element={<Main />} />
-        <Route path="about" element={<About />} />
-        <Route path="courses/" element={<Courses />} />
-        <Route path="contact" element={<Contact />} />
-        {/* <Route path="/course/:folder" element={<CourseDetails />} /> */}
-        <Route path="/course/:folder" element={<DisplayCourses />} />
-        <Route path="/course" element={<CourseHome />}/> 
-        <Route path="1" element={<CourseDetails />} />
-      </Route>
-      <Route path="/master-class" element={<MasterClass />} />
-      <Route path="/admin" element={<AdminHome />}>
-    
-        <Route path="/admin/addCourse" element={<AddCourse />} />
-        <Route path="/admin/viewCourses" element={<ViewCourses />} />
-        <Route path="/admin/MasterClassEdit" element={<MasterClassEdit />} />
-        <Route path="/admin/EditHome" element={<EditHome />} />
-       
-      </Route>
-    </>
-  )
-);
+import { UserProvider, useUser } from "./components/UserContext.jsx";
+import "./index.css";
 
+const MainApp = () => {
+  const [user, setUser] = useState(null);
+  const [info, handleInfo] = useState(null);
+
+  // Fetch user data (uncomment if needed)
+  // const getUser = useCallback(async () => {
+  //   try {
+  //     const url = `http://localhost:8081/auth/get-token`;
+  //     const { data } = await axios.get(url, { withCredentials: true });
+  //     console.log(data);
+  //     console.log(data.userToken);
+  //     setUser(data.userToken);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   getUser();
+  // }, [getUser]);
+
+  // Inner components using the user context
+  const ProfileWithUser = () => {
+    const { user } = useUser();
+    console.log(user);
+    return <DisplayProfile user={user} />;
+  };
+
+  const CoursesWithUser = () => {
+    const { user } = useUser();
+    return <DisplayCourses user={user} />;
+  };
+
+  // Create routes
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
+          <Route index element={<Main />} />
+          <Route path="about" element={<About />} />
+          <Route path="courses" element={<Courses />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="profile" element={<ProfileWithUser />} />
+          <Route path="course/:folder" element={<CoursesWithUser />} />
+          <Route path="course" element={<CourseHome />} />
+          <Route path="course/details" element={<CourseDetails />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+        </Route>
+        <Route path="master-class" element={<MasterClass />} />
+        <Route path="admin" element={<AdminHome />}>
+          <Route path="addCourse" element={<AddCourse />} />
+          <Route path="viewCourses" element={<ViewCourses />} />
+          <Route path="MasterClassEdit" element={<MasterClassEdit />} />
+          <Route path="EditHome" element={<EditHome />} />
+        </Route>
+      </>
+    )
+  );
+
+  return <RouterProvider router={router} />;
+};
+
+// Render the main app wrapped in UserProvider
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <MainApp />
+    </UserProvider>
   </React.StrictMode>
 );
