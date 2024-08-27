@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProgramCard from "./ProgramCard";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Key } from "lucide-react";
 
 function PopularCourses() {
+
+  const [popularCourses, setPopularCourses] = useState(null);
+
+  async function fetchPopularCourses() {
+    try {
+      const response = await fetch("http://localhost:8081/videos/getpopularcourse");
+      const data = await response.json();
+      console.log(data.response);
+      setPopularCourses(data.response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchPopularCourses();
+  }, []);
+
+
+
   return (
     <div className="w-full flex px-10   justify-center py-10 ">
       <div className=" flex flex-col lg:flex-row items-center  w-[1080px] min-h-[400px] justify-center lg:justify-between gap-4">
@@ -21,9 +41,14 @@ function PopularCourses() {
           </h2>
         </div>
         <div className="justify-center flex flex-wrap lg:flex-nowrap gap-4">
-          <ProgramCard />
-          <ProgramCard />
-          <ProgramCard />
+          {popularCourses && popularCourses.map((course,index) => (
+            <ProgramCard 
+            key={index}
+            coursename={course.coursename} 
+            price={course.price}
+            courseimage={course.course_image_url}
+             />
+          ))}
         </div>
       </div>
     </div>

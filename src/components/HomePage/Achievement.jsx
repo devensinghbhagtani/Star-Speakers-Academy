@@ -1,8 +1,25 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Users, TvMinimalPlay, GraduationCap } from "lucide-react";
 import AchievementTabs from "./AchievementTabs";
 
 function Achievement() {
+
+  const [achievements, setAchievements] = useState(null);
+
+  async function getaachievements() {
+    const response=await axios.get("http://localhost:8081/masterclass/getachievements");
+    console.log(response.data.response);
+    setAchievements(response.data.response.M);
+    console.log(achievements.hours);
+  }
+  
+  useEffect(() => {
+    getaachievements();
+  }, []);
+
+  
   return (
     <div className=" p-10 flex  w-full min-h-[550px]  justify-center overflow-hidden">
       <div className="w-[1080px] items-center flex flex-col md:flex-row ">
@@ -26,24 +43,24 @@ function Achievement() {
           <div className="flex flex-col lg:gap-4 mt-5">
             <div className="flex gap-2 lg:gap-4">
               <AchievementTabs
-                total="50000+"
+                total={`${achievements && achievements.students.N}+`}
                 subject="Students"
                 icon={<GraduationCap color="white" />}
               />
               <AchievementTabs
-                total="1000+"
+                total={`${achievements && achievements.videos.N}+`}
                 subject="Videos"
                 icon={<TvMinimalPlay color="white" />}
               />
             </div>
             <div className="flex gap-2 lg:gap-4">
               <AchievementTabs
-                total="400"
+                total={`${achievements && achievements.instructors.N}+`}
                 subject="Instructors"
                 icon={<Users color="white" />}
               />
               <AchievementTabs
-                total="2000"
+                total={`${achievements && achievements.hours.N}+`}
                 subject="Hours"
                 icon={<TvMinimalPlay color="white" />}
               />

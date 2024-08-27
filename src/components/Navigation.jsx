@@ -97,18 +97,19 @@ function Navigation() {
           </div>
           {isProfileOpen && (
             <div className="hidden min-w-36 px-5 py-3 gap-2 rounded-md   lg:flex lg:flex-col overflow-hidden bg-zinc-100 top-[120%] absolute right-0 [&>*]:w-full ">
-              {isLoggedIn ? (
+              {user && user.email.S ? (
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
                   <Link to="/profile">Edit Profile</Link>
-                  <Link to="#">Purchase History</Link>
-                  <Link to="#">{user && user.email.S ? "Log out": "Login"} </Link>
+                  <Link to="/profile">Purchase History</Link>
+                  <Link to={user&& user.email.S ? "/logout" : "/login"
+                   }>{user && user.email.S ? "Log out": "Login"} </Link>
                 </>
               ) : (
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
-                  <Link to="#">Login</Link>
-                  <Link to="#">Signup</Link>
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Signup</Link>
                 </>
               )}
             </div>

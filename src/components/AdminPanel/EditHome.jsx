@@ -1,15 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
+
 
 export default function EditHome() {
-    const courses = ["course1", "course2", "course3", "course4", "course5", "course6", "course7", "course8", "course9", "course10"];
-    const SubmitCourses = () => {
+
+    const [info, setInfo] = useState(null);
+
+    async function fetchVideos() {
+        try {
+            const response = await axios.get('http://localhost:8081/videos/getcoursenames')
+            console.log(response.data.response);
+            setInfo(response.data.response);
+    
+        } catch (error) {
+            console.error('Error fetching videos:', error);
+        }
+    }
+    useEffect(() => {
+      fetchVideos();
+    }, []);
+
+    async function sendpopularcourse(data){
+        try {
+            const response = await axios.post('http://localhost:8081/videos/addpopularcourse',data)
+            console.log(response.data);
+            alert(response.data.message);
+        } catch (error) {
+            console.error('Error fetching videos:', error);
+        }
+    }
+
+
+    const SubmitCourses = (event) => {
+        event.preventDefault();
         // alert("Courses Submitted");
         if (document.getElementById("course1").value === document.getElementById("course2").value || document.getElementById("course1").value === document.getElementById("course3").value || document.getElementById("course2").value === document.getElementById("course3").value) {
             alert("Courses must be unique");
             return;
         }
         else {
-            alert("Courses Submitted");
+            sendpopularcourse([
+                {S: document.getElementById("course1").value},
+                {S: document.getElementById("course2").value},
+                {S: document.getElementById("course3").value}
+            ]);
             console.log(document.getElementById("course1").value);
             console.log(document.getElementById("course2").value);
             console.log(document.getElementById("course3").value);
@@ -21,14 +55,33 @@ export default function EditHome() {
         hours: 0,
         instructors: 0
     }
+
+    async function sendachievements(data){
+        try {
+            const response = await axios.post('http://localhost:8081/masterclass/addachievements',data)
+            console.log(response.data);
+            alert(response.data.message);
+        } catch (error) {
+            console.error('Error fetching videos:', error);
+        }
+    }
+
+
+
+
     const SubmitAchievements = () => {
         achievements.students = document.getElementById("noofStudents").value;
         achievements.videos = document.getElementById("noofVideos").value;
         achievements.hours = document.getElementById("noofHours").value;
         achievements.instructors = document.getElementById("noofInstructors").value;
 
+        sendachievements({
+            students: {N: achievements.students},
+            videos: {N: achievements.videos},
+            hours: {N: achievements.hours},
+            instructors: {N: achievements.instructors}
+        });
         console.log(achievements);
-        alert("Achievements Submitted");
     }
 
     const [newFeedBackFile, setNewFeedBackFile] = useState(0);
@@ -47,6 +100,14 @@ export default function EditHome() {
                 </div>
                 <div class="col-md-7">
                     <input type="text" name="name${newFeedBackFile}" id="name${newFeedBackFile}" placeholder="Name" class="form-control">
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-md-4">
+                    <label for="email${newFeedBackFile}">Email</label>
+                </div>
+                <div class="col-md-7">
+                    <input type="email" name="email${newFeedBackFile}" id="email${newFeedBackFile}" placeholder="email" class="form-control">
                 </div>
             </div>
             <div class="row my-3">
@@ -88,7 +149,8 @@ export default function EditHome() {
         names: [],
         roles: [],
         dates: [],
-        feedbacks: []
+        feedbacks: [],
+        emails: []
     }
 
     const SubmitFeedback = () => {
@@ -96,25 +158,48 @@ export default function EditHome() {
         const roles = [];
         const dates = [];
         const feedbacks = [];
+        const emails = [];
 
         for (let i = 0; i < newFeedBackFile; i++) {
             names.push(document.getElementById(`name${i}`).value);
             roles.push(document.getElementById(`role${i}`).value);
             dates.push(document.getElementById(`date${i}`).value);
+            emails.push(document.getElementById(`email${i}`).value);
             feedbacks.push(document.getElementById(`feedback${i}`).value);
         }
 
         FeedbackData.names = names;
         FeedbackData.roles = roles;
         FeedbackData.dates = dates;
+        FeedbackData.emails = emails;
         FeedbackData.feedbacks = feedbacks;
         console.log(FeedbackData);
+        FeedbackData.names.map((name, index) => {
+            sendfeedbackdata(name,FeedbackData.emails[index],FeedbackData.roles[index],FeedbackData.dates[index],FeedbackData.feedbacks[index]);
+        });
+
     }
 
+
+    async function sendfeedbackdata(name,email,role,date,feedback){
+        console.log(name,email,role,date,feedback);
+        const response=await axios.post("http://localhost:8081/feedback/postfeedback",
+        {
+            name:name,
+            email:email,
+            designation:role,
+            date:date,
+            feedback:feedback
+
+        });
+        console.log(response.data);
+   
+    }
 
     return (
         <div>
             <div className="container text-center">
+                <form onSubmit={SubmitCourses}>
                 <div className="form-control">
                     <h3>Edit 3 Courses for Home</h3>
                     <div className="form-control">
@@ -124,7 +209,7 @@ export default function EditHome() {
                             </div>
                             <div className="col-md-8">
                                 <select name="course1" id="course1" className="form-control">
-                                    {courses.map(course => <option key={course} value={course}>{course}</option>)}
+                                    { info && info.map(course => <option key={course.coursename.S} value={course.coursename.S}>{course.coursename.S}</option>)}
                                 </select>
                             </div>
                         </div>
@@ -136,7 +221,7 @@ export default function EditHome() {
                             </div>
                             <div className="col-md-8">
                                 <select name="course2" id="course2" className="form-control">
-                                    {courses.map(course => <option key={course} value={course}>{course}</option>)}
+                                { info && info.map(course => <option key={course.coursename.S} value={course.coursename.S}>{course.coursename.S}</option>)}
                                 </select>
                             </div>
                         </div>
@@ -148,14 +233,15 @@ export default function EditHome() {
                             </div>
                             <div className="col-md-8">
                                 <select name="course3" id="course3" className="form-control">
-                                    {courses.map(course => <option key={course} value={course}>{course}</option>)}
+                                { info && info.map(course => <option key={course.coursename.S} value={course.coursename.S}>{course.coursename.S}</option>)}
                                 </select>
                             </div>
                         </div>
 
                     </div>
-                    <button className="btn btn-primary my-2" onClick={SubmitCourses}>Submit</button>
-                </div> {/* 3courses ends here */}
+                    <button className="btn btn-primary my-2">Submit</button>
+                </div>
+                </form>
                 <br />
                 <hr />
                 <br />
@@ -167,7 +253,7 @@ export default function EditHome() {
                             <label htmlFor="students">Students</label>
                         </div>
                         <div className="col-md-8">
-                            <input type="number" name="students" id="noofStudents" placeholder="No of Students" className="form-control" />
+                            <input type="number" name="students" id="noofStudents" placeholder="No of Students" className="form-control" required/>
                         </div>
                     </div>
                     <div className="row my-3">
@@ -175,7 +261,7 @@ export default function EditHome() {
                             <label htmlFor="videos">Videos</label>
                         </div>
                         <div className="col-md-8">
-                            <input type="number" name="videos" id="noofVideos" placeholder="No of Videos" className="form-control" />
+                            <input type="number" name="videos" id="noofVideos" placeholder="No of Videos" className="form-control" required/>
                         </div>
                     </div>
                     <div className="row my-3">
@@ -183,7 +269,7 @@ export default function EditHome() {
                             <label htmlFor="hours">Hours</label>
                         </div>
                         <div className="col-md-8">
-                            <input type="number" name="hours" id="noofHours" placeholder="No of Hours" className="form-control" />
+                            <input type="number" name="hours" id="noofHours" placeholder="No of Hours" className="form-control" required/>
                         </div>
                     </div>
                     <div className="row my-3">
@@ -191,7 +277,7 @@ export default function EditHome() {
                             <label htmlFor="instructors">Instructors</label>
                         </div>
                         <div className="col-md-8">
-                            <input type="number" name="instructors" id="noofInstructors" placeholder="No of Instructors" className="form-control" />
+                            <input type="number" name="instructors" id="noofInstructors" placeholder="No of Instructors" className="form-control" required/>
                         </div>
                     </div>
                     <button className="btn btn-primary my-2" onClick={SubmitAchievements}>Submit</button>

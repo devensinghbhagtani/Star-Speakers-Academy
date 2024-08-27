@@ -321,6 +321,7 @@ function Helper(props) {
           ref={playerContainerRef}
           className={classes.playerWrapper}
         >
+          {props.obfuscatedURL && (
           <ReactPlayer
             ref={playerRef}
             width="100%"
@@ -342,7 +343,7 @@ function Helper(props) {
                 },
               },
             }}
-          />
+          />)}
 
           <Controls
             ref={controlsRef}
