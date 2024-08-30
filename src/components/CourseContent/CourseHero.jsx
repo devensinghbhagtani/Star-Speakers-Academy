@@ -1,14 +1,132 @@
 import {
   CarTaxiFront,
+  Import,
   IndianRupee,
   ShoppingBasket,
   ShoppingCart,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+import Helper from "../VideoPlayer/main";
+import ReactPlayer from "react-player";
+import { displayRazorpay } from "../../payment";
 
 function CourseHero(props) {
-  console.log(props.name);
+  console.log(props.data);
+  console.log(props.user);
+  const navigate = useNavigate();
+  const { folder } = useParams();
+
+  async function handleNavigation(url) {
+    const userEmail = props.user?.email?.S;
+    const courseName = props.data?.coursename?.S;
+    const price = parseFloat(props.data?.price?.N ?? 0);
+    const discount = parseFloat(props.data?.discount?.N ?? 0);
+    const finalAmount = price * (1 - discount / 100);
+
+    if(props.user){
+
+    if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
+      console.log("Already enrolled");
+      navigate(url);
+    } else {
+      console.log("Not enrolled");
+
+      console.log("Email:", userEmail);
+      console.log("Course Name:", courseName);
+      console.log("Final Amount:", finalAmount);
+
+      if (userEmail && courseName && finalAmount > 0) {
+      const res =  await displayRazorpay(userEmail, courseName, finalAmount);
+      if(res == 200){
+        navigate(url);
+      }
+      } else {
+        console.error("Missing required information for payment.");
+        alert("Unable to proceed with payment due to missing information.");
+      }
+    }
+  }else{
+  alert("Please Login to Enroll")
+  }
+  }
+
+  // function loadScript(src) {
+  //   return new Promise((resolve) => {
+  //     const script = document.createElement("script");
+  //     script.src = src;
+  //     script.onload = () => {
+  //       resolve(true);
+  //     };
+  //     script.onerror = () => {
+  //       resolve(false);
+  //     };
+  //     document.body.appendChild(script);
+  //   });
+  // }
+
+  // async function displayRazorpay() {
+  //   const res = await loadScript(
+  //     "https://checkout.razorpay.com/v1/checkout.js"
+  //   );
+
+  //   if (!res) {
+  //     alert("Razorpay SDK failed to load. Are you online?");
+  //     return;
+  //   }
+
+  //   const result = await axios.post("http://localhost:8081/payment/orders", {
+  //     folder: folder,
+  //     email: props.user?.email,
+  //     amount:((props.data?.price?.N ?? 0) *(1 - (props.data?.discount?.N ?? 0) / 100)).toString(),
+  //   });
+
+  //   if (!result) {
+  //     alert("Server error. Are you online?");
+  //     return;
+  //   }
+
+  //   const { amount, id: order_id, currency } = result.data;
+
+  //   const options = {
+  //     key: "rzp_live_d5ZVQOUIw3XRX6",
+  //     amount: amount.toString(),
+  //     currency: currency,
+
+  //     description: "Test Transaction",
+
+  //     order_id: order_id,
+  //     handler: async function (response) {
+  //       const data = {
+  //         orderCreationId: order_id,
+  //         razorpayPaymentId: response.razorpay_payment_id,
+  //         razorpayOrderId: response.razorpay_order_id,
+  //         razorpaySignature: response.razorpay_signature,
+  //       };
+
+  //       const result = await axios.post(
+  //         "http://localhost:8081/payment/success",
+  //         data
+  //       );
+
+  //       alert(result.data.msg);
+  //     },
+
+  //     notes: {
+  //       address: "chembur, Mumbai",
+  //     },
+  //     theme: {
+  //       color: "#61dafb",
+  //     },
+  //   };
+
+  //   const paymentObject = new window.Razorpay(options);
+  //   paymentObject.open();
+  // }
+
   return (
     <div
       className={`px-6 py-6 w-full min-h-[600px] md:min-h-[500px] lg:h-[500px] flex items-center justify-center relative`}
@@ -23,31 +141,44 @@ function CourseHero(props) {
       <div className="pt-20 h-full px-5 md:px-10 w-full lg:w-[1080px]  z-[1] flex  justify-center md:items-center ">
         <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10 ">
           <div className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0">
-            <iframe
+            {/* <iframe
               className=" rounded-[20px] w-full h-full border-none"
-              src="https://www.youtube.com/embed/pi1xphhntF0?si=79Djoc9kVcSaokHS"
+              src={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-            ></iframe>
+            ></iframe> */}
+            <Helper obfuscatedURL={props.obfuscatedURL} />
           </div>
           <div className=" w-[350px]  md:w-[80%] text-center lg:text-left lg:w-full flex flex-col items-center justify-center lg:items-start gap-4">
-            <h1 className="  mt-[-7px] text-white text-4xl  md:text-5xl font-[500]  md:leading-tight lg:leading-none tracking-tighter">
-              {props.name?.folder?.course_name}
+            <h1 className="  mt-[-7px] text-black text-4xl  md:text-5xl font-[500]  md:leading-tight lg:leading-none tracking-tighter">
+              {props.data ? props.data.coursename.S : "Course Name"}
             </h1>
             <div>
-              <Button className="lg:bg-white text-white lg:text-zinc-800  bg-[#20b486] ">
-                <a
-                  className="flex gap-2  justify-center items-center text-xl "
-                  href=""
-                >
-                  Enroll Now for
-                  <div className="flex items-center">
-                    <IndianRupee size={20} strokeWidth={3} />
-                    600/-
-                  </div>
+              <Button
+                className="lg:bg-white text-white lg:text-zinc-800 bg-[#20b486]"
+                onClick={() =>
+                  handleNavigation(
+                    `/course/videos/${props.data?.coursename?.S ?? "default"}`
+                  )
+                }
+              >
+                <a className="flex gap-2 justify-center items-center text-xl">
+                  
+                  {props.user?.coursesinfo?.M &&
+                  props.user.coursesinfo.M[props.data?.coursename?.S] ? (
+                    "Go to Course"
+                  ) : (
+                    <div className="flex items-center">
+                      Enroll now for
+                      <IndianRupee size={20} strokeWidth={3} />
+                      {(props.data?.price?.N ?? 0) *
+                        (1 - (props.data?.discount?.N ?? 0) / 100)}
+                    </div>
+                  )}
+                
                 </a>
                 <div className="hoverdiv"></div>
               </Button>

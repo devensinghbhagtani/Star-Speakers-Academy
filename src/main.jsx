@@ -33,24 +33,7 @@ const MainApp = () => {
   const [user, setUser] = useState(null);
   const [info, handleInfo] = useState(null);
 
-  // Fetch user data (uncomment if needed)
-  // const getUser = useCallback(async () => {
-  //   try {
-  //     const url = `http://localhost:8081/auth/get-token`;
-  //     const { data } = await axios.get(url, { withCredentials: true });
-  //     console.log(data);
-  //     console.log(data.userToken);
-  //     setUser(data.userToken);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
 
-  // useEffect(() => {
-  //   getUser();
-  // }, [getUser]);
-
-  // Inner components using the user context
   const ProfileWithUser = () => {
     const { user } = useUser();
     console.log(user);
@@ -62,6 +45,13 @@ const MainApp = () => {
     return <DisplayCourses user={user} />;
   };
 
+  const CourseHomePage = () => {
+    const { user } = useUser();
+    return <CourseDetails user={user} />;
+  };
+
+  
+
   // Create routes
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -72,9 +62,9 @@ const MainApp = () => {
           <Route path="courses" element={<Courses />} />
           <Route path="contact" element={<Contact />} />
           <Route path="profile" element={<ProfileWithUser />} />
-          <Route path="course/:folder" element={<CoursesWithUser />} />
+          <Route path="course/videos/:folder" element={<CoursesWithUser />} />
           <Route path="course" element={<CourseHome />} />
-          <Route path="course/details" element={<CourseDetails />} />
+          <Route path="course/details/:folder" element={<CourseHomePage/>} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>

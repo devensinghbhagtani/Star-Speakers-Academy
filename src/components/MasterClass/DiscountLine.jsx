@@ -10,7 +10,7 @@ function DiscountLine(props) {
         alt=""
       />
       <h1 className="text-white text-sm md:text-lg">
-        {props.discount.N},100% Money-Back Guarantee
+        {props.data?.discount?.N}% Discount available
       </h1>
     </div>
   );

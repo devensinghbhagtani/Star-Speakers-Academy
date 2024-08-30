@@ -183,7 +183,7 @@ function CoursePlayer(props) {
               <div className="col-md-3">
                 <h4>Course Price: </h4>
                 <p>{courseData && courseData.tableout.price.N}</p>
-                <button className="btn btn-primary" onClick={displayRazorpay}>Buy Now</button>
+                
               </div>
             </div>
             <hr />

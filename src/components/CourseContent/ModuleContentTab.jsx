@@ -10,7 +10,7 @@ function ModuleContentTab(props) {
           <NotepadText size={20} />
           <h1>{props.title}</h1>
         </div>
-        <ArrowRightCircle size={20} />
+        {/* <ArrowRightCircle size={20} /> */}
       </div>
     </div>
   );

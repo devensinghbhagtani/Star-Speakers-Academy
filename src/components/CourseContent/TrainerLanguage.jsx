@@ -3,7 +3,7 @@ import Details from "../MasterClass/ClassDetails/Details";
 import { Calendar, Clock, Globe, UserRound } from "lucide-react";
 import TrainerLanguageCard from "./TrainerLanguageCard";
 
-function TrainerLanguage() {
+function TrainerLanguage(props) {
   return (
     <div className="w-full py-5   bg-[#EAEAEA]">
       <div>
@@ -11,19 +11,19 @@ function TrainerLanguage() {
           <div className="max-h-[200px] w-[500px] md:w-[600px] lg:w-full max-w-[1080px] flex  flex-wrap  md:gap-y-3 justify-center gap-y-2 px-4 lg:px-0">
             <TrainerLanguageCard
               title="Host:"
-              details="Atul Shinde"
+              details={props.data?.course_speaker?.S}
               more="Professional Trainer"
               icon={<UserRound color="#20B486" />}
             />
             <TrainerLanguageCard
               title="Duration"
-              details="8 PM to 10 PM "
+              details={props.data?.course_duration?.S}
               icon={<Clock color="#20B486" />}
               more="(2 Hours)"
             />
             <TrainerLanguageCard
               title="Language"
-              details="Hindi/English"
+              details={props.data?.course_language?.S}
               icon={<Globe color="#20B486" />}
               more="Flexible"
               b={false}
