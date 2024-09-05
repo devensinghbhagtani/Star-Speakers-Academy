@@ -150,7 +150,11 @@ function CourseHero(props) {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe> */}
-            <Helper obfuscatedURL={props.obfuscatedURL} />
+            <Helper 
+            obfuscatedURL={props.obfuscatedURL} 
+            width={"100%"}
+            height={"340px"}
+            />
           </div>
           <div className=" w-[350px]  md:w-[80%] text-center lg:text-left lg:w-full flex flex-col items-center justify-center lg:items-start gap-4">
             <h1 className="  mt-[-7px] text-black text-4xl  md:text-5xl font-[500]  md:leading-tight lg:leading-none tracking-tighter">

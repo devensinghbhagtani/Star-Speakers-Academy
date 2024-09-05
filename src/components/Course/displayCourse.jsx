@@ -66,6 +66,7 @@ function CoursePlayer(props) {
       //   JSON.stringify(response.data)
       // )
       setCourseData(response.data);
+      console.log(courseData);
       console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
       
@@ -251,18 +252,17 @@ function CoursePlayer(props) {
       case "Resources":
         return (
           <div className="m-3">
-            <h3>Resources</h3>
-            <p>Download the course resources from the links below:</p>
+            <h3>Resources:</h3>
+            {/* <p>Download the course resources from the links below:</p> */}
             <ul>
-              <li>
-                <a href="#">Resource 1</a>
-              </li>
-              <li>
-                <a href="#">Resource 2</a>
-              </li>
-              <li>
-                <a href="#">Resource 3</a>
-              </li>
+              {
+                courseData?.tableout?.resources?
+                courseData.tableout.resources.L.map((resource, index) => (
+                  <li key={index}>
+                    <a href={resource.S}>{resource.S}</a>
+                  </li>
+                )):null
+              }
             </ul>
           </div>
         );
@@ -471,6 +471,7 @@ async function displayRazorpay() {
             /> */}
             <Helper
             obfuscatedURL={obfuscatedURL}
+            width={'100%'} height={'600px'}
             />
             {/* <ReactPlayer
             url={`http://localhost:8081/videos/sendvideo/${obfuscatedURL}`}
@@ -522,6 +523,8 @@ async function displayRazorpay() {
                     Comments
                   </button> */}
                 </li>
+                {
+                  courseData?.tableout?.resources?
                 <li className="nav-item">
                   <button
                     className={`nav-link ${
@@ -531,7 +534,9 @@ async function displayRazorpay() {
                   >
                     Resources
                   </button>
-                </li>
+                </li>:
+                null
+                }
               </ul>
             </div>
             <div className="content mt-3">{renderContent()}</div>

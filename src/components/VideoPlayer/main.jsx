@@ -173,6 +173,12 @@ function Helper(props) {
   const playerContainerRef = useRef(null);
   const controlsRef = useRef(null);
   const canvasRef = useRef(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(props.width);
+  }, [props.width]);
+
   const {
     playing,
     controls,
@@ -187,6 +193,7 @@ function Helper(props) {
     volume,
   } = state;
 
+  
   const handlePlayPause = () => {
     setState({ ...state, playing: !state.playing });
   };
@@ -245,7 +252,9 @@ function Helper(props) {
   };
 
   const toggleFullScreen = () => {
+    setWidth("100%");
     screenful.toggle(playerContainerRef.current);
+    
   };
 
   const handleMouseMove = () => {
@@ -324,8 +333,8 @@ function Helper(props) {
           {props.obfuscatedURL && (
           <ReactPlayer
             ref={playerRef}
-            width="100%"
-            height="600px"
+            width={props.width}
+            height={props.height}
             url={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
             pip={pip}
             playing={playing}
