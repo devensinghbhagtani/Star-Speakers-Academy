@@ -57,16 +57,16 @@ export default function DisplayProfile(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 my-2">
+                            {/* <div className="col-md-6 my-2">
                                 <div className="card">
                                     <div className="card-body">
                                         <h4 className="card-title">Membership</h4>
                                         <p className="card-text">Buy our Membership here..</p>
                                         <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoMembership}>View 👀</a>
-                                        {/* <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoMembership}>Edit ✏️</a> */}
+                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoMembership}>Edit ✏️</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="row">
                             <div className="col-md-6 my-2">
@@ -79,7 +79,7 @@ export default function DisplayProfile(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 my-2">
+                            {/* <div className="col-md-6 my-2">
                                 <div className="card">
                                     <div className="card-body">
                                         <h4 className="card-title">Credit / Debit Card</h4>
@@ -88,7 +88,7 @@ export default function DisplayProfile(props) {
                                         <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoCreditDebitCard}>Add ✏️</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <br />
                     </div>
