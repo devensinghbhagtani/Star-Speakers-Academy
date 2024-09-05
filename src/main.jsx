@@ -30,6 +30,8 @@ import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
 import { LogOut } from "lucide-react";
 import Logout from "./components/LoginSignup/Logout.jsx";
+import Forgotpassword from "./components/LoginSignup/Forgotpassword.jsx";
+import Changepassword from "./components/LoginSignup/Changepassword.jsx";
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
@@ -70,6 +72,8 @@ const MainApp = () => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/resetpassword" element={<Forgotpassword />} />
+          <Route path="changepassword" element={<Changepassword />} />
         </Route>
         <Route path="master-class" element={<MasterClass />} />
         <Route path="admin" element={<AdminHome />}>
