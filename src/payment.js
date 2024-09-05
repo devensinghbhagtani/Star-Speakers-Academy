@@ -63,7 +63,8 @@ async function displayRazorpay(email, folder, amount) {
                 data, { withCredentials: true }
             );
 
-            alert(result.data.status);
+            alert(result.data.message);
+            console.log(result);
             return result.status;
         },
         theme: {
@@ -75,4 +76,75 @@ async function displayRazorpay(email, folder, amount) {
     paymentObject.open();
 }
 
-export { displayRazorpay };
+function takeemail() {
+    const email = prompt("Enter your email:");
+    console.log(email);
+    return email;
+}
+
+
+
+// async function buymasterclass(amount, enrolllink) {
+//     const email = prompt("Enter your email:");
+//     console.log(email);
+//     const res = await loadScript(
+//         "https://checkout.razorpay.com/v1/checkout.js"
+//     );
+
+//     if (!res) {
+//         alert("Razorpay SDK failed to load. Are you online?");
+//         return;
+//     }
+
+//     const result = await axios.post("http://localhost:8081/payment/orders", {
+//         type: "masterclass",
+//         email: email,
+//         amount: amount.toString(),
+//     });
+
+//     if (!result) {
+//         alert("Server error. Are you online?");
+//         return;
+//     }
+
+//     const { id: order_id, currency } = result.data;
+
+//     const options = {
+//         key: "rzp_live_d5ZVQOUIw3XRX6",
+//         amount: amount.toString(),
+//         currency: currency,
+//         email: email,
+
+//         description: "Test Transaction",
+
+//         order_id: order_id,
+//         handler: async function(response) {
+//             const data = {
+//                 orderCreationId: order_id,
+//                 razorpayPaymentId: response.razorpay_payment_id,
+//                 razorpayOrderId: response.razorpay_order_id,
+//                 razorpaySignature: response.razorpay_signature,
+//                 type: "masterclass",
+//                 email: email,
+//                 enrolllink: enrolllink,
+//                 amount: amount.toString(),
+//             };
+
+//             const result = await axios.post(
+//                 "http://localhost:8081/payment/buymasterclasssucess",
+//                 data,
+//             );
+
+//             alert(result.data.status);
+//             return result.status;
+//         },
+//         theme: {
+//             color: "#61dafb",
+//         },
+//     };
+
+//     const paymentObject = new window.Razorpay(options);
+//     paymentObject.open();
+// }
+
+export { displayRazorpay, takeemail };

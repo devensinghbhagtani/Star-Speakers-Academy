@@ -61,10 +61,10 @@ function CoursePlayer(props) {
       );
       console.log("Response:", response.data);
       setvideoname(response.data.tableout.course_video.S);
-      sessionStorage.setItem(
-        `courseData-${folder}`,
-        JSON.stringify(response.data)
-      )
+      // sessionStorage.setItem(
+      //   `courseData-${folder}`,
+      //   JSON.stringify(response.data)
+      // )
       setCourseData(response.data);
       console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
@@ -162,7 +162,7 @@ function CoursePlayer(props) {
               <div className="col-md-3">
                 <h4>Course Duration:</h4>
                 <p>
-                    {courseData && courseData.tableout.course_duration.S}
+                    {courseData && courseData.tableout?.course_duration?.N}
                 </p>
               </div>
               <div className="col-md-3">
@@ -321,6 +321,33 @@ const renderModuleProgress = () => {
     }
     return modulesArray;
 }
+
+// const renderModuleProgress = () => {
+//   const modulesArray = [];
+
+//   if (courseData && courseData.tableout && courseData.tableout.Modules && courseData.tableout.Modules.M) {
+//     const modules = courseData.tableout.Modules.M;
+    
+//     const sortedModuleNames = Object.keys(modules).sort(); // Sort module names alphabetically
+    
+//     for (let moduleName of sortedModuleNames) {
+//       console.log("Module Name:", moduleName);
+//       if (modules.hasOwnProperty(moduleName)) {
+//         modulesArray.push(
+//           <li key={moduleName} className={`list-group-item module-item ${styles.moduleItem}`}>
+//             <details>
+//               <summary className="m-2">{moduleName}</summary>
+//               <hr />
+//               {renderLectures(moduleName, modules[moduleName].L)}
+//             </details>
+//           </li>
+//         );
+//       }
+//     }
+//   }
+//   return modulesArray;
+// }
+
     
 
   const handleTrigger = () => {

@@ -28,6 +28,8 @@ import axios from "axios";
 
 import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
+import { LogOut } from "lucide-react";
+import Logout from "./components/LoginSignup/Logout.jsx";
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
@@ -67,6 +69,7 @@ const MainApp = () => {
           <Route path="course/details/:folder" element={<CourseHomePage/>} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="/logout" element={<Logout />} />
         </Route>
         <Route path="master-class" element={<MasterClass />} />
         <Route path="admin" element={<AdminHome />}>

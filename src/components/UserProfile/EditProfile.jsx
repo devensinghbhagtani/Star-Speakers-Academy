@@ -72,7 +72,7 @@ export default function EditProfile(props) {
 
     return (
         <div className='container'>
-            <p>Profiles Edit</p>
+            <p>{"Profiles >  Edit"}</p>
             <hr />
             <h1 className='text-center'>Edit Profile</h1>
             <form className="form-control" onSubmit={updateDetails}>

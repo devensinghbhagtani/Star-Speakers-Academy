@@ -1,13 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import "./viewCourses.css"
+import axios from 'axios';
 
-export default function ViewVideo({ courseTitle, courseDesc, onCourseClick }) {
+export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, course_image_url }) {
     const videoId = 'ck9W2A77taU'; // Specific video ID
     const [videoTitle, setVideoTitle] = useState('');
 
     const handleClick = () => {
-        onCourseClick(courseTitle); // Pass the course title to the parent component
+        
+        const confirtmation = window.confirm(`Are you sure you want to delete ${courseTitle} there might me high chance many users must have bought this course already or still might 
+            be in the process of buying it?`);
+        if(confirtmation){
+            console.log(`Deleting ${courseTitle}`);
+            deleteCourse(courseTitle)
+        }
+        else{
+            onCourseClick(courseTitle);
+        }
     };
+
+    async function deleteCourse(courseName) {
+        try {
+            const response = await axios.post(`http://localhost:8081/videos/deletevideo`, 
+                { courseName }, 
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            console.log(response.data);
+            alert(response.data.message);
+        } catch (error) {
+            console.error('Error deleting course:', error);
+        }
+    }
+    
+
 
     const cardStyle = {
         margin: 'auto',
@@ -18,22 +47,29 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick }) {
     return (
         <div className="col-md-4 mb-4 course-card card" style={cardStyle}>
             <div className="video-container my-3">
-                <iframe
+                <img 
+                src={course_image_url} 
+                alt="course_image" 
+                width="100%"
+                height="315"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                />
+                {/* <iframe
                     width="100%"
                     height="315" // Adjust height as needed
-                    // src={`https://www.youtube.com/embed/${videoId}`}
+                    src={course_image_url}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                ></iframe>
+                ></iframe> */}
             </div>
             <div className="card-body">
                 <h3 className="card-title">{courseTitle}</h3>
                 <p className="card-text">{courseDesc}</p>
                 <div className="">
                     <button className="btn btn-primary" onClick={handleClick}>
-                        View Course Details
+                        Delete
                     </button>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -12,7 +12,6 @@ function Navigation() {
   const [isProfileOpen, setProfileOpen] = useState(false);
   const { user } = useUser();
   console.log(user);
-
 
 
   const toggleMenu = () => {

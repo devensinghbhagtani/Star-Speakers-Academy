@@ -29,6 +29,7 @@ function CourseDetails(props) {
         JSON.stringify(response.data)
       )
       setCourseData(response.data.tableout);
+      console.log(courseData);
       console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
     } catch (error) {
@@ -44,6 +45,7 @@ function CourseDetails(props) {
       );
       setObfuscatedURL(response.data.obfuscatedURL);
       console.log("Obfuscated URL:", response.data.obfuscatedURL);
+      
     } catch (error) {
       console.error("Error fetching obfuscated URL:", error);
     }
@@ -68,7 +70,7 @@ function CourseDetails(props) {
       data={courseData}
       user={props.user}
       />
-      <DiscountLine data={courseData}/>
+      <DiscountLine discount={courseData?.discount}/>
       <CourseCurriculum data={courseData}/>
       <Feedback />
     </>

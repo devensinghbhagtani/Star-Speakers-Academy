@@ -59,7 +59,7 @@ export default function ViewCards() {
     return (
         <div>
             <div className="container">
-                <p>Profiles > View Cards</p>
+                <p>{"Profiles > View Cards"}</p>
                 <hr />
                 <h1 className="text-center">View Cards / Debit Cards</h1>
                 <div className={`${styles.displayHistory} row`}>

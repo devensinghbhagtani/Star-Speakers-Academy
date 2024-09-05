@@ -30,6 +30,7 @@ export default function PurchaseHistory() {
 
                     const coursesDetails = await Promise.all(coursesPromises);
                     console.log(coursesDetails);
+                    console.log(user)
                     setCoursesData(coursesDetails);
                 }
             } catch (err) {
@@ -49,7 +50,7 @@ export default function PurchaseHistory() {
     return (
         <div>
             <div className="container">
-                <p>Profiles > Purchase History</p>
+                <p>{"Profiles > Purchase History"}</p>
                 <hr />
                 <h1 className="text-center">Purchase History</h1>
                 <div className={`${styles.displayHistory}`}>
@@ -70,9 +71,14 @@ export default function PurchaseHistory() {
                                             </div>
                                             <div className="col-md-8">
                                                 <div className="card-body">
-                                                    <h4 className="card-title">{course.courseName}</h4>
+                                                    <h4 className="card-title">{course?.courseName}</h4>
                                                     <p className="card-text">
-                                                        <i><b>{course.price?.N ? `${course.price.N} RS` : "Price not available"}</b></i>
+                                                        <i><b>
+                                                            {user.coursesinfo && user.coursesinfo.M && user.coursesinfo.M[course?.courseName] 
+                                                            ? `${user.coursesinfo?.M[course?.courseName].M?.amount?.N} RS` 
+                                                            : "Price not available"}
+                                                        </b></i>
+
                                                     </p>
                                                     {/* Add more details here if needed */}
                                                 </div>

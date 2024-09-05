@@ -36,7 +36,7 @@ function PopularCourses() {
             Courses
           </h1>
           <h2 className="flex items-center gap-1 w-fit border-b-2 text-sm tracking-tight mt-2 lg:mt-10 hover:text-[#8C8C8C] transition-all ease-in">
-            <a href="">show all courses</a>
+            <a href="/courses">show all courses</a>
             <ArrowRight size={15} />
           </h2>
         </div>
@@ -44,9 +44,9 @@ function PopularCourses() {
           {popularCourses && popularCourses.map((course,index) => (
             <ProgramCard 
             key={index}
-            coursename={course.coursename} 
-            price={course.price}
-            courseimage={course.course_image_url}
+            coursename={course?.coursename} 
+            price={course?.price}
+            courseimage={course?.course_image_url}
              />
           ))}
         </div>

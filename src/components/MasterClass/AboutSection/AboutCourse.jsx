@@ -11,13 +11,16 @@ function AboutCourse(props) {
         </h1>
 
         <div className="w-[300px] flex flex-col gap-7 md:w-full lg:w-[80%] mt-3 h-full justify-center">
-          {Object.keys(props.skill).map((key, index) => (
-            <AboutCard
-              key={index}
-              n={index + 1}
-              text={props.skill[key].S}
-            />
-          ))}
+          {Object.keys(props.skill).map(
+            (key, index) =>
+              props.skill[key].S !== "masterclassskill" && (
+                <AboutCard
+                  key={index}
+                  n={index + 1}
+                  text={props.skill[key].S}
+                />
+              )
+          )}
         </div>
       </div>
     </div>

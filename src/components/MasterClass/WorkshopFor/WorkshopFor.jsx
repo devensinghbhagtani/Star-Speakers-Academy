@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import WorkshopCard from "./WorkshopCard";
 import styled from "styled-components";
+import { displayRazorpay, takeemail } from "../../../payment";
 
 function WorkshopFor(props) {
   const [image, setImage] = useState(1);
+  const amount = props.masterclasstitle.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
+  function handlepay(){
+    const email = takeemail();
+    displayRazorpay(email, "masterclass", amount);
+  }
 
   return (
     <div className="w-full p-10 md:px-15 min-h-[700px] flex items-center justify-center">
@@ -82,7 +88,7 @@ function WorkshopFor(props) {
           Unlocking Your Full Potential And Helping You Achieve Profound
           Personal Growth"
         </h1>
-        <Button1 className=" px-20 py-2 md:px-52 md:py-4 lg:px-24 lg:py-2 md:text-xl">
+        <Button1 className=" px-20 py-2 md:px-52 md:py-4 lg:px-24 lg:py-2 md:text-xl" onClick={handlepay}>
           <a href="">ENROLL NOW</a>
           <div className="hoverdiv"></div>
         </Button1>

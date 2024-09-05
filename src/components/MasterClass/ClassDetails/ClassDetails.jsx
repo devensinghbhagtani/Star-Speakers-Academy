@@ -3,6 +3,11 @@ import React from "react";
 import Details from "./Details";
 
 function ClassDetails(props) {
+
+  const dateString = props.details.date.S;
+  const date = new Date(dateString);
+  const monthName = date.toLocaleString('default', { month: 'long' });
+
   return (
     <div>
       <div className="flex w-full justify-center">
@@ -11,7 +16,7 @@ function ClassDetails(props) {
             title="Date:"
             details={props.details.date.S}
             icon={<Calendar color="#20B486" />}
-            more="June"
+            more={monthName}
           />
           <Details
             title="Host:"
@@ -23,7 +28,8 @@ function ClassDetails(props) {
             title="Duration"
             details={props.details.time.S}
             icon={<Clock color="#20B486" />}
-            more="(2 Hours)"
+            // more="(2 Hours)"
+            more={"IST"}
           />
           <Details
             title="Language"
