@@ -81,7 +81,7 @@ function Login() {
                 <input type="checkbox" name="rememberme" id="rememberme" />
                 <label htmlFor="rememberme">Remember Me</label>
               </div>
-              <a className="flex underline gap-1 text-[#20b486] text-sm">
+              <a className="flex underline gap-1 text-[#20b486] text-sm" href="/changepassword"> 
                 Forgot Password
               </a>
             </div>

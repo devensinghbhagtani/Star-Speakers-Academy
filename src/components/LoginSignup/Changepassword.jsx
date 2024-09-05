@@ -57,7 +57,10 @@ function Changepassword() {
                 Email
               </label>{" "}
               <input className=" rounded-md p-2 border-2 w-full" type="email" name="email"/>
-              <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white" type="submit">Verify Email</button>
+              <div className="flex mt-3 flex-col gap-5">
+                <hr className="border-[1px] border-zinc-200" />
+                <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white" type="submit">Verify Email</button>
+              </div>
             </div>
         </form>
         {/* <form onSubmit={handlesecuirtycode}>  
