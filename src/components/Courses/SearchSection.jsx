@@ -1,8 +1,17 @@
 import React from "react";
 import { Search } from "lucide-react";
 import styled from "styled-components";
+import { useState } from "react";
 
-function SearchSection() {
+function SearchSection(props) {
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    props.onSearch(e.target.value);
+  };
+
   return (
     <div className="pt-24 pb-10 px-10 flex w-full justify-center ">
       <div className=" h-full w-[1080px] ">
@@ -12,6 +21,8 @@ function SearchSection() {
               placeholder="Search"
               className="h-full w-full p-4 text-md md:text-md rounded-xl text-[#212832] border-2 border-zinc-300 "
               type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
             <button className="absolute right-0 flex items-center justify-center h-12 w-16  md:w-20 rounded-r-xl bg-[#20B486] hover:bg-[#0d865f]">
               <Search color="white" />
