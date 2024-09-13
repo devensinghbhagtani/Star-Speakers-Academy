@@ -22,12 +22,15 @@ function CourseTab(props) {
           {/* <h4 className="text-sm">(15)</h4> */}
         </div>
         <hr className="h-px mt-2 border-0 bg-gray-300" />
-        <div className="price flex items-center justify-between content-center px-3">
-          <h2 className="mt-3 text-xl font-[500]">{props.price} Rs</h2>
-          <button className="mt-2 mb-0 text-white flex gap-2 px-4 py-2 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/details/${props.coursename}`)}}>
-            Enroll
+        <div className="price flex items-center justify-between content-center p-2">
+          <h2 className="mt-3 text-2xl font-[500]">{props.price} Rs</h2>
+          {/* <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/${props.coursename}`)}}> */}
+          
+          <button className="mt-2 text-white flex px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/details/${props.coursename}`)}}>
+            {props.boughtcourses ? "Continue" : "Enroll"}
             <ArrowUpRight color="white" />
-          </button>
+            </button>
+          
         </div>
       </Card>
     </div>
@@ -40,7 +43,7 @@ const Card = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
   width: 300px;
-  height: 360px;
+  height: 330px;
   border-radius: 15px;
   transition: all ease-in 0.1s;
   cursor: pointer;

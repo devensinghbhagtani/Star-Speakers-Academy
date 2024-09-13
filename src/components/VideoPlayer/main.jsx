@@ -111,9 +111,9 @@ function Helper(props) {
   const canvasRef = useRef(null);
   const [width, setWidth] = useState(0);
 
-  useEffect(() => {
-    setWidth(props.width);
-  }, [props.width]);
+  // useEffect(() => {
+  //   setWidth(props.width);
+  // }, [props.width]);
 
   const {
     playing,

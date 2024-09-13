@@ -7,7 +7,9 @@ function VideoPart(props) {
   const amount = props.masterclasstitle.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
   function handlepay(){
     const email = takeemail();
+    if(email != null){
     displayRazorpay(email, "masterclass", amount);
+    }
   }
 
   

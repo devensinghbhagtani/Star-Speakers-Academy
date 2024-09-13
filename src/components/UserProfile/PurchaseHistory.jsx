@@ -82,12 +82,12 @@ export default function PurchaseHistory() {
                                         </div>
                                     </div>
                                 </div>
+                                ))
                             </div>
                         </div>
                     ))
                 )}
             </div>
         </div>
-
     );
 }

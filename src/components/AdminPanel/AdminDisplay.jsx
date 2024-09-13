@@ -1,4 +1,4 @@
-export function AdminDisplay() {
+export default function AdminDisplay() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
             <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-6">

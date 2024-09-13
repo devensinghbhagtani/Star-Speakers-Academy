@@ -83,8 +83,7 @@ export default function EditHome() {
             instructors: { N: achievements.instructors }
         });
         console.log(achievements);
-        alert("Achievements Submitted");
-    };
+    }
 
     const [newFeedBackFile, setNewFeedBackFile] = useState(0);
 

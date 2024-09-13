@@ -32,7 +32,7 @@ import Changepassword from "./components/LoginSignup/Changepassword.jsx";
 import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
 import AboutCourse from "./components/CourseContent/AboutCourse.jsx";
-import { AdminDisplay } from "./components/AdminPanel/AdminDisplay.jsx";
+import AdminDisplay from "./components/AdminPanel/AdminDisplay.jsx";
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
@@ -55,6 +55,11 @@ const MainApp = () => {
     return <CourseDetails user={user} />;
   };
 
+  const EnrollCourse = ()  => {
+    const { user } = useUser();
+    return <Courses user={user} />;
+  }
+
 
   // Create routes
   const router = createBrowserRouter(
@@ -63,7 +68,7 @@ const MainApp = () => {
         <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
           <Route index element={<Main />} />
           <Route path="about" element={<About />} />
-          <Route path="courses" element={<Courses />} />
+          <Route path="courses" element={<EnrollCourse />} />
           <Route path="contact" element={<Contact />} />
           <Route path="profile" element={<ProfileWithUser />} />
           <Route path="course/videos/:folder" element={<CoursesWithUser />} />

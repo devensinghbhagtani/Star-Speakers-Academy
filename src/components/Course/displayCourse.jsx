@@ -83,6 +83,7 @@ function CoursePlayer(props) {
 
 
 
+ 
 
 
 	function handlecomments(event) {
@@ -367,7 +368,6 @@ function CoursePlayer(props) {
           type="checkbox"
           id={`${moduleName}-lecture${index}`}
           value={lecture.S.split("/")[1]}
-          className="mr-2"
         /> */}
 				<label
 					htmlFor={`${moduleName}-lecture${index}`}
