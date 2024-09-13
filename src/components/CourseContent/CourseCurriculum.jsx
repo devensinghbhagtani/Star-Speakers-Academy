@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import ModuleContentTab from "./ModuleContentTab";
 
 function CourseCurriculum(props) {
-  //  console.log(props.courseData);
   return (
     <div className="w-full p-10 justify-center items-center flex bg-zinc-100">
       <div className="flex flex-col w-[1024px] justify-center items-center">
@@ -16,17 +15,23 @@ function CourseCurriculum(props) {
         </h1>
 
         <div className="w-full justify-center items-center flex flex-col gap-4">
-          <div className=" w-full md:w-[80%] rounded-md overflow-hidden text-zinc-700">
-            <div className="w-full bg-[#20b486] px-5 py-3 font-medium text-lg text-white">
-              <h1>Lessons</h1>
-            </div>
-            <div className="flex flex-col ">
-              {props.data?.folder?.videos.map((video, key) => (
-                <ModuleContentTab key={key} title={video.split("/")[1]} />
-              ))}
-            </div>
-          </div>
-          <div className="w-full md:w-[80%] rounded-md overflow-hidden text-zinc-700"></div>
+
+          {props.data?.Modules?.M && Object.keys(props.data.Modules.M).map((module,key) => {
+            return (
+              <div className="w-full md:w-[80%] rounded-md overflow-hidden text-zinc-700" key={key}>
+                <div className="w-full bg-[#20b486] px-5 py-3 font-medium text-lg text-white">
+                  <h1>{module}</h1>
+                </div>
+                <div className="flex flex-col ">
+                  {props.data.Modules.M[module].L.map((moduleContent,key) => {
+                    return (
+                      <ModuleContentTab title={moduleContent.S.split("/")[2]} key={key}/>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

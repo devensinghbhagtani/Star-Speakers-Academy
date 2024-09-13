@@ -21,13 +21,13 @@ function Footer() {
                 <a href="">Home</a>
               </li>
               <li className="hover:text-[#ffffff8f] ease-in transition-all">
-                <a href="">About</a>
+                <a href="/about">About</a>
               </li>
               <li className="hover:text-[#ffffff8f] ease-in transition-all">
-                <a href="">Courses</a>
+                <a href="/courses">Courses</a>
               </li>
               <li className="hover:text-[#ffffff8f] ease-in transition-all">
-                <a href="">Master Class</a>
+                <a href="/master-class">Master Class</a>
               </li>
             </ul>
           </div>

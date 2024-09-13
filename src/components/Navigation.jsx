@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -12,7 +12,6 @@ function Navigation() {
   const [isProfileOpen, setProfileOpen] = useState(false);
   const { user } = useUser();
   console.log(user);
-
 
 
   const toggleMenu = () => {
@@ -97,19 +96,30 @@ function Navigation() {
           </div>
           {isProfileOpen && (
             <div className="hidden min-w-36 px-5 py-3 gap-2 rounded-md   lg:flex lg:flex-col overflow-hidden bg-zinc-100 top-[120%] absolute right-0 [&>*]:w-full ">
-              {isLoggedIn ? (
+              {user && user.email.S ? (
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
                   <Link to="/profile">Edit Profile</Link>
+<<<<<<< HEAD
                   <Link to="">Purchase History</Link>
                   {/* <Link to="/login">{user && user.email.S ? "Log out": "Login"} </Link> */}
                   <Link to="/login">Login</Link>
+=======
+                  <Link to="/profile">Purchase History</Link>
+                  <Link to={user&& user.email.S ? "/logout" : "/login"
+                   }>{user && user.email.S ? "Log out": "Login"} </Link>
+>>>>>>> origin/main
                 </>
               ) : (
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
+<<<<<<< HEAD
                   <Link to="">Logout</Link>
                   <Link to="#">Signup</Link>
+=======
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Signup</Link>
+>>>>>>> origin/main
                 </>
               )}
             </div>

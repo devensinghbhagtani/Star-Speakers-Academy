@@ -178,9 +178,13 @@ const Controls = forwardRef(
           >
             <Grid item>
               <Typography variant="h5" style={{ color: "#fff" }}>
+<<<<<<< HEAD
                 {title}
                 {console.log("assdasdsadn is " + title)}
                 
+=======
+                {/* Video Title */}
+>>>>>>> origin/main
               </Typography>
             </Grid>
             {/* <Grid item>

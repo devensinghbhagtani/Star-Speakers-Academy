@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ViewVideo from './ViewVideo';
+import axios from 'axios';
 
 
 export default function ViewCourses() {
     const [courses, setCourses] = useState([]);
     
     const [selectedCourseTitle, setSelectedCourseTitle] = useState(''); // State to store the clicked course title
+    const [info, setInfo] = useState(null);
 
     const handleCourseClick = (title) => {
         setSelectedCourseTitle(title); // Update state with the clicked course title
@@ -20,11 +22,28 @@ export default function ViewCourses() {
         { title: 'Course 3', description: 'Description 3' },
     ];
 
+    async function fetchVideos() {
+        try {
+            const response = await axios.get('http://localhost:8081/videos/videodetails')
+            console.log(response.data.response);
+            setInfo(response.data.response);
+            console.log(info)
+        
+        } catch (error) {
+            console.error('Error fetching videos:', error);
+        }
+    }
+    useEffect(() => {
+      fetchVideos();
+    }, []);
+    
     useEffect(() => {
         setCourses(CourseDetails);
+        fetchVideos();
     }, []);
 
     return (
+<<<<<<< HEAD
         <div className="container mx-auto px-4 py-6">
             <h1 className="text-2xl font-bold mb-4">Courses</h1>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -36,6 +55,25 @@ export default function ViewCourses() {
                         onCourseClick={handleCourseClick}
                     />
                 ))}
+=======
+        <div className="container courses-container">
+            <h1>Courses</h1>
+            <div className="row course-grid">
+                {
+                    info && info.map((item,key) => (
+                        <ViewVideo 
+                            key={key}
+                            courseTitle={item.coursename}
+                            courseDesc={item.description}
+                            onCourseClick={handleCourseClick}
+                            course_image_url={item.course_image_url}
+                        />
+                    ))
+                }
+                {/* {courses.map((course) => (
+                    <ViewVideo key={course.title} courseTitle = {course.title} courseDesc = {course.description} onCourseClick={handleCourseClick} />
+                ))} */}
+>>>>>>> origin/main
             </div>
             <hr className="my-6 border-gray-300" />
         </div>

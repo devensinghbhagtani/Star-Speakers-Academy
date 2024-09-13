@@ -1,14 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import { displayRazorpay, takeemail } from "../../payment";
 
-function StaticNav() {
+function StaticNav(props) {
+  console.log(props.masterclassinfo)
+  console.log(props.discount)
+  const amount = props.masterclassinfo.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
+
+
+  function handlepay(){
+    const email = takeemail();
+    displayRazorpay(email, "masterclass", amount);
+  }
   return (
     <div className="bg-[#20B486] flex w-full justify-center px-5 md:px-10 fixed z-40">
       <div className="w-full max-w-[1080px] flex nav min-h-16 py-2 justify-between items-center relative lg:px-0">
         <h1 className="text-white font-normal text-sm  md:text-xl w-48 md:w-auto text-center">
-          Unlimited Lifetime Access. Starting At INR 549/-
+          {/* Starting At INR {props.masterclassinfo.priceat.N}/- */}
+          {props.masterclassinfo.accessat.S} {amount}
         </h1>
-        <Button className="text-sm w-36 h-10 md:w-48 md:h-12 md:text-lg ">
+        <Button className="text-sm w-36 h-10 md:w-48 md:h-12 md:text-lg" onClick={handlepay}>
           <a>ENROLL NOW</a>
           <div className="hoverdiv"></div>
         </Button>

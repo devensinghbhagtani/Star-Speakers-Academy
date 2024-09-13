@@ -46,9 +46,9 @@ function MasterClass() {
   }
   return (
     <>
-      <StaticNav />
+      <StaticNav masterclassinfo={masterclass.masterclassinfo} discount={masterclass.userdiscount.discount}/>
       <div className="w-full min-h-[100vh] ">
-      <VideoPart masterclasstitle={masterclass.masterclassinfo} />
+      <VideoPart masterclasstitle={masterclass.masterclassinfo} discount={masterclass.userdiscount.discount} />
         <ClassDetails 
         details={masterclass.masterclassinfo}
         />
@@ -66,6 +66,8 @@ function MasterClass() {
         discount={masterclass.userdiscount.discount}/>
         <WorkshopFor 
         foryou={masterclass.foryou}
+        masterclasstitle={masterclass.masterclassinfo} 
+        discount={masterclass.userdiscount.discount}
         />
         <DiscountLine 
         discount={masterclass.userdiscount.discount}/>

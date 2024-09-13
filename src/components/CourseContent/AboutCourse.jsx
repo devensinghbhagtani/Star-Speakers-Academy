@@ -1,8 +1,40 @@
 import { IndianRupee, ShoppingCart } from "lucide-react";
 import React from "react";
 import styled from "styled-components";
+import { displayRazorpay } from "../../payment";  
+import { useParams, useNavigate } from "react-router-dom";
 
-function AboutCourse() {
+function AboutCourse(props) {
+  const navigate = useNavigate();
+  const { folder } = useParams();
+
+  function handleNavigation(url) {
+    const userEmail = props.user?.email?.S;
+    const courseName = props.data?.coursename?.S;
+    const price = parseFloat(props.data?.price?.N ?? 0);
+    const discount = parseFloat(props.data?.discount?.N ?? 0); 
+    const finalAmount = price * (1 - discount / 100);
+
+    if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
+        console.log("Already enrolled");
+        navigate(url);
+    } else {
+        console.log("Not enrolled");
+
+        console.log("Email:", userEmail);
+        console.log("Course Name:", courseName);
+        console.log("Final Amount:", finalAmount);
+
+        if (userEmail && courseName && finalAmount > 0) {
+            displayRazorpay(userEmail, courseName, finalAmount);
+        } else {
+            console.error("Missing required information for payment.");
+            alert("Unable to proceed with payment due to missing information.");
+        }
+    }
+}
+
+
   return (
     <div className="p-10 md:p-10 text-zinc-800 w-full  flex justify-center">
       
@@ -13,7 +45,8 @@ function AboutCourse() {
           <mark className="bg-transparent text-[#20b486]">Course</mark>
         </h1>
         <div className="flex flex-col gap-7  md:text-lg">
-          <p>
+          {props.data?.course_description?.S}
+          {/* <p>
             Building something you love. <br />
             Working on your own terms. <br /> Your dream startup idea shouldn’t
             be limited to your dreams.
@@ -34,23 +67,27 @@ function AboutCourse() {
             Through expert insights and proven strategies, you’ll be equipped
             with the knowledge and mindset to navigate the startup ecosystem
             confidently.
-          </p>
+          </p> */}
           <h1 className="w-full bg-[#FFC27A] rounded-md text-zinc-700 font-[500]  text-center text-lg md:text-xl px-10 py-3  tracking-tighter">
             Through expert insights and proven strategies, you’ll be equipped
             with the knowledge and mindset to navigate the startup ecosystem
             confidently.
           </h1>
         </div>
-        <Button className="mt-5  text-white  bg-[#20b486] ">
+        <Button className="mt-5  text-white  bg-[#20b486]" onClick={() => handleNavigation(`/course/videos/${props.data?.coursename?.S ?? "default"}`)}>
           <a
             className="flex gap-2  justify-center items-center text-xl "
-            href=""
+          
           >
-            Enroll Now for
-            <div className="flex items-center">
-              <IndianRupee size={20} strokeWidth={3} />
-              600/-
-            </div>
+            {props.user?.coursesinfo?.M && props.user.coursesinfo.M[props.data?.coursename?.S ] ? "Go to Course" : 
+                        <div className="flex items-center">
+                         Enroll Now for    
+                        <IndianRupee size={20} strokeWidth={3} />
+                        {(props.data?.price?.N ?? 0) * (1 - (props.data?.discount?.N ?? 0) / 100)}
+                      </div>
+            }
+           
+
           </a>
           <div className="hoverdiv"></div>
         </Button>

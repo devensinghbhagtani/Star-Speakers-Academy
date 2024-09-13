@@ -9,11 +9,34 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import GalleryCard from "./GalleryCard";
+import axios from "axios";
 
 function ContactDetails() {
   const [showGallery, setShowGallery] = useState(false);
   const [imageNumber, setImageNumber] = useState(1);
   const [opacity, setOpacity] = useState(false);
+  
+  async function sendemail(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    console.log(data.get("name"));
+    console.log(data.get("email"));
+    console.log(data.get("phone"));
+    console.log(data.get("subject"));
+    console.log(data.get("message"));
+
+
+    const response = await axios.post("http://localhost:8081/email/contactemail", {
+      name: data.get("name"),
+      email: data.get("email"),
+      phone: data.get("phone"),
+      subject: data.get("subject"),
+      message: data.get("message"),
+    });
+    alert(response.data.message);
+  }
+
+  
   return (
     <div>
       <div
@@ -53,7 +76,7 @@ function ContactDetails() {
             </div> */}
             <form
               className="w-full text-sm flex flex-col gap-2 items-start"
-              action=""
+              onSubmit={sendemail}
             >
               <div className="w-full flex mt-5 gap-3 text-md">
                 <div className="w-full gap-3 flex  flex-col lg:flex-row">
@@ -63,7 +86,9 @@ function ContactDetails() {
                       <input
                         className="p-2 border-2 w-full  rounded-lg"
                         type="name"
+                        required
                         id="name"
+                        name="name"
                       />
                     </div>
                     <div className="flex w-full  flex-col">
@@ -71,6 +96,8 @@ function ContactDetails() {
                       <input
                         className="w-full p-2 border-2  rounded-lg"
                         type="email"
+                        name="email"
+                        required
                         id="email"
                       />
                     </div>
@@ -80,6 +107,8 @@ function ContactDetails() {
                     <input
                       className="max-w-[500px] lg:w-auto p-2 border-2  rounded-lg"
                       type="phone"
+                      name="phone"
+                      required
                       id="phone"
                     />
                   </div>
@@ -91,6 +120,8 @@ function ContactDetails() {
                   <input
                     className="p-2 border-2  rounded-lg"
                     type="subject"
+                    required
+                    name="subject"
                     id="subject"
                   />
                 </div>
@@ -101,6 +132,8 @@ function ContactDetails() {
                   rows="4"
                   className="p-2 w-full border-2  rounded-lg"
                   type="subject"
+                  name="message"
+                  required
                   id="subject"
                 />
               </div>

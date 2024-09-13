@@ -29,7 +29,7 @@ function VideoPart() {
             trainers and coaches today.
           </h2>
           <Button className="lg:mt-3">
-            <a href="">Get a Free Trial</a>
+            <a href="/courses">Buy our courses</a>
             <div className="hoverdiv"></div>
           </Button>
         </div>

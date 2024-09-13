@@ -28,31 +28,21 @@ import axios from "axios";
 
 import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
+<<<<<<< HEAD
 import AboutCourse from "./components/CourseContent/AboutCourse.jsx";
 import { AdminDisplay } from "./components/AdminPanel/AdminDisplay.jsx";
+=======
+import { LogOut } from "lucide-react";
+import Logout from "./components/LoginSignup/Logout.jsx";
+import Forgotpassword from "./components/LoginSignup/Forgotpassword.jsx";
+import Changepassword from "./components/LoginSignup/Changepassword.jsx";
+>>>>>>> origin/main
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
   const [info, handleInfo] = useState(null);
 
-  // Fetch user data (uncomment if needed)
-  // const getUser = useCallback(async () => {
-  //   try {
-  //     const url = `http://localhost:8081/auth/get-token`;
-  //     const { data } = await axios.get(url, { withCredentials: true });
-  //     console.log(data);
-  //     console.log(data.userToken);
-  //     setUser(data.userToken);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
 
-  // useEffect(() => {
-  //   getUser();
-  // }, [getUser]);
-
-  // Inner components using the user context
   const ProfileWithUser = () => {
     const { user } = useUser();
     console.log(user);
@@ -64,11 +54,20 @@ const MainApp = () => {
     return <DisplayCourses user={user} />;
   };
 
+<<<<<<< HEAD
   // const AboutCourseWithUser = () => {
   //   const { user } = useUser();
   //   return <CourseDetails user={user} />;
   // };
 
+=======
+  const CourseHomePage = () => {
+    const { user } = useUser();
+    return <CourseDetails user={user} />;
+  };
+
+  
+>>>>>>> origin/main
 
   // Create routes
   const router = createBrowserRouter(
@@ -80,11 +79,20 @@ const MainApp = () => {
           <Route path="courses" element={<Courses />} />
           <Route path="contact" element={<Contact />} />
           <Route path="profile" element={<ProfileWithUser />} />
+<<<<<<< HEAD
           <Route path="course/:folder" element={<CoursesWithUser />} />
           {/* <Route path="AboutCourse/:folder" element={<AboutCourseWithUser />} /> */}
           <Route path="course1" element={<CourseDetails />} />
+=======
+          <Route path="course/videos/:folder" element={<CoursesWithUser />} />
+          <Route path="course" element={<CourseHome />} />
+          <Route path="course/details/:folder" element={<CourseHomePage/>} />
+>>>>>>> origin/main
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/resetpassword" element={<Forgotpassword />} />
+          <Route path="changepassword" element={<Changepassword />} />
         </Route>
         <Route path="master-class" element={<MasterClass />} />
         <Route path="admin" element={<AdminHome />}>

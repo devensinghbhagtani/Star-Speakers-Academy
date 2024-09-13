@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { displayRazorpay, takeemail } from "../../payment";
 
 function VideoPart(props) {
   console.log(props.masterclasstitle.videolink.S);
+  const amount = props.masterclasstitle.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
+  function handlepay(){
+    const email = takeemail();
+    displayRazorpay(email, "masterclass", amount);
+  }
 
+  
   return (
     <div className="lg:pt-24 pt-24 md:pt-24 p-5 flex w-full h-auto lg:min-h-[450px] relative justify-center overflow-hidden    ">
       <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row lg:justify-center lg:items-center items-center lg:gap-10 ">
@@ -31,8 +38,8 @@ function VideoPart(props) {
             Speak with confidence, in any setting, with no nervousness. Learn in
             just 4 hours.
           </h2>
-          <Button1 className=" mt-4 px-20 py-2 md:px-52 md:py-4 lg:px-14 lg:py-2 md:text-xl">
-            <a href={props.masterclasstitle.enrolllink.S}>{props.masterclasstitle.enrolltext.S}</a>
+          <Button1 className=" mt-4 px-20 py-2 md:px-52 md:py-4 lg:px-14 lg:py-2 md:text-xl" onClick={handlepay}>
+          <a>ENROLL NOW</a>
             <div className="hoverdiv"></div>
           </Button1>
         </div>

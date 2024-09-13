@@ -176,6 +176,12 @@ function Helper(obfuscatedURL, title) {
   const playerContainerRef = useRef(null);
   const controlsRef = useRef(null);
   const canvasRef = useRef(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(props.width);
+  }, [props.width]);
+
   const {
     playing,
     controls,
@@ -190,6 +196,7 @@ function Helper(obfuscatedURL, title) {
     volume,
   } = state;
 
+  
   const handlePlayPause = () => {
     setState({ ...state, playing: !state.playing });
   };
@@ -248,7 +255,9 @@ function Helper(obfuscatedURL, title) {
   };
 
   const toggleFullScreen = () => {
+    setWidth("100%");
     screenful.toggle(playerContainerRef.current);
+    
   };
 
   const handleMouseMove = () => {
@@ -324,13 +333,20 @@ function Helper(obfuscatedURL, title) {
           ref={playerContainerRef}
           className={`${classes.playerWrapper} ${styles.playerWrapper}`}
         >
+          {props.obfuscatedURL && (
           <ReactPlayer
             ref={playerRef}
+<<<<<<< HEAD
             width="100%"
             url={`http://localhost:8081/videos/sendvideo/${obfuscatedURL.obfuscatedURL}`}       
             // url={"C:\Users\msoff\Videos\Captures\FIFA 23 2024-07-27 23-32-56.mp4"}   
             // play the above video without localhost  //
             //  url={`C:\Users\msoff\Videos\Captures\FIFA 23 2024-07-27 23-32-56.mp4`}
+=======
+            width={props.width}
+            height={props.height}
+            url={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
+>>>>>>> origin/main
             pip={pip}
             className={`react-player ${styles.reactPlayer}`}
             playing={!playing}
@@ -347,8 +363,13 @@ function Helper(obfuscatedURL, title) {
                   crossorigin: "anonymous",
                 },
               },
+<<<<<<< HEAD
             }}                  
           />          
+=======
+            }}
+          />)}
+>>>>>>> origin/main
 
           <Controls
             ref={controlsRef}

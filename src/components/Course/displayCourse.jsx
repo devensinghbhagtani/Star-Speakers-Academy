@@ -61,12 +61,17 @@ function CoursePlayer(props) {
       );
       console.log("Response:", response.data);
       setvideoname(response.data.tableout.course_video.S);
-      sessionStorage.setItem(
-        `courseData-${folder}`,
-        JSON.stringify(response.data)
-      )
+      // sessionStorage.setItem(
+      //   `courseData-${folder}`,
+      //   JSON.stringify(response.data)
+      // )
       setCourseData(response.data);
+<<<<<<< HEAD
       // console.log("asdasds" +response.data.tableout.coursename.S);
+=======
+      console.log(courseData);
+      console.log(response.data.tableout.course_video.S);
+>>>>>>> origin/main
       fetchObfuscatedURL(response.data.tableout.course_video.S);
 
     } catch (error) {
@@ -147,11 +152,21 @@ function CoursePlayer(props) {
             <ul className="list-disc list-inside text-base leading-relaxed">
               <li>{courseData && courseData.tableout.course_line.S}</li>
             </ul>
+<<<<<<< HEAD
             <hr className="my-4" />
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-2">
               <div>
                 <h4 className="text-lg font-semibold">Course Duration:</h4>
                 <p>{courseData && courseData.tableout.course_duration.S}</p>
+=======
+            <hr />
+            <div className="row my-2">
+              <div className="col-md-3">
+                <h4>Course Duration:</h4>
+                <p>
+                    {courseData && courseData.tableout?.course_duration?.N}
+                </p>
+>>>>>>> origin/main
               </div>
               <div>
                 <h4 className="text-lg font-semibold">Course Language:</h4>
@@ -170,12 +185,16 @@ function CoursePlayer(props) {
               <div>
                 <h4 className="text-lg font-semibold">Course Price: </h4>
                 <p>{courseData && courseData.tableout.price.N}</p>
+<<<<<<< HEAD
                 <button
                   className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
                   onClick={displayRazorpay}
                 >
                   Buy Now
                 </button>
+=======
+                
+>>>>>>> origin/main
               </div>
             </div>
             <hr className="my-4" />
@@ -261,6 +280,7 @@ function CoursePlayer(props) {
       case "Resources":
         return (
           <div className="m-3">
+<<<<<<< HEAD
             <h3 className="text-2xl font-bold mb-4">Resources</h3>
             <p>Download the course resources from the links below:</p>
             <ul className="list-disc list-inside">
@@ -279,6 +299,19 @@ function CoursePlayer(props) {
                   Resource 3
                 </a>
               </li>
+=======
+            <h3>Resources:</h3>
+            {/* <p>Download the course resources from the links below:</p> */}
+            <ul>
+              {
+                courseData?.tableout?.resources?
+                courseData.tableout.resources.L.map((resource, index) => (
+                  <li key={index}>
+                    <a href={resource.S}>{resource.S}</a>
+                  </li>
+                )):null
+              }
+>>>>>>> origin/main
             </ul>
           </div>
         );
@@ -358,9 +391,41 @@ function CoursePlayer(props) {
       }
     }
     return modulesArray;
+<<<<<<< HEAD
   };
 
 
+=======
+}
+
+// const renderModuleProgress = () => {
+//   const modulesArray = [];
+
+//   if (courseData && courseData.tableout && courseData.tableout.Modules && courseData.tableout.Modules.M) {
+//     const modules = courseData.tableout.Modules.M;
+    
+//     const sortedModuleNames = Object.keys(modules).sort(); // Sort module names alphabetically
+    
+//     for (let moduleName of sortedModuleNames) {
+//       console.log("Module Name:", moduleName);
+//       if (modules.hasOwnProperty(moduleName)) {
+//         modulesArray.push(
+//           <li key={moduleName} className={`list-group-item module-item ${styles.moduleItem}`}>
+//             <details>
+//               <summary className="m-2">{moduleName}</summary>
+//               <hr />
+//               {renderLectures(moduleName, modules[moduleName].L)}
+//             </details>
+//           </li>
+//         );
+//       }
+//     }
+//   }
+//   return modulesArray;
+// }
+
+    
+>>>>>>> origin/main
 
   const handleTrigger = () => {
     var x = document.getElementById("content");
@@ -473,6 +538,7 @@ function CoursePlayer(props) {
 
 
   return (
+<<<<<<< HEAD
     <div className={`container-fluid mx-10 pt-24 grid grid-cols-1 lg:grid-cols-3 gap-4 ${styles.mainDiv}`}>
       {/* Left Section - Video and Description */}
       <div className="lg:col-span-2">
@@ -480,6 +546,90 @@ function CoursePlayer(props) {
           {console.log("Obfuscated URL:", obfuscatedURL)}
           <Helper obfuscatedURL={obfuscatedURL} title={folder} />
           <hr className="my-4" />
+=======
+    <div className="container-fluid course-player">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <div className={`row `}>
+        <div className="col-md-8 col-lg-9 video-player">
+            {/* <Helper
+            url={obfuscatedURL}
+            /> */}
+            <Helper
+            obfuscatedURL={obfuscatedURL}
+            width={'100%'} height={'600px'}
+            />
+            {/* <ReactPlayer
+            url={`http://localhost:8081/videos/sendvideo/${obfuscatedURL}`}
+            controls
+            ontrols width={'100%'} height={'600px'} 
+            /> */}
+          <hr />
+          <div className="">
+            <div className="tabs mt-3">
+              <ul className="nav nav-tabs">
+                <li className="nav-item">
+                  <button
+                    className={`nav-link ${
+                      selectedTab === "Description" ? "active" : ""
+                    }`}
+                    onClick={() => handleTabClick("Description")}
+                  >
+                    Description
+                  </button>
+                </li>
+                {/* for mobile view course */}
+                {/* <li className={`nav-item ${styles.mobileContent}`}>
+                  <button
+                    className={`nav-link ${
+                      selectedTab === "Course Content" ? "active" : ""
+                    }`}
+                    onClick={() => handleTabClick("Course Content")}
+                  >
+                    Progress
+                  </button>
+                </li> */}
+                <li className="nav-item">
+                  {/* <button
+                    className={`nav-link ${
+                      selectedTab === "Bookmarks" ? "active" : ""
+                    }`}
+                    onClick={() => handleTabClick("Bookmarks")}
+                  >
+                    Bookmarks
+                  </button> */}
+                </li>
+                <li className="nav-item">
+                  {/* <button
+                    className={`nav-link ${
+                      selectedTab === "Comments" ? "active" : ""
+                    }`}
+                    onClick={() => handleTabClick("Comments")}
+                  >
+                    Comments
+                  </button> */}
+                </li>
+                {
+                  courseData?.tableout?.resources?
+                <li className="nav-item">
+                  <button
+                    className={`nav-link ${
+                      selectedTab === "Resources" ? "active" : ""
+                    }`}
+                    onClick={() => handleTabClick("Resources")}
+                  >
+                    Resources
+                  </button>
+                </li>:
+                null
+                }
+              </ul>
+            </div>
+            <div className="content mt-3">{renderContent()}</div>
+          </div>
+>>>>>>> origin/main
         </div>
 
         {/* Tabs */}
