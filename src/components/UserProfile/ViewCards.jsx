@@ -66,14 +66,6 @@ export default function ViewCards() {
     }
 
     return (
-<<<<<<< HEAD
-        <div className="container mx-auto px-4 py-6">
-            <p className="text-gray-600">Profiles &gt; View Cards</p>
-            <hr className="my-4 border-gray-300" />
-            <h1 className="text-3xl font-bold text-center">View Cards / Debit Cards</h1>
-            <div className="mt-6">
-                {cards.map(renderCard)}
-=======
         <div>
             <div className="container">
                 <p>{"Profiles > View Cards"}</p>
@@ -83,7 +75,6 @@ export default function ViewCards() {
                     {renderContent()}
                 </div>
 
->>>>>>> origin/main
             </div>
         </div>
     )

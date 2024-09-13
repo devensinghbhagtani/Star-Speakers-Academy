@@ -14,40 +14,40 @@ function CoursePlayer(props) {
   const [selectedTab, setSelectedTab] = useState("Description");
   const [checkedLectures, setCheckedLectures] = useState([]);
   const [obfuscatedURL, setObfuscatedURL] = useState(null);
-  const [videoname, setvideoname] = useState(null);
+  const [videoname,setvideoname]=useState(null);
 
   console.log(folder)
   // console.log(props.user);
 
-  function logincheck() {
-    if (props.user == null) {
+  function logincheck(){
+    if(props.user==null){
       alert("Please login to view the course");
       return false;
     }
-    else {
+    else{
       return true
-    }
   }
+}
 
   const fetchObfuscatedURL = async (video_name) => {
 
     console.log("Video Name:", video_name);
-    //  if(checkvideo(video_name)){
-    console.log("Fetching obfuscated URL for video:", video_name);
+  //  if(checkvideo(video_name)){
+      console.log("Fetching obfuscated URL for video:", video_name);
 
-    //console.log(checkvideo(video_name));
+      //console.log(checkvideo(video_name));
     try {
-
+     
       const response = await axios.get(
-        `http://localhost:8081/videos/api/obfuscate-url?video_name=${video_name}`
+         `http://localhost:8081/videos/api/obfuscate-url?video_name=${video_name}`
       );
       setObfuscatedURL(response.data.obfuscatedURL);
       console.log("Obfuscated URL:", response.data.obfuscatedURL);
     } catch (error) {
       console.error("Error fetching obfuscated URL:", error);
     }
-    // }
-  };
+ // }
+};
 
 
   const getCourseInfo = useCallback(async () => {
@@ -66,14 +66,10 @@ function CoursePlayer(props) {
       //   JSON.stringify(response.data)
       // )
       setCourseData(response.data);
-<<<<<<< HEAD
-      // console.log("asdasds" +response.data.tableout.coursename.S);
-=======
       console.log(courseData);
       console.log(response.data.tableout.course_video.S);
->>>>>>> origin/main
       fetchObfuscatedURL(response.data.tableout.course_video.S);
-
+      
     } catch (error) {
       console.error("Error fetching course information:", error);
     }
@@ -86,28 +82,28 @@ function CoursePlayer(props) {
 
 
 
+ 
 
-
-  function handlecomments(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    console.log(data);
-    submitcomment(data.get('name'), data.get('email'), data.get('comment'), folder);
-  }
-
-  async function submitcomment(name, email, comment, folder) {
-    try {
-      const url = 'http://localhost:8081/videos/addcomment';
-      const { data } = await axios.post(url, {
-        name: name,
-        email: email,
-        comment: comment,
-        folder: folder,
-      });
-      alert(data.message)
+    function handlecomments(event){
+      event.preventDefault();
+      const data= new FormData(event.target);
+      console.log(data);
+      submitcomment(data.get('name'),data.get('email'),data.get('comment'),folder);
     }
-    catch (error) {
-      console.error("Error in submitting comment:", error);
+
+    async function submitcomment(name, email, comment,folder){
+      try{
+        const url='http://localhost:8081/videos/addcomment';
+        const {data} = await axios.post(url, {
+          name: name,
+          email: email,
+          comment: comment,
+          folder: folder,
+        });
+        alert(data.message)
+      }
+      catch(error){
+        console.error("Error in submitting comment:", error);
     }
   }
 
@@ -130,35 +126,38 @@ function CoursePlayer(props) {
   };
 
   const renderContent = () => {
+    
+    
+    console.log(folder);
+
+
+
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+
     switch (selectedTab) {
       case "Description":
         return (
-          <div className="m-3">
-            <h3 className="text-2xl font-bold mb-4">Course Description: </h3>
-            <p className="text-base leading-relaxed">
-              {courseData && courseData.tableout.course_description.S}
+          <div className="m-3 ">
+            <h3>Course Description: </h3>
+            <p style={justifyText}>
+                {courseData && courseData.tableout.course_description.S}
             </p>
-            <hr className="my-4" />
-            <div className="flex items-center">
-              <h3 className="text-2xl font-bold">Course Instructor: </h3>
-              <h3 className="text-2xl font-bold text-blue-500 ml-2">
+            <hr />
+            <div className="d-flex">
+              <h3>Course Instructor: </h3> &nbsp;
+              <h3>
                 <a href="https://starspeakers">
-                  {courseData && courseData.tableout.course_speaker.S}
+                {courseData && courseData.tableout.course_speaker.S}
                 </a>
               </h3>
             </div>
-            <hr className="my-4" />
-            <h3 className="text-2xl font-bold mb-2">Course Objectives: </h3>
-            <ul className="list-disc list-inside text-base leading-relaxed">
+            <hr />
+            <h3>Course Objectives: </h3>
+            <ul style={justifyText}>
               <li>{courseData && courseData.tableout.course_line.S}</li>
             </ul>
-<<<<<<< HEAD
-            <hr className="my-4" />
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-2">
-              <div>
-                <h4 className="text-lg font-semibold">Course Duration:</h4>
-                <p>{courseData && courseData.tableout.course_duration.S}</p>
-=======
             <hr />
             <div className="row my-2">
               <div className="col-md-3">
@@ -166,85 +165,57 @@ function CoursePlayer(props) {
                 <p>
                     {courseData && courseData.tableout?.course_duration?.N}
                 </p>
->>>>>>> origin/main
               </div>
-              <div>
-                <h4 className="text-lg font-semibold">Course Language:</h4>
-                <p>{courseData && courseData.tableout.course_language.S}</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold">Total Lectures:</h4>
+              <div className="col-md-3">
+                <h4>Course Language:</h4>
                 <p>
-                  {courseData &&
-                    Object.values(courseData.tableout.Modules.M).reduce(
-                      (sum, module) => sum + module.L.length,
-                      0
+                    {courseData && courseData.tableout.course_language.S}
+                </p>
+              </div>
+              <div className="col-md-3">
+                <h4>Total Lectures:</h4>
+                <p>
+                    {courseData && Object.values(
+                        courseData.tableout.Modules.M
+                    ).reduce((sum, module) => sum + module.L.length, 0
                     )}
                 </p>
               </div>
-              <div>
-                <h4 className="text-lg font-semibold">Course Price: </h4>
+              <div className="col-md-3">
+                <h4>Course Price: </h4>
                 <p>{courseData && courseData.tableout.price.N}</p>
-<<<<<<< HEAD
-                <button
-                  className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-                  onClick={displayRazorpay}
-                >
-                  Buy Now
-                </button>
-=======
                 
->>>>>>> origin/main
               </div>
             </div>
-            <hr className="my-4" />
+            <hr />
           </div>
         );
 
       case "Comments":
         return (
           <div className="m-3">
-            <h3 className="text-2xl font-bold mb-4">Comments</h3>
+            <h3>Comments</h3>
+            {/* in this form i need name, email, textarea, submit */}
             <form onSubmit={handlecomments}>
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-base font-medium">
-                  Name:
-                </label>
-                <input
-                  type="text"
-                  className="w-full border border-gray-300 rounded p-2 mt-1"
-                  id="name"
-                  name="name"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-base font-medium">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  className="w-full border border-gray-300 rounded p-2 mt-1"
-                  id="email"
-                  name="email"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="comment" className="block text-base font-medium">
-                  Comment:
-                </label>
+              <div className="form-group">
+                <label htmlFor="name">Name:</label>
+                <input type="text" className="form-control" id="name" name="name" />
+                <br />
+                <label htmlFor="email">Email:</label>
+                <input type="email" className="form-control" id="email" name="email" />
+                <br />
+                <label htmlFor="comment">Comment:</label>
                 <textarea
-                  className="w-full border border-gray-300 rounded p-2 mt-1"
+                  className="form-control"
                   id="comment"
                   rows="3"
                   name="comment"
                 ></textarea>
+                <br />
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
               </div>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded"
-              >
-                Submit
-              </button>
             </form>
           </div>
         );
@@ -252,27 +223,28 @@ function CoursePlayer(props) {
       case "Bookmarks":
         return (
           <div className="m-3">
-            <h3 className="text-2xl font-bold mb-4">Bookmarks</h3>
-            <p>Bookmark your favorite lectures to watch later:</p>
+            <h3>Bookmarks</h3>
+            <p>Bookmark your favourite lectures to watch later:</p>
           </div>
         );
 
       case "Course Content":
         return (
-          <div className="m-3">
-            <div className="flex justify-between mb-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="text-lg font-semibold">Course Progress:</h4>
+          <div className={`m-3 ${styles.mobileContent}`}>
+            <div className="d-flex justify-content-between">
+              <div className="row">
+                <div className="col-md-3">
+                  <h4>Course Progress:</h4>
                 </div>
-                <div>
+                <div className="col-md-3">
                   <p>
-                    {Math.round((checkedCount / totalLectures) * 100)}% completed
+                    {Math.round((checkedCount / totalLectures) * 100)}%
+                    completed
                   </p>
                 </div>
               </div>
             </div>
-            <hr className="my-4" />
+            <hr />
             <ul className="list-group">{renderModuleProgress()}</ul>
           </div>
         );
@@ -280,26 +252,6 @@ function CoursePlayer(props) {
       case "Resources":
         return (
           <div className="m-3">
-<<<<<<< HEAD
-            <h3 className="text-2xl font-bold mb-4">Resources</h3>
-            <p>Download the course resources from the links below:</p>
-            <ul className="list-disc list-inside">
-              <li>
-                <a href="#" className="text-blue-500">
-                  Resource 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-blue-500">
-                  Resource 2
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-blue-500">
-                  Resource 3
-                </a>
-              </li>
-=======
             <h3>Resources:</h3>
             {/* <p>Download the course resources from the links below:</p> */}
             <ul>
@@ -311,7 +263,6 @@ function CoursePlayer(props) {
                   </li>
                 )):null
               }
->>>>>>> origin/main
             </ul>
           </div>
         );
@@ -320,37 +271,25 @@ function CoursePlayer(props) {
     }
   };
 
-  const handleClick = (video_name) => {
+const handleClick = (video_name) => {
     if (logincheck()) {
       fetchObfuscatedURL(video_name);
     }
   };
 
-  const renderLectures = (moduleName, lectures) => {
+const renderLectures = (moduleName, lectures) => {
     return lectures.map((lecture, index) => (
-      <div
-        key={index}
-        onClick={() => handleClick(lecture.S)}
-        className="flex items-center p-2 hover:bg-gray-100 rounded-md cursor-pointer"
-      >
+      <div key={index} onClick={() => handleClick(lecture.S)}>
         {/* <input
           type="checkbox"
           id={`${moduleName}-lecture${index}`}
           value={lecture.S.split("/")[1]}
-          className="mr-2"
         /> */}
-        <label
-          htmlFor={`${moduleName}-lecture${index}`}
-          className="ml-2 text-sm font-medium text-gray-700"
-          style={{cursor: "pointer", fontSize: "1.1rem"}}
-        >
-          {lecture.S.split("/")[2]}
-        </label>
+        <label htmlFor={`${moduleName}-lecture${index}`}>{lecture.S.split("/")[2]}</label>
       </div>
     ));
   };
   
-
 
 
   const totalLectures = modules.reduce(
@@ -359,30 +298,20 @@ function CoursePlayer(props) {
   );
   const checkedCount = checkedLectures.length;
 
-  const renderModuleProgress = () => {
+const renderModuleProgress = () => {
     const modulesArray = [];
-
-    if (
-      courseData &&
-      courseData.tableout &&
-      courseData.tableout.Modules &&
-      courseData.tableout.Modules.M
-    ) {
+  
+    if (courseData && courseData.tableout && courseData.tableout.Modules && courseData.tableout.Modules.M) {
       const modules = courseData.tableout.Modules.M;
-
+      
       for (let moduleName in modules) {
         console.log("Module Name:", moduleName);
         if (modules.hasOwnProperty(moduleName)) {
           modulesArray.push(
-            <li
-              key={moduleName}
-              className="p-4 border border-gray-200 rounded-lg shadow-sm mb-4"
-            >
-              <details className="bg-gray-50 rounded-lg">
-                <summary className="cursor-pointer p-2 font-medium text-lg">
-                  {moduleName}
-                </summary>
-                <hr className="my-2 border-gray-300" />
+            <li key={moduleName} className={`list-group-item module-item ${styles.moduleItem}`}>
+              <details>
+                <summary className="m-2">{moduleName}</summary>
+                <hr />
                 {renderLectures(moduleName, modules[moduleName].L)}
               </details>
             </li>
@@ -391,11 +320,6 @@ function CoursePlayer(props) {
       }
     }
     return modulesArray;
-<<<<<<< HEAD
-  };
-
-
-=======
 }
 
 // const renderModuleProgress = () => {
@@ -425,7 +349,6 @@ function CoursePlayer(props) {
 // }
 
     
->>>>>>> origin/main
 
   const handleTrigger = () => {
     var x = document.getElementById("content");
@@ -461,92 +384,81 @@ function CoursePlayer(props) {
 
   function loadScript(src) {
     return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => {
+            resolve(true);
+        };
+        script.onerror = () => {
+            resolve(false);
+        };
+        document.body.appendChild(script);
     });
-  }
+}
 
-  async function displayRazorpay() {
+async function displayRazorpay() {
     const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
+        "https://checkout.razorpay.com/v1/checkout.js"
     );
 
     if (!res) {
-      alert("Razorpay SDK failed to load. Are you online?");
-      return;
+        alert("Razorpay SDK failed to load. Are you online?");
+        return;
     }
 
-    const result = await axios.post("http://localhost:8081/payment/orders",
-      {
-        folder: folder,
-        email: props.user.email,
-        amount: courseData.tableout.price.N
-      }
+    const result = await axios.post("http://localhost:8081/payment/orders" ,
+    {folder:folder, 
+      email:props.user.email,
+    amount:courseData.tableout.price.N}
     );
 
     if (!result) {
-      alert("Server error. Are you online?");
-      return;
+        alert("Server error. Are you online?");
+        return;
     }
 
     const { amount, id: order_id, currency } = result.data;
 
     const options = {
-      key: "rzp_live_d5ZVQOUIw3XRX6",
-      amount: amount.toString(),
-      currency: currency,
-      name: "StarSpeakers.",
-      description: "Test Transaction",
+        key: "rzp_live_d5ZVQOUIw3XRX6",
+        amount: amount.toString(),
+        currency: currency,
+        name: "StarSpeakers.",
+        description: "Test Transaction",
+        
+        order_id: order_id,
+        handler: async function (response) {
+            const data = {
+                orderCreationId: order_id,
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature,
+            };
 
-      order_id: order_id,
-      handler: async function (response) {
-        const data = {
-          orderCreationId: order_id,
-          razorpayPaymentId: response.razorpay_payment_id,
-          razorpayOrderId: response.razorpay_order_id,
-          razorpaySignature: response.razorpay_signature,
-        };
+            const result = await axios.post("http://localhost:8081/payment/success", data);
 
-        const result = await axios.post("http://localhost:8081/payment/success", data);
-
-        alert(result.data.msg);
-      },
-      prefill: {
-        name: "Star Speakers",
-        email: "starspeaker@gmail.com",
-        contact: "9999999999",
-      },
-      notes: {
-        address: "chembur, Mumbai",
-      },
-      theme: {
-        color: "#61dafb",
-      },
+            alert(result.data.msg);
+        },
+        prefill: {
+            name: "Star Speakers",
+            email: "starspeaker@gmail.com",
+            contact: "9999999999",
+        },
+        notes: {
+            address: "chembur, Mumbai",
+        },
+        theme: {
+            color: "#61dafb",
+        },
     };
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  }
+}
 
 
 
   return (
-<<<<<<< HEAD
-    <div className={`container-fluid mx-10 pt-24 grid grid-cols-1 lg:grid-cols-3 gap-4 ${styles.mainDiv}`}>
-      {/* Left Section - Video and Description */}
-      <div className="lg:col-span-2">
-        <div className="mb-4">
-          {console.log("Obfuscated URL:", obfuscatedURL)}
-          <Helper obfuscatedURL={obfuscatedURL} title={folder} />
-          <hr className="my-4" />
-=======
     <div className="container-fluid course-player">
       <br/>
       <br/>
@@ -629,51 +541,43 @@ function CoursePlayer(props) {
             </div>
             <div className="content mt-3">{renderContent()}</div>
           </div>
->>>>>>> origin/main
         </div>
-
-        {/* Tabs */}
-        <div className="tabs mb-4">
-          <ul className="flex border-b">
-            <li className="mr-4">
-              <button
-                className={`px-4 py-2 ${selectedTab === "Description"
-                  ? "border-b-2 border-blue-500 text-blue-500"
-                  : "text-gray-700 hover:text-blue-500"
-                  }`}
-                onClick={() => handleTabClick("Description")}
-              >
-                Description
+        <div className={`col-md-4 col-lg-3 fixed-right ${styles.verticleLine}`}>
+          <div className="d-flex justify-content-between">
+            <h2>Course Contents</h2>
+            {/* <div
+              class="trigger"
+              className={`{styles.displayProgress} flex-item`}
+            >
+              <button className="btn btn-outline-dark" onClick={handleTrigger}>
+                Progress
               </button>
-            </li>
-            <li className="mr-4">
-              <button
-                className={`px-4 py-2 ${selectedTab === "Resources"
-                  ? "border-b-2 border-blue-500 text-blue-500"
-                  : "text-gray-700 hover:text-blue-500"
-                  }`}
-                onClick={() => handleTabClick("Resources")}
-              >
-                Resources
-              </button>
-            </li>
-          </ul>
-        </div>
+            </div> */}
+            {/* <div
+              id="content"
+              style={FloatingDiv}
+              className={`{styles.FloatingDiv} flex-item`}
+            >
+              <h4>Your Progress:</h4>
+              <p>
+                {Math.round((checkedCount / totalLectures) * 100)}% completed
+              </p>
+            </div> */}
+          </div>
+          <hr />
+          {/* how to get this div afixed height for a dynamic website */}
+          {/* I have to scroll the div with the content */}
 
-        <div className={`${styles.content}`}>{renderContent()}</div>
-      </div>
-
-      {/* Right Section - Course Contents */}
-      <div className="lg:col-span-1 lg:sticky lg:top-16">
-        <h2 className="text-xl font-semibold mb-4">Course Contents</h2>
-        <hr className="my-4" />
-        <div
-          className="course-content h-[calc(100vh-8rem)] overflow-y-auto"
-        >
-          <ul className="list-none">{renderModuleProgress()}</ul>
+          <div
+            className="course-content"
+            style={{ height: "1100px", overflowY: "scroll" }}
+          >
+            <ul className="list-group">{renderModuleProgress()}</ul>
+          </div>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 export default CoursePlayer;

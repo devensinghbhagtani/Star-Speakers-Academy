@@ -37,29 +37,6 @@ export default function DisplayProfile(props) {
 
     return (
         <>
-<<<<<<< HEAD
-    <Navigation />
-    <div className="py-8">
-        <div className="container mx-auto">
-            {/* <h1 className="text-3xl font-bold text-center">User Profile</h1> */}
-            <hr className="my-6" />
-            <div className="flex flex-wrap">
-                <div className="w-full md:w-7/12">
-                    <div className="flex flex-wrap">
-                        <div className="w-full md:w-1/2 p-2">
-                            <div className="bg-white shadow-md rounded-lg p-4">
-                                <h4 className="text-xl font-semibold">Edit Profile</h4>
-                                <p className="mt-2 text-gray-600">Update your user profile here..</p>
-                                <a href="#" className={`mt-4 inline-block bg-custom-green text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#0d865f] transition-all duration-300 ${styles.updateBtn} ${styles.changeBtn}`} onClick={gotoEditProfile}>Edit ✏️</a>
-                            </div>
-                        </div>
-                        <div className="w-full md:w-1/2 p-2">
-                            <div className="bg-white shadow-md rounded-lg p-4">
-                                <h4 className="text-xl font-semibold">Membership</h4>
-                                <p className="mt-2 text-gray-600">Buy our Membership here..</p>
-                                <a href="#" className={`mt-4 inline-block bg-custom-green text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#0d865f] transition-all duration-300 ${styles.updateBtn} ${styles.changeBtn}`} onClick={gotoMembership}>View 👀</a>
-                            </div>
-=======
             <Navigation />
             <br /><br /><br />
             <br />
@@ -112,7 +89,6 @@ export default function DisplayProfile(props) {
                                     </div>
                                 </div>
                             </div> */}
->>>>>>> origin/main
                         </div>
                     </div>
                     <div className="flex flex-wrap mt-4">
@@ -144,10 +120,7 @@ export default function DisplayProfile(props) {
                     {changePage === "View Credit / Debit Card" && <ViewCards />}
                 </div>
             </div>
-        </div>
-    </div>
-    {/* <Footer /> */}
-</>
+          </>  
 
     );
 }

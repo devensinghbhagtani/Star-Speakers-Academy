@@ -81,17 +81,6 @@ export default function EditProfile(props) {
     }
 
     return (
-<<<<<<< HEAD
-        <div className="container mx-auto p-6">
-            <p className="text-lg font-semibold mb-4">Profiles Edit</p>
-            <hr className="my-4" />
-            <h1 className="text-2xl font-bold text-center mb-6">Edit Profile</h1>
-            <form className="space-y-6" onSubmit={updateDetails}>
-                <div className="flex flex-wrap items-center mb-4">
-                    <label htmlFor="name" className="w-full md:w-1/3 text-sm font-medium text-gray-700">Name</label>
-                    <div className="w-full md:w-2/3">
-                        <input type="text" className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" name='name' id="name" required placeholder={props.user && props.user.Name && props.user.Name.S ? props.user.Name.S : 'Enter your name'} />
-=======
         <div className='container'>
             <p>{"Profiles >  Edit"}</p>
             <hr />
@@ -101,7 +90,6 @@ export default function EditProfile(props) {
                     <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
                     <div className="col-sm-10">
                     <input type="text" className="form-control" name='name' id="name" placeholder={props.user && props.user.Name && props.user.Name.S ? props.user.Name.S : 'Enter your name'} />
->>>>>>> origin/main
                     </div>
                 </div>
                 {/* <div className="flex flex-wrap items-center mb-4">

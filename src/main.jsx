@@ -19,6 +19,7 @@ import ViewCourses from "./components/AdminPanel/ViewCourses.jsx";
 import MasterClassEdit from "./components/AdminPanel/MasterClassEdit.jsx";
 import EditHome from "./components/AdminPanel/EditHome.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
+import AdminDisplay from "./components/AdminPanel/AdminDisplay.jsx";
 import Login from "./components/LoginSignup/Login.jsx";
 import Signup from "./components/LoginSignup/Signup.jsx";
 import CourseHome from "./components/Course/CourseHome.jsx";
@@ -28,15 +29,10 @@ import axios from "axios";
 
 import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
-<<<<<<< HEAD
-import AboutCourse from "./components/CourseContent/AboutCourse.jsx";
-import { AdminDisplay } from "./components/AdminPanel/AdminDisplay.jsx";
-=======
 import { LogOut } from "lucide-react";
 import Logout from "./components/LoginSignup/Logout.jsx";
 import Forgotpassword from "./components/LoginSignup/Forgotpassword.jsx";
 import Changepassword from "./components/LoginSignup/Changepassword.jsx";
->>>>>>> origin/main
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
@@ -54,13 +50,6 @@ const MainApp = () => {
     return <DisplayCourses user={user} />;
   };
 
-<<<<<<< HEAD
-  // const AboutCourseWithUser = () => {
-  //   const { user } = useUser();
-  //   return <CourseDetails user={user} />;
-  // };
-
-=======
   const CourseHomePage = () => {
     const { user } = useUser();
     return <CourseDetails user={user} />;
@@ -72,7 +61,6 @@ const MainApp = () => {
   }
 
   
->>>>>>> origin/main
 
   // Create routes
   const router = createBrowserRouter(
@@ -84,15 +72,9 @@ const MainApp = () => {
           <Route path="courses" element={<EnrollCourse />} />
           <Route path="contact" element={<Contact />} />
           <Route path="profile" element={<ProfileWithUser />} />
-<<<<<<< HEAD
-          <Route path="course/:folder" element={<CoursesWithUser />} />
-          {/* <Route path="AboutCourse/:folder" element={<AboutCourseWithUser />} /> */}
-          <Route path="course1" element={<CourseDetails />} />
-=======
           <Route path="course/videos/:folder" element={<CoursesWithUser />} />
           <Route path="course" element={<CourseHome />} />
           <Route path="course/details/:folder" element={<CourseHomePage/>} />
->>>>>>> origin/main
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />

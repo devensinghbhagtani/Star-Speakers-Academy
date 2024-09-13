@@ -20,33 +20,11 @@ function CourseDetails(props) {
   const [obfuscatedURL, setObfuscatedURL] = useState(null);
 
   const { folder } = useParams();
-<<<<<<< HEAD
-
-  const [obfuscatedURL, setObfuscatedURL] = useState(null);
-  
-=======
   console.log(props.user);
-  
+
   const getCourseInfo = useCallback(async () => {
     console.log("Folder:", folder);
     try {
-<<<<<<< HEAD
-      const cacheddata = sessionStorage.getItem(`courseData-${folder}`);
-      //console.log("Cached Data:", cacheddata);
-
-      if (cacheddata) {
-        setCourseData(JSON.parse(cacheddata));
-        return;
-      }
-
-      const url = `http://localhost:8081/courses/getcourse/${folder}`;
-      const response = await axios.get(url);
-      console.log(response.data);
-      setCourseData(response.data);
-      console.log("Course Data:", courseData);
-      
-      sessionStorage.setItem(`courseData-${folder}`, JSON.stringify(response.data));
-=======
       const response = await axios.get(
         `http://localhost:8081/videos/getvideodetails?folder=${folder}`
       );
@@ -58,13 +36,10 @@ function CourseDetails(props) {
       setCourseData(response.data.tableout);
       console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
->>>>>>> origin/main
     } catch (error) {
-      console.error("Error fetching course data:", error);
+      console.error("Error fetching course information:", error);
     }
-
   }, [folder]);
->>>>>>> origin/main
 
   const fetchObfuscatedURL = async (video_name) => {
     try {
@@ -84,19 +59,64 @@ function CourseDetails(props) {
 
   return (
     <>
-      <CourseHero 
-      data={courseData} 
-      obfuscatedURL={obfuscatedURL}
-      user={props.user}
+      <CourseHero
+        data={courseData}
+        obfuscatedURL={obfuscatedURL}
+        user={props.user}
       />
       <TrainerLanguage data={courseData} />
-      <AboutCourse 
-      data={courseData}
-      user={props.user}
-      />
-      <DiscountLine discount={courseData?.discount}/>
-      <CourseCurriculum data={courseData}/>
-      <Feedback />
+      <AboutCourse data={courseData} user={props.user} />
+      <DiscountLine discount={courseData?.discount} />
+      <CourseCurriculum data={courseData} />
+      <div className="flex w-full py-10 h-auto  relative bg-[#EAEAEA] justify-center items-center overflow-hidden px-12 lg:px-6">
+        <div className="w-full max-w-[1080px] flex flex-col justify-center items-center">
+          <h1 className="text-4xl lg:text-4xl font-[500] text-center lg:text-left">
+            Student{" "}
+            <mark className="bg-transparent text-[#20B486]">Feedback</mark>
+          </h1>
+          <h2 className="mt-1 w-[320px] text-sm md:text-[medium]  md:leading-6 md:w-[600px]  text-center">
+            Hear from our students about their experiences and how our courses
+            have transformed their lives.
+          </h2>
+          <SwiperContainer className="max-w-[340px] md:max-w-full">
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={10}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 10,
+                },
+              }}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation]}
+              className="swiper-container mt-5 pb-10"
+            >
+              {console.log(courseData?.feedback?.L[0].M)}
+              {courseData?.feedback?.L?.map((info, key) => 
+              (
+                <SwiperSlide key={key}>
+                  {typeof info === "string" ? (
+                    <img src={info} alt="Feedback Image" />
+                  ) : (
+                    <FeedbackCard
+                      name={ info.M?.name?.S || ""}
+                      designation={info.M?.designation?.S || ""}
+                      date={info.M?.date?.S || ""}
+                      feedback={info.M?.feedback?.S || ""}
+                      photo={info.image?.S || ""}
+                    />
+                  )}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </SwiperContainer>
+        </div>
+      </div>
     </>
   );
 }

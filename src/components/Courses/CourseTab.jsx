@@ -24,14 +24,13 @@ function CourseTab(props) {
         <hr className="h-px mt-2 border-0 bg-gray-300" />
         <div className="price flex items-center justify-between content-center">
           <h2 className="mt-3 text-2xl font-[500]">{props.price} Rs</h2>
-<<<<<<< HEAD
           {/* <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/${props.coursename}`)}}> */}
-          <button className="mt-4 text-white flex px-3  py-1.5 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/AboutCourse/${props.coursename}`)}}>
-=======
+          
           <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/details/${props.coursename}`)}}>
             {props.boughtcourses ? "Continue" : "Enroll"}
+            </button>
             <ArrowUpRight color="white" />
-          </button>
+          
         </div>
       </Card>
     </div>

@@ -48,35 +48,6 @@ export default function PurchaseHistory() {
     if (error) return <p>Error loading data: {error.message}</p>;
 
     return (
-<<<<<<< HEAD
-        <div className="container mx-auto px-4 py-6">
-            <p className="text-gray-600">Profiles &gt; Purchase History</p>
-            <hr className="my-4 border-gray-300" />
-            <h1 className="text-3xl font-bold text-center">Purchase History</h1>
-
-            <div className={`${styles.displayHistory} mt-6`}>
-                {coursesData.length === 0 ? (
-                    <p className="text-center text-gray-500">No purchase history available.</p>
-                ) : (
-                    coursesData.map((course, index) => (
-                        <div className="bg-white shadow-md rounded-lg mb-6" key={index}>
-                            <div className="flex flex-col md:flex-row">
-                                <div className="md:w-1/3">
-                                    <img
-                                        src={course.imageUrl}
-                                        className={`w-full h-auto rounded-t-lg md:rounded-l-lg ${styles.imgCard}`}
-                                        alt='Example'
-                                    />
-                                </div>
-                                <div className="md:w-2/3 p-4">
-                                    <div className="flex flex-col justify-between h-full">
-                                        <div>
-                                            <h4 className="text-xl font-semibold">{course.courseName}</h4>
-                                            <p className="mt-2 text-gray-700">
-                                                <i><b>{course.price?.N ? `${course.price.N} RS` : "Price not available"}</b></i>
-                                            </p>
-                                            {/* Add more details here if needed */}
-=======
         <div>
             <div className="container">
                 <p>{"Profiles > Purchase History"}</p>
@@ -111,17 +82,16 @@ export default function PurchaseHistory() {
                                                     </p>
                                                     {/* Add more details here if needed */}
                                                 </div>
+                                                
                                             </div>
->>>>>>> origin/main
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))
-                )}
+                            ))
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
-
     );
 }
