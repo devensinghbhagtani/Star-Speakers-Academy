@@ -22,16 +22,13 @@ const useStyles = makeStyles((theme) => ({
   controlsWrapper: {
     visibility: "hidden",
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     height: "100%",
     background: "rgba(0,0,0,0.6)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     zIndex: 1,
+    
     
     // Adjust visibility for different screen sizes
     "&:hover": {
@@ -43,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   controlIcons: {
     color: "#777",
-    fontSize: 50,
+    fontSize: 30,
     transform: "scale(1)",
     "&:hover": {
       color: "#fff",
@@ -55,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   bottomIcons: {
-    color: "#999",
+    color: "#fff",
     transform: "scale(0.8)",
     "&:hover": {
       color: "#fff",
@@ -171,20 +168,12 @@ const Controls = forwardRef(
         >
           <Grid
             container
-            direction="row"
-            alignItems="center"
             justifyContent="space-between"
-            style={{ padding: 16 }}
+            style={{ padding: 30 }}
           >
             <Grid item>
               <Typography variant="h5" style={{ color: "#fff" }}>
-<<<<<<< HEAD
-                {title}
-                {console.log("assdasdsadn is " + title)}
-                
-=======
                 {/* Video Title */}
->>>>>>> origin/main
               </Typography>
             </Grid>
             {/* <Grid item>

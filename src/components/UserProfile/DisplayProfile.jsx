@@ -37,7 +37,6 @@ export default function DisplayProfile(props) {
 
     return (
         <>
-<<<<<<< HEAD
     <Navigation />
     <div className="py-8">
         <div className="container mx-auto">
@@ -59,60 +58,6 @@ export default function DisplayProfile(props) {
                                 <p className="mt-2 text-gray-600">Buy our Membership here..</p>
                                 <a href="#" className={`mt-4 inline-block bg-custom-green text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#0d865f] transition-all duration-300 ${styles.updateBtn} ${styles.changeBtn}`} onClick={gotoMembership}>View 👀</a>
                             </div>
-=======
-            <Navigation />
-            <br /><br /><br />
-            <br />
-            <div className="container">
-                <h1 className="text-center">User Profile</h1>
-                <hr />
-                <br />
-                <div className="row">
-                    <div className="col-md-7">
-                        <div className="row">
-                            <div className="col-md-6 my-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4 className="card-title">Edit Profile</h4>
-                                        <p className="card-text">Update your user profile here..</p>
-                                        {/* <a href="#" className={`btn btn-primary ${styles.changeBtn}`}>View 👀</a> */}
-                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoEditProfile}>Edit ✏️</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="col-md-6 my-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4 className="card-title">Membership</h4>
-                                        <p className="card-text">Buy our Membership here..</p>
-                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoMembership}>View 👀</a>
-                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoMembership}>Edit ✏️</a>
-                                    </div>
-                                </div>
-                            </div> */}
-                        </div>
-                        <div className="row">
-                            <div className="col-md-6 my-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4 className="card-title">Purchase History</h4>
-                                        <p className="card-text">View all your total spending's here..</p>
-                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoPurchaseHistory}>View 👀</a>
-                                        {/* <a href="#" className={`btn btn-primary ${styles.changeBtn}`}>Edit ✏️</a> */}
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="col-md-6 my-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h4 className="card-title">Credit / Debit Card</h4>
-                                        <p className="card-text">Change your bank details here..</p>
-                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={viewCards}>View 👀</a>
-                                        <a href="#" className={`btn btn-primary ${styles.changeBtn}`} onClick={gotoCreditDebitCard}>Add ✏️</a>
-                                    </div>
-                                </div>
-                            </div> */}
->>>>>>> origin/main
                         </div>
                     </div>
                     <div className="flex flex-wrap mt-4">

@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import Helper from "../VideoPlayer/main";
+import Helper from "../VideoPlayer/detailVideo";
 import ReactPlayer from "react-player";
 import { displayRazorpay } from "../../payment";
 
@@ -127,20 +127,29 @@ function CourseHero(props) {
   //   paymentObject.open();
   // }
 
+  const fixedDiv = {
+    position: "relative",
+    zIndex: "1",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "40%",
+  };
+
   return (
     <div
-      className={`px-6 py-6 w-full min-h-[600px] md:min-h-[500px] lg:h-[500px] flex items-center justify-center relative`}
+      className={`px-6 w-full min-h-[500px] md:min-h-[500px] lg:h-[500px] flex items-center justify-center relative pb-10`}
     >
       <div className="absolute w-full h-full">
         <img
           className="w-full h-full object-cover lg:object-center"
-          src=".././assets/Images/coursebanner.jpg"
+          src="../.././assets/Images/coursebanner.jpg"
           alt="Hero"
         />
       </div>
-      <div className="pt-20 h-full px-5 md:px-10 w-full lg:w-[1080px]  z-[1] flex  justify-center md:items-center ">
-        <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10 ">
-          <div className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0">
+      <div className="w-full lg:w-[1080px]  z-[1] justify-center md:items-center" style={{marginTop: "100px"}}>
+        <div className="w-full max-w-[1080px] flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10 ">
+          <div className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0"  style={fixedDiv}>
             {/* <iframe
               className=" rounded-[20px] w-full h-full border-none"
               src={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
@@ -152,12 +161,10 @@ function CourseHero(props) {
             ></iframe> */}
             <Helper 
             obfuscatedURL={props.obfuscatedURL} 
-            width={"100%"}
-            height={"340px"}
             />
           </div>
           <div className=" w-[350px]  md:w-[80%] text-center lg:text-left lg:w-full flex flex-col items-center justify-center lg:items-start gap-4">
-            <h1 className="  mt-[-7px] text-black text-4xl  md:text-5xl font-[500]  md:leading-tight lg:leading-none tracking-tighter">
+            <h1 className="  mt-[-7px] text-black text-4xl  md:text-5xl font-[500] pl-0 md:leading-tight lg:leading-none tracking-tighter text-white">
               {props.data ? props.data.coursename.S : "Course Name"}
             </h1>
             <div>

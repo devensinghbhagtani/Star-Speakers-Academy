@@ -25,8 +25,8 @@ function PopularCourses() {
 
 
   return (
-    <div className="w-full flex px-10   justify-center py-10 ">
-      <div className=" flex flex-col lg:flex-row items-center  w-[1080px] min-h-[400px] justify-center lg:justify-between gap-4">
+    <div className="w-full flex justify-center py-10 ">
+      <div className=" flex flex-col lg:flex-row items-center  w-[1080px] min-h-[300px] justify-center lg:justify-between">
         <div className="title flex flex-col items-center lg:items-start text-center lg:text-left ">
           <h1 className="text-lg font-[300]">EXPLORE PROGRAMS:</h1>
           <h1 className="text-4xl leading-9 font-[500] w-[250px] md:w-full lg:max-w-[200px] ">
@@ -40,7 +40,7 @@ function PopularCourses() {
             <ArrowRight size={15} />
           </h2>
         </div>
-        <div className="justify-center flex flex-wrap lg:flex-nowrap gap-4">
+        <div className="flex flex-wrap lg:flex-nowrap gap-5">
           {popularCourses && popularCourses.map((course,index) => (
             <ProgramCard 
             key={index}

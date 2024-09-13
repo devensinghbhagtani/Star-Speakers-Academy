@@ -196,7 +196,7 @@ function Helper(props) {
             
             url={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
             pip={pip}
-            className={`react-player ${styles.reactPlayer}`}
+            className={`react-player ${styles.reactPlayerDetail}`}
             playing={!playing}
             controls={true}
             light={light}

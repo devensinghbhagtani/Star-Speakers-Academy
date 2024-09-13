@@ -36,7 +36,7 @@ function AboutCourse(props) {
 
 
   return (
-    <div className="p-10 md:p-10 text-zinc-800 w-full  flex justify-center">
+    <div className="pb-10 px-5 text-zinc-800 w-full  flex justify-center">
       
       <div className=" flex flex-col items-center h-full w-[1080px] mt-4 ">
         <br />
@@ -44,7 +44,7 @@ function AboutCourse(props) {
           About the{" "}
           <mark className="bg-transparent text-[#20b486]">Course</mark>
         </h1>
-        <div className="flex flex-col gap-7  md:text-lg">
+        <div className="flex flex-col gap-7  md:text-lg" style={{textAlign: "justify"}}>
           {props.data?.course_description?.S}
           {/* <p>
             Building something you love. <br />

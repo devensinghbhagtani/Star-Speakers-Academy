@@ -8,7 +8,7 @@ function TrainerLanguage(props) {
     <div className="w-full py-5   bg-[#EAEAEA]">
       <div>
         <div className="flex w-full justify-center">
-          <div className="max-h-[200px] w-[500px] md:w-[600px] lg:w-full max-w-[1080px] flex  flex-wrap  md:gap-y-3 justify-center gap-y-2 px-4 lg:px-0">
+          <div className="flex  flex-wrap  md:gap-y-3 justify-center gap-y-2 px-4 lg:px-0">
             <TrainerLanguageCard
               title="Host:"
               details={props.data?.course_speaker?.S}

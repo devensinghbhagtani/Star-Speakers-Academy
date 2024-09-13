@@ -10,7 +10,7 @@ export default function CourseHome() {
     return (
         <>
         
-        <NavBar />
+        {/* <NavBar /> */}
         <br />
         <br /><hr />
         <br />

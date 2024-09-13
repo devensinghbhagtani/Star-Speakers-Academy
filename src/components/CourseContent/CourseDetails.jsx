@@ -15,59 +15,28 @@ function CourseDetails(props) {
   const [obfuscatedURL, setObfuscatedURL] = useState(null);
 
   const { folder } = useParams();
-<<<<<<< HEAD
-
-  const [obfuscatedURL, setObfuscatedURL] = useState(null);
-  
-=======
   console.log(props.user);
->>>>>>> origin/main
   
   const getCourseInfo = useCallback(async () => {
     console.log("Folder:", folder);
     try {
-<<<<<<< HEAD
-      const cacheddata = sessionStorage.getItem(`courseData-${folder}`);
-      //console.log("Cached Data:", cacheddata);
-
-      if (cacheddata) {
-        setCourseData(JSON.parse(cacheddata));
-        return;
-      }
-
-      const url = `http://localhost:8081/courses/getcourse/${folder}`;
-      const response = await axios.get(url);
-      console.log(response.data);
-      setCourseData(response.data);
-      console.log("Course Data:", courseData);
-      
-      sessionStorage.setItem(`courseData-${folder}`, JSON.stringify(response.data));
-=======
       const response = await axios.get(
         `http://localhost:8081/videos/getvideodetails?folder=${folder}`
       );
       console.log("Response:", response.data.tableout);
       sessionStorage.setItem(
-        `courseData-${folder}`,
+        courseData-`${folder}`,
         JSON.stringify(response.data)
       )
       setCourseData(response.data.tableout);
       console.log(courseData);
       console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
->>>>>>> origin/main
     } catch (error) {
-      console.error("Error fetching course data:", error);
+      console.error("Error fetching course information:", error);
     }
-<<<<<<< HEAD
-  }
-  , [folder]);
-
-  
-=======
 
   }, [folder]);
->>>>>>> origin/main
 
   const fetchObfuscatedURL = async (video_name) => {
     try {
@@ -91,12 +60,6 @@ function CourseDetails(props) {
 
   return (
     <>
-<<<<<<< HEAD
-      <CourseHero name={courseData}/>
-      <TrainerLanguage />
-      <AboutCourse />
-      <DiscountLine/>
-=======
       <CourseHero 
       data={courseData} 
       obfuscatedURL={obfuscatedURL}
@@ -108,7 +71,6 @@ function CourseDetails(props) {
       user={props.user}
       />
       <DiscountLine discount={courseData?.discount}/>
->>>>>>> origin/main
       <CourseCurriculum data={courseData}/>
       <Feedback />
     </>

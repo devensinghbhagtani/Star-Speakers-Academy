@@ -36,7 +36,7 @@ function DisplayCourses({ searchTerm }) {
 
   return (
     <div className="px-10 w-full h-full flex justify-center">
-      <div className="w-[1080px] min-h-[500px]">
+      <div className="">
         <div className="flex mb-20 gap-x-7 gap-y-4 flex-wrap min-h-[350px] items-center justify-center">
           {
             filteredCourses.map((item, key) => (
