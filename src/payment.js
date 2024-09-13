@@ -64,6 +64,7 @@ async function displayRazorpay(email, folder, amount) {
             );
 
             alert(result.data.message);
+            window.location.reload();
             console.log(result);
             return result.status;
         },
@@ -78,8 +79,14 @@ async function displayRazorpay(email, folder, amount) {
 
 function takeemail() {
     const email = prompt("Enter your email:");
-    console.log(email);
-    return email;
+    const reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (email == null || email == "" || !reg.test(email)) {
+        alert("Please enter a valid email");
+        return null;
+    } else {
+        console.log(email);
+        return email;
+    }
 }
 
 

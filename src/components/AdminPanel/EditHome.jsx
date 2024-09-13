@@ -193,7 +193,6 @@ export default function EditHome() {
 
         });
         console.log(response.data);
-   
     }
 
     return (

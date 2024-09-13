@@ -9,8 +9,8 @@ import Helper from "../VideoPlayer/main";
 // import Helper from "../Play Course/main";
 function CoursePlayer(props) {
 
-    const [courseData, setCourseData] = useState(null);
-    const { folder } = useParams();
+  const [courseData, setCourseData] = useState(null);
+  const { folder } = useParams();
   const [selectedTab, setSelectedTab] = useState("Description");
   const [checkedLectures, setCheckedLectures] = useState([]);
   const [obfuscatedURL, setObfuscatedURL] = useState(null);

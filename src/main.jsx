@@ -54,6 +54,11 @@ const MainApp = () => {
     return <CourseDetails user={user} />;
   };
 
+  const EnrollCourse = ()  => {
+    const { user } = useUser();
+    return <Courses user={user} />;
+  }
+
   
 
   // Create routes
@@ -63,7 +68,7 @@ const MainApp = () => {
         <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
           <Route index element={<Main />} />
           <Route path="about" element={<About />} />
-          <Route path="courses" element={<Courses />} />
+          <Route path="courses" element={<EnrollCourse />} />
           <Route path="contact" element={<Contact />} />
           <Route path="profile" element={<ProfileWithUser />} />
           <Route path="course/videos/:folder" element={<CoursesWithUser />} />

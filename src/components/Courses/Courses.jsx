@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchSection from "./SearchSection";
 import DisplayCourses from "./DisplayCourses";
 
-function Courses() {
+function Courses(props) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (term) => {
@@ -12,7 +12,7 @@ function Courses() {
   return (
     <>
       <SearchSection onSearch={handleSearch} />
-      <DisplayCourses searchTerm={searchTerm} />
+      <DisplayCourses searchTerm={searchTerm} user={props.user} />
     </>
   );
 }
