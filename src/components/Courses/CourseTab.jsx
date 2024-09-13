@@ -10,7 +10,7 @@ function CourseTab(props) {
     <div>
       <Card>
         <div className="pfp">
-          <img src={props.course_image} alt="" />
+          <img src={props.course_image} alt=""/>
         </div>
         <h3 className="mt-3 mb-3 text-md leading-5 font-[500]">
           {props.coursename}
@@ -24,7 +24,8 @@ function CourseTab(props) {
         <hr className="h-px mt-2 border-0 bg-gray-300" />
         <div className="price flex items-center justify-between content-center">
           <h2 className="mt-3 text-2xl font-[500]">{props.price} Rs</h2>
-          <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/${props.coursename}`)}}>
+          {/* <button className="mt-2 text-white flex gap-2 px-3  py-1 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/course/${props.coursename}`)}}> */}
+          <button className="mt-4 text-white flex px-3  py-1.5 bg-[#20B486] rounded-md shadow-md shadow-gray-00 hover:bg-[#0d865f] transition-all duration-300" onClick={()=>{navigate(`/AboutCourse/${props.coursename}`)}}>
             Enroll
             <ArrowUpRight color="white" />
           </button>
@@ -39,8 +40,8 @@ export default CourseTab;
 const Card = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  width: 340px;
-  height: 320px;
+  width: 300px;
+  height: 360px;
   border-radius: 15px;
   transition: all ease-in 0.1s;
 
@@ -52,9 +53,8 @@ const Card = styled.div`
     overflow: hidden;
   }
   .pfp img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    width: 100%;
   }
   &:hover {
     transform: scale(105%);

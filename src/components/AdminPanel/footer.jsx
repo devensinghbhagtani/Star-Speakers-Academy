@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
-        <footer className="footer">
-            <div className="container text-center my-4">
-                <span className="text-muted">© 2021 Star Speakers</span>
+        <footer className="bg-gray-800 text-white py-4">
+            <div className="container mx-auto text-center">
+                <span className="text-gray-400">© 2021 Star Speakers</span>
             </div>
         </footer>
     );

@@ -13,30 +13,35 @@ function CourseDetails() {
 
   const [courseData, setCourseData] = useState(null);
   const { folder } = useParams();
+
+  const [obfuscatedURL, setObfuscatedURL] = useState(null);
+  
   
   const getCourseInfo = useCallback(async () => {
-    alert("Folder:" + folder)
-    console.log("Folder:", folder); 
+    console.log("Folder:", folder);
     try {
       const cacheddata = sessionStorage.getItem(`courseData-${folder}`);
+      //console.log("Cached Data:", cacheddata);
+
       if (cacheddata) {
         setCourseData(JSON.parse(cacheddata));
-      } 
-  
-        const response = await axios.get(
-          `http://localhost:8081/videos/getvideos?folder=${folder}`
-        );
-        console.log("Response:", response.data.folder);
-        setCourseData(response.data);
-        sessionStorage.setItem(
-          `courseData-${folder}`,
-          JSON.stringify(response.data)
-        );
-     // }
+        return;
+      }
+
+      const url = `http://localhost:8081/courses/getcourse/${folder}`;
+      const response = await axios.get(url);
+      console.log(response.data);
+      setCourseData(response.data);
+      console.log("Course Data:", courseData);
+      
+      sessionStorage.setItem(`courseData-${folder}`, JSON.stringify(response.data));
     } catch (error) {
-      console.error("Error fetching course information:", error);
+      console.error("Error fetching course data:", error);
     }
-  }, [folder]);
+  }
+  , [folder]);
+
+  
 
 
   useEffect(() => {
@@ -48,7 +53,7 @@ function CourseDetails() {
       <CourseHero name={courseData}/>
       <TrainerLanguage />
       <AboutCourse />
-      <DiscountLine />
+      <DiscountLine/>
       <CourseCurriculum data={courseData}/>
       <Feedback />
     </>

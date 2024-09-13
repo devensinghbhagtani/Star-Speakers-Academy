@@ -4,7 +4,7 @@ import { BadgeCheck } from "lucide-react";
 
 function ProfCard() {
   return (
-    <ProCard className="h-[300px] w-[280px] flex flex-col items-center">
+    <ProCard className="h-[360px] w-[280px] flex flex-col items-center">
       <div className="pfp">
         <img src="./assets/Images/ppfp1.png" alt="" />
       </div>

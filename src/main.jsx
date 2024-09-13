@@ -28,6 +28,8 @@ import axios from "axios";
 
 import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
+import AboutCourse from "./components/CourseContent/AboutCourse.jsx";
+import { AdminDisplay } from "./components/AdminPanel/AdminDisplay.jsx";
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
@@ -62,6 +64,12 @@ const MainApp = () => {
     return <DisplayCourses user={user} />;
   };
 
+  // const AboutCourseWithUser = () => {
+  //   const { user } = useUser();
+  //   return <CourseDetails user={user} />;
+  // };
+
+
   // Create routes
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -73,14 +81,16 @@ const MainApp = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="profile" element={<ProfileWithUser />} />
           <Route path="course/:folder" element={<CoursesWithUser />} />
-          <Route path="course" element={<CourseHome />} />
-          <Route path="course/details" element={<CourseDetails />} />
+          {/* <Route path="AboutCourse/:folder" element={<AboutCourseWithUser />} /> */}
+          <Route path="course1" element={<CourseDetails />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>
         <Route path="master-class" element={<MasterClass />} />
         <Route path="admin" element={<AdminHome />}>
+          <Route index element={<AdminDisplay />} />
           <Route path="addCourse" element={<AddCourse />} />
+          <Route path="Display" element={<AdminDisplay />} />
           <Route path="viewCourses" element={<ViewCourses />} />
           <Route path="MasterClassEdit" element={<MasterClassEdit />} />
           <Route path="EditHome" element={<EditHome />} />

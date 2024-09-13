@@ -41,8 +41,6 @@ export default function AddCourse() {
     // };
 
 
-
-
     const handleAddLecture = (moduleIndex) => {
         setCourseData((prevData) => {
             const modules = [...prevData.modules];
@@ -140,13 +138,11 @@ export default function AddCourse() {
         } catch (error) {
             console.error('Error sending course data:', error);
         }
-    };
-    
-    
+    };    
 
     return (
-        <div className="container text-center">
-            <h1>Add Course</h1>
+        <div className="container mx-auto px-4 text-center">
+            <h1 className="text-2xl font-bold mb-6">Add Course</h1>
             <form onSubmit={handleSubmit}>
                 <CourseDetails courseData={courseData} setCourseData={setCourseData} />
                 {courseData.modules.map((module, moduleIndex) => (
@@ -161,16 +157,21 @@ export default function AddCourse() {
                         handlefilesupload={handlefilesupload}
                     />
                 ))}
-                <hr className="m-4" />
-                <button className="btn btn-secondary m-auto col-auto" type="button" onClick={handleAddModule}>
+                <hr className="my-6 border-gray-300" />
+                <button 
+                    className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 transition-colors mb-4"
+                    type="button" 
+                    onClick={handleAddModule}
+                >
                     + Add Module
                 </button>
-                <hr />
-                <button className="btn btn-primary">
+                <hr className="my-6 border-gray-300" />
+                <button 
+                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
+                >
                     Submit
                 </button>
             </form>
-            <hr />
+            <hr className="my-6 border-gray-300" />
         </div>
-    );
-}
+    );}

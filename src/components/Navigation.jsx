@@ -101,13 +101,14 @@ function Navigation() {
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
                   <Link to="/profile">Edit Profile</Link>
-                  <Link to="#">Purchase History</Link>
-                  <Link to="#">{user && user.email.S ? "Log out": "Login"} </Link>
+                  <Link to="">Purchase History</Link>
+                  {/* <Link to="/login">{user && user.email.S ? "Log out": "Login"} </Link> */}
+                  <Link to="/login">Login</Link>
                 </>
               ) : (
                 <>
                   <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
-                  <Link to="#">Login</Link>
+                  <Link to="">Logout</Link>
                   <Link to="#">Signup</Link>
                 </>
               )}

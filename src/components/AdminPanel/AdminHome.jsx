@@ -12,16 +12,14 @@ export default function AdminHome() {
 
     return (
         <>
-        
-        <NavBar />
-        <br />
-        <br />
-        <br /><hr />
-        <br />
-        <Outlet />
-        <br />
-        <hr />
-        <Footer />
+
+            <NavBar />
+            {/* <h1 className='text-center text-3xl font-bold text-gray-800'
+            >Admin Home</h1> */}
+            <Outlet />
+            <br />
+            <hr />
+            <Footer />
         </>
 
     )
