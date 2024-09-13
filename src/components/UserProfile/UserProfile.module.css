@@ -1,6 +1,5 @@
 .changeBtn {
     background-color: white;
-    border: 1px solid #212832;
     color: black;
     padding: 5px 10px;
     margin: 0 5px;
@@ -11,11 +10,6 @@
     transition: all 0.3s;
 }
 
-.changeBtn:hover {
-    background-color: #212832;
-    color: white;
-    border: 1px solid #212832;
-}
 
 .verticleLine {
     border-left: 2px solid #ddd;
@@ -31,7 +25,6 @@ h1{
 .updateBtn{
     padding: 10px;
     font-size: medium;
-    font-weight: bold;
 }
 
 .planCard {
@@ -50,7 +43,7 @@ h1{
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    height: 590px;
+    height: fit-content;
     overflow-y: auto;
     overflow-x: hidden;
     border-top: 1px solid #ddd;

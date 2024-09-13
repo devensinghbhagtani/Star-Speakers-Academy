@@ -1,87 +1,114 @@
-import React from 'react'
+import React, { useState } from 'react';
 import styles from './UserProfile.module.css';
-import { useState } from 'react';
 
 export default function ChangeCards() {
 
-    const [userCards, setUserCards] = useState({})
-    const userCard = {
+    const [userCards, setUserCards] = useState({
         cardNumber: "",
         cardName: "",
         expiryDate: "",
         cvv: "",
-    }
+        bankName: ""
+    });
 
     const addUserCard = (e) => {
         e.preventDefault();
-        if (!e.target.cardNumber.value || !e.target.cardName.value || !e.target.expiryDate.value || !e.target.cvv.value) {
-            alert("Please enter all the details")
-            return
+        const { cardNumber, cardName, expiryDate, cvv, bankName } = e.target.elements;
+
+        if (!cardNumber.value || !cardName.value || !expiryDate.value || !cvv.value || !bankName.value) {
+            alert("Please enter all the details");
+            return;
         }
 
-        // if (e.target.cardNumber.value.length !== 16) {
-        //     alert("Please enter a valid card number")
-        //     return
-        // }
-
-        if (e.target.cvv.value.length !== 3) {
-            alert("Please enter a valid cvv")
-            return
+        if (cvv.value.length !== 3) {
+            alert("Please enter a valid CVV");
+            return;
         }
 
-        console.log("Adding card..")
+        // Set the state with the new card details
         setUserCards({
-            cardNumber: e.target.cardNumber.value,
-            cardName: e.target.cardName.value,
-            expiryDate: e.target.expiryDate.value,
-            cvv: e.target.cvv.value,
-        })
+            cardNumber: cardNumber.value,
+            cardName: cardName.value,
+            expiryDate: expiryDate.value,
+            cvv: cvv.value,
+            bankName: bankName.value
+        });
 
-        console.log(userCards)
+        // Show an alert with the card details
+        alert(`
+            Card Number: ${cardNumber.value}
+            Card Name: ${cardName.value}
+            Expiry Date: ${expiryDate.value}
+            CVV: ${cvv.value}
+            Bank Name: ${bankName.value}
+        `);
     }
 
     return (
-        <div>
-            <div className="container">
-                <p>Profiles > Add Cards</p>
-                <hr />
-                <h1 className="text-center">Add Cards / Debit Cards</h1>
-                {/* form to input card details */}
-                <form className="form-control" onSubmit={addUserCard}>
-                    <div className="form-group row my-4">
-                        <label htmlFor="cardNumber" className="col-sm-2 col-form-label">Number:</label>
-                        <div className="col-sm-10">
-                            <input type="text   " className="form-control" id="cardNumber" placeholder="Enter your card number" />
-                        </div>
-                    </div>
-                    <div className="form-group row my-4">
-                        <label htmlFor="cardName" className="col-sm-2 col-form-label">Name:</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" id="cardName" placeholder="Enter your card name" />
-                        </div>
-                    </div>
-                    <div className="form-group row my-4">
-                        <label htmlFor="expiryDate" className="col-sm-2 col-form-label">Expiry:</label>
-                        <div className="col-sm-10">
-                            <input type="year" className="form-control" id="expiryDate" placeholder="yyyy-mm format" />
-                        </div>
-                    </div>
-                    <div className="form-group row my-4">
-                        <label htmlFor="cvv" className="col-sm-2 col-form-label">CVV:</label>
-                        <div className="col-sm-10">
-                            <input type="number" className="form-control" id="cvv" placeholder="Enter your cvv" />
-                        </div>
-                    </div>
-                    <div className="form-group row my-4">
-                        <label htmlFor="bankName" className="col-sm-2 col-form-label">Bank:</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" id="bankName" placeholder="Enter your bank name" />
-                        </div>
-                    </div>
-                    <button type="submit" className={`btn btn-primary ${styles.changeBtn} my-2 ${styles.updateBtn}`}>Submit</button>
-                </form>
+        <div className="container mx-auto px-4 py-6">
+            <p className="text-gray-600">Profiles &gt; Add Cards</p>
+            <hr className="my-4 border-gray-300" />
+            <h1 className="text-3xl font-bold text-center">Add Cards / Debit Cards</h1>
 
-            </div>
+            {/* Form to input card details */}
+            <form className="mt-6 space-y-6" onSubmit={addUserCard}>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <label htmlFor="cardNumber" className="w-full md:w-1/3 text-gray-700 font-medium">Number:</label>
+                    <input
+                        type="text"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        id="cardNumber"
+                        name="cardNumber"
+                        placeholder="Enter your card number"
+                    />
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <label htmlFor="cardName" className="w-full md:w-1/3 text-gray-700 font-medium">Name:</label>
+                    <input
+                        type="text"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        id="cardName"
+                        name="cardName"
+                        placeholder="Enter your card name"
+                    />
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <label htmlFor="expiryDate" className="w-full md:w-1/3 text-gray-700 font-medium">Expiry:</label>
+                    <input
+                        type="text"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        id="expiryDate"
+                        name="expiryDate"
+                        placeholder="yyyy-mm format"
+                    />
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <label htmlFor="cvv" className="w-full md:w-1/3 text-gray-700 font-medium">CVV:</label>
+                    <input
+                        type="password"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        id="cvv"
+                        name="cvv"
+                        placeholder="Enter your CVV"
+                    />
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <label htmlFor="bankName" className="w-full md:w-1/3 text-gray-700 font-medium">Bank:</label>
+                    <input
+                        type="text"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        id="bankName"
+                        name="bankName"
+                        placeholder="Enter your bank name"
+                    />
+                </div>
+                <button
+                    type="submit"
+                    className={`bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${styles.changeBtn} ${styles.updateBtn}`}
+                >
+                    Submit
+                </button>
+            </form>
         </div>
-    )
+    );
 }

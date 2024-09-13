@@ -44,7 +44,7 @@ function Hero() {
             master the art of
           </h2>
           <h1 className="mt-[-7px] text-white text-[2.6em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter">
-            communication
+          communication
           </h1>
           <p className="max-w-[350px] lg:w-full text-white lg:mt-2 font-[200] md:text-sm md:text-left text-center text-sm lg:text-base">
             Explore Our Courses to Hone Your Verbal and Interpersonal Skills.

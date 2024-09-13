@@ -12,54 +12,47 @@ export default function Membership() {
     }
 
     return (
-        <div>
-            <div className="container">
-                <p>Profiles > Membership</p>
-                <hr />
-                <h1 className="text-center">Membership</h1>
+        <div className="container mx-auto px-4">
+    <div className="py-4">
+        <p className="text-gray-600">Profiles &gt; Membership</p>
+        <hr className="my-4 border-gray-300" />
+        <h1 className="text-3xl font-bold text-center">Membership</h1>
 
-                <div className="row">
-                    <div className="col-md-4">
-                        <div className={`card ${styles.planCard}`}>
-                            <div className="card-body">
-                                <h4 className="card-title">Basic Plan</h4>
-                                <p className="card-text">Get access to all the basic courses</p>
-                                <p>Yaha tujhe sab free view wala milega</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className={`card ${styles.planCard}`}>
-                            <div className="card-body">
-                                <h4 className="card-title">Standard Plan</h4>
-                                <p className="card-text">Get access to all the standard courses</p>
-                                <p>Middle class afforable hai</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className={`card ${styles.planCard}`}>
-                            <div className="card-body">
-                                <h4 className="card-title">Premium Plan</h4>
-                                <p className="card-text">Get access to all the premium courses</p>
-                                <p>Aukaat ke bahar hai</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr className='my-3' />
-                <form onSubmit={getSelectedPlan}>
-                    <div className="form-group">
-                        <label htmlFor="plan">Select Plan:</label>
-                        <select className="form-control my-3" id="plan">
-                            <option value={"Basic plan"}>Basic Plan</option>
-                            <option value={"Standard plan"}>Standard Plan</option>
-                            <option value={"Premium plan"}>Premium Plan</option>
-                        </select>
-                    </div>
-                    <button type="submit" className={`btn btn-primary ${styles.changeBtn} my-2 ${styles.updateBtn}`}>Submit</button>
-                </form>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div className="bg-white hover:bg-[#EAEAEA] transition-all duration-300 shadow-lg rounded-lg p-6 hover:scale-105">
+                <h4 className="text-xl font-semibold">Basic Plan</h4>
+                <p className="text-gray-700 mt-2">Get access to all the basic courses</p>
+                <p className="mt-2 text-gray-600">Yaha tujhe sab free view wala milega</p>
+            </div>
+            <div className="bg-white hover:bg-[#EAEAEA] transition-all duration-300 shadow-lg rounded-lg p-6 hover:scale-105">
+                <h4 className="text-xl font-semibold">Standard Plan</h4>
+                <p className="text-gray-700 mt-2">Get access to all the standard courses</p>
+                <p className="mt-2 text-gray-600">Middle class afforable hai</p>
+            </div>
+            <div className="bg-white hover:bg-[#EAEAEA] transition-all duration-300 shadow-lg rounded-lg p-6 hover:scale-105">
+                <h4 className="text-xl font-semibold">Premium Plan</h4>
+                <p className="text-gray-700 mt-2">Get access to all the premium courses</p>
+                <p className="mt-2 text-gray-600">Aukaat ke bahar hai</p>
             </div>
         </div>
+
+        <hr className="my-6 border-gray-300" />
+
+        <form onSubmit={getSelectedPlan} className="mt-4">
+            <div className="mb-4">
+                <label htmlFor="plan" className="block text-gray-700 font-medium">Select Plan:</label>
+                <select className="mt-1 block w-full p-3 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="plan">
+                    <option value="Basic plan">Basic Plan</option>
+                    <option value="Standard plan">Standard Plan</option>
+                    <option value="Premium plan">Premium Plan</option>
+                </select>
+            </div>
+            <button type="submit" className={`mt-4 inline-block bg-custom-green text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#0d865f] transition-all duration-300 ${styles.updateBtn} ${styles.changeBtn}`}>
+                Submit
+            </button>
+        </form>
+    </div>
+</div>
+
     )
 }

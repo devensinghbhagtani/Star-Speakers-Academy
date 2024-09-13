@@ -34,6 +34,7 @@ function ProgramCard(props) {
         </div>
       </Card>
     </div>
+  // TOP COURSES FROM ADMIN TO BE DISPLAYED FROM THE BACKEND
   );
 }
 
@@ -43,7 +44,7 @@ const Card = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
   max-width: 270px;
-  height: 300px;
+  height: 330px;
   border-radius: 15px;
   transition: all ease-in 0.1s;
 

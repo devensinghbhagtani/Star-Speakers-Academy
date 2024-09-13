@@ -12,7 +12,7 @@ import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import styles from "./VideoPlayer.module.css";
 import screenful from "screenfull";
 import Controls from "./control";
 
@@ -122,7 +122,7 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 function ValueLabelComponent(props) {
-  const { children, open, value } = props;
+  const { children, open, value } = props.obfuscatedURL;
 
   return (
     <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
@@ -147,13 +147,13 @@ const format = (seconds) => {
 
 let count = 0;
 
-function Helper(props) {
+function Helper(obfuscatedURL, title) {
   const classes = useStyles();
   const [showControls, setShowControls] = useState(false);
   // const [count, setCount] = useState(0);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [timeDisplayFormat, setTimeDisplayFormat] = React.useState("normal");
-  const [bookmarks, setBookmarks] = useState([]);
+  // const [bookmarks, setBookmarks] = useState([]);
   const [state, setState] = useState({
     pip: false,
     playing: true,
@@ -168,6 +168,9 @@ function Helper(props) {
     loop: false,
     seeking: false,
   });
+
+  // console.log(obfuscatedURL.title);
+  
 
   const playerRef = useRef(null);
   const playerContainerRef = useRef(null);
@@ -323,27 +326,36 @@ function Helper(props) {
 
   return (
     <>
-      <Container maxWidth="md">
+      <Container>
         <div
           onMouseMove={handleMouseMove}
           onMouseLeave={hanldeMouseLeave}
           ref={playerContainerRef}
-          className={classes.playerWrapper}
+          className={`${classes.playerWrapper} ${styles.playerWrapper}`}
         >
           {props.obfuscatedURL && (
           <ReactPlayer
             ref={playerRef}
+<<<<<<< HEAD
+            width="100%"
+            url={`http://localhost:8081/videos/sendvideo/${obfuscatedURL.obfuscatedURL}`}       
+            // url={"C:\Users\msoff\Videos\Captures\FIFA 23 2024-07-27 23-32-56.mp4"}   
+            // play the above video without localhost  //
+            //  url={`C:\Users\msoff\Videos\Captures\FIFA 23 2024-07-27 23-32-56.mp4`}
+=======
             width={props.width}
             height={props.height}
             url={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
+>>>>>>> origin/main
             pip={pip}
-            playing={playing}
+            className={`react-player ${styles.reactPlayer}`}
+            playing={!playing}
             controls={false}
             light={light}
             loop={loop}
             playbackRate={playbackRate}
-            volume={volume}
-            muted={muted}
+            volume={!volume}
+            muted={!muted}
             onProgress={handleProgress}
             config={{
               file: {
@@ -351,8 +363,13 @@ function Helper(props) {
                   crossorigin: "anonymous",
                 },
               },
+<<<<<<< HEAD
+            }}                  
+          />          
+=======
             }}
           />)}
+>>>>>>> origin/main
 
           <Controls
             ref={controlsRef}
@@ -363,12 +380,12 @@ function Helper(props) {
             onRewind={handleRewind}
             onPlayPause={handlePlayPause}
             onFastForward={handleFastForward}
-            playing={playing}
+            playing={!playing}
             played={played}
             elapsedTime={elapsedTime}
             totalDuration={totalDuration}
             onMute={hanldeMute}
-            muted={muted}
+            muted={!muted}
             onVolumeChange={handleVolumeChange}
             onVolumeSeekDown={handleVolumeSeekDown}
             onChangeDispayFormat={handleDisplayFormat}
@@ -376,11 +393,12 @@ function Helper(props) {
             onPlaybackRateChange={handlePlaybackRate}
             onToggleFullScreen={toggleFullScreen}
             volume={volume}
-            onBookmark={addBookmark}
+            title={obfuscatedURL.title}
+            // onBookmark={addBookmark}
           />
         </div>
 
-        <Grid container style={{ marginTop: 20 }} spacing={3}>
+        {/* <Grid container style={{ marginTop: 20 }} spacing={3}>
           {bookmarks.map((bookmark, index) => (
             <Grid key={index} item>
               <Paper
@@ -401,8 +419,8 @@ function Helper(props) {
               </Paper>
             </Grid>
           ))}
-        </Grid>
-        <canvas ref={canvasRef} />
+        </Grid> */}
+        {/* <canvas ref={canvasRef} /> */}
       </Container>
     </>
   );

@@ -31,31 +31,51 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    zIndex: 1,
+    
+    // Adjust visibility for different screen sizes
+    "&:hover": {
+      visibility: "visible",
+    },
   },
-
   button: {
     margin: theme.spacing(1),
   },
   controlIcons: {
     color: "#777",
-
     fontSize: 50,
-    transform: "scale(0.9)",
+    transform: "scale(1)",
     "&:hover": {
       color: "#fff",
-      transform: "scale(1)",
+      transform: "scale(1.3)",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 30, // Smaller icons for mobile
     },
   },
 
   bottomIcons: {
     color: "#999",
+    transform: "scale(0.8)",
     "&:hover": {
       color: "#fff",
+      transform: "scale(1)",
+    },
+    [theme.breakpoints.down("sm")]: {
+      transform: "scale(0.6)", // Smaller icons for mobile
     },
   },
 
   volumeSlider: {
     width: 100,
+    // Mobile styles
+    [theme.breakpoints.down("sm")]: {
+      width: 70,
+    },
+    // Desktop styles
+    [theme.breakpoints.up("md")]: {
+      width: 100,
+    },
   },
 }));
 
@@ -64,11 +84,11 @@ const PrettoSlider = withStyles({
     height: 8,
   },
   thumb: {
-    height: 24,
-    width: 24,
+    height: 14,
+    width: 14,
     backgroundColor: "#fff",
     border: "2px solid currentColor",
-    marginTop: -8,
+    marginTop: -4,
     marginLeft: -12,
     "&:focus, &:hover, &$active": {
       boxShadow: "inherit",
@@ -87,6 +107,7 @@ const PrettoSlider = withStyles({
     borderRadius: 4,
   },
 })(Slider);
+
 
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
@@ -122,7 +143,8 @@ const Controls = forwardRef(
       onToggleFullScreen,
       volume,
       onVolumeChange,
-      onBookmark,
+      title,
+      // onBookmark,
     },
     ref
   ) => {
@@ -156,10 +178,16 @@ const Controls = forwardRef(
           >
             <Grid item>
               <Typography variant="h5" style={{ color: "#fff" }}>
+<<<<<<< HEAD
+                {title}
+                {console.log("assdasdsadn is " + title)}
+                
+=======
                 {/* Video Title */}
+>>>>>>> origin/main
               </Typography>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Button
                 onClick={onBookmark}
                 variant="contained"
@@ -168,7 +196,7 @@ const Controls = forwardRef(
               >
                 Bookmark
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Grid container direction="row" alignItems="center" justifyContent="center">
             <IconButton
@@ -356,5 +384,6 @@ Controls.propTypes = {
   totalDuration: PropTypes.string,
   muted: PropTypes.bool,
   playbackRate: PropTypes.number,
+  title: PropTypes.string,
 };
 export default Controls;

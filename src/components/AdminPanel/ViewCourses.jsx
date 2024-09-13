@@ -43,6 +43,19 @@ export default function ViewCourses() {
     }, []);
 
     return (
+<<<<<<< HEAD
+        <div className="container mx-auto px-4 py-6">
+            <h1 className="text-2xl font-bold mb-4">Courses</h1>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {courses.map((course) => (
+                    <ViewVideo
+                        key={course.title}
+                        courseTitle={course.title}
+                        courseDesc={course.description}
+                        onCourseClick={handleCourseClick}
+                    />
+                ))}
+=======
         <div className="container courses-container">
             <h1>Courses</h1>
             <div className="row course-grid">
@@ -60,10 +73,10 @@ export default function ViewCourses() {
                 {/* {courses.map((course) => (
                     <ViewVideo key={course.title} courseTitle = {course.title} courseDesc = {course.description} onCourseClick={handleCourseClick} />
                 ))} */}
+>>>>>>> origin/main
             </div>
-            <hr />
+            <hr className="my-6 border-gray-300" />
         </div>
     );
-
 }
 
