@@ -10,8 +10,9 @@ export default function ViewCourses() {
     const [info, setInfo] = useState(null);
 
     const handleCourseClick = (title) => {
-        setSelectedCourseTitle(title); // Update state with the clicked course title
-        console.log(`Selected Course: ${title}`); // Log the clicked course title
+        // setSelectedCourseTitle(title); // Update state with the clicked course title
+        // console.log(`Selected Course: ${title}`); // Log the clicked course title
+        window.location.href = `/course/details/${title}`;
         // yaha se we can add the function that will show the course details
     };
 
