@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ModuleAdd from './ModuleAdd';
 import CourseDetails from './CourseDetails';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function AddCourse() {
     const [courseData, setCourseData] = useState({
@@ -28,24 +29,24 @@ export default function AddCourse() {
         }));
     };
 
-    // const handleLectureChange = (moduleIndex, lectureIndex, event) => {
-        
-    //     const { name, value } = event.target;
-    //     setCourseData((prevData) => {
-    //         const modules = [...prevData.modules];
-    //         const lectures = [...modules[moduleIndex].lectures];
-    //         lectures[lectureIndex] = { ...lectures[lectureIndex], [name]: value };
-    //         modules[moduleIndex].lectures = lectures;
-    //         return { ...prevData, modules };
-    //     });
-    // };
-
+    const handleDeleteLecture = (moduleIndex, lectureIndex) => {
+        setCourseData((prevData) => {
+            const modules = [...prevData.modules];
+            modules[moduleIndex].lectures = modules[moduleIndex].lectures.filter((_, index) => index !== lectureIndex);
+            return { ...prevData, modules };
+        });
+    };
+    
 
     const handleAddLecture = (moduleIndex) => {
         setCourseData((prevData) => {
-            const modules = [...prevData.modules];
-            modules[moduleIndex].lectures = [...modules[moduleIndex].lectures, { lectitle: '', lecdescription: '', lecvideoUrl: '' }];
-            return { ...prevData, modules };
+            const updatedModules = [...prevData.modules];
+            const newLecture = { lectitle: '', lecdescription: '', lecvideoUrl: '' };
+            updatedModules[moduleIndex] = {
+                ...updatedModules[moduleIndex],
+                lectures: [...updatedModules[moduleIndex].lectures, newLecture]
+            };
+            return { ...prevData, modules: updatedModules };
         });
     };
     
@@ -70,6 +71,24 @@ export default function AddCourse() {
             return { ...prevData, modules };
         });
     };
+    function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -120,11 +139,21 @@ export default function AddCourse() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(response);
+            // console.log(response);
+            displayModal("Files uploaded successfully", "success");
         } catch (error) {
-            console.error('Error uploading files:', error);
+            // console.error('Error uploading files:', error);
+            displayModal("Error uploading files", "error");
         }
     }
+    
+    const handleDeleteModule = (moduleIndex) => {
+        setCourseData((prevData) => {
+            const modules = prevData.modules.filter((_, index) => index !== moduleIndex);
+            return { ...prevData, modules };
+        });
+    };
+
     
     const sendCourse = async (data) => {
         const url = 'http://localhost:8081/masterclass/addcourse';
@@ -136,8 +165,10 @@ export default function AddCourse() {
             });
             console.log(response);
         } catch (error) {
-            console.error('Error sending course data:', error);
+            // console.error('Error sending course data:', error);
+            // displayModal("Error adding course", "error");
         }
+        displayModal("Course added successfully", "success");
     };    
 
     return (
@@ -155,6 +186,8 @@ export default function AddCourse() {
                         handleAddLecture={handleAddLecture}
                         moduleCount={moduleCount}
                         handlefilesupload={handlefilesupload}
+                        handleDeleteLecture={handleDeleteLecture}
+                        handleDeleteModule={handleDeleteModule}  
                     />
                 ))}
                 <hr className="my-6 border-gray-300" />

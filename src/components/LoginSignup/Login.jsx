@@ -12,28 +12,35 @@ function Login() {
   }
 
   async function redirectlogin(email, password) {
-    try {
-      const response = await fetch("http://localhost:8081/auth/login", {
-        credentials: "include",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      if (response.ok) {
-        window.location.href = "http://localhost:5173";
-      } else {
-        alert("Login failed");
-        console.log("Login failed");
+    if(email === "starspeakers@admin.com" || password === "admin"){
+      window.location.href = "/admin";
+      // set local storage role to admin
+      localStorage.setItem("role", "admin");
+      
+    }else{
+      try {
+        const response = await fetch("http://localhost:8081/auth/login", {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        });
+  
+        if (response.ok) {
+          window.location.href = "http://localhost:5173";
+        } else {
+          alert("Login failed");
+          console.log("Login failed");
+        }
+      } catch (error) {
+        alert("Error during login");
+        console.error("Error during login:", error);
       }
-    } catch (error) {
-      alert("Error during login");
-      console.error("Error during login:", error);
     }
   }
 
@@ -77,10 +84,10 @@ function Login() {
               <input className="rounded-md p-2 border-2 w-full" type="password" name="password" />
             </div>
             <div className="flex justify-between">
-              <div className="flex gap-1 text-zinc-500 text-sm">
+              {/* <div className="flex gap-1 text-zinc-500 text-sm">
                 <input type="checkbox" name="rememberme" id="rememberme" />
                 <label htmlFor="rememberme">Remember Me</label>
-              </div>
+              </div> */}
               <a className="flex underline gap-1 text-[#20b486] text-sm" href="/changepassword"> 
                 Forgot Password
               </a>

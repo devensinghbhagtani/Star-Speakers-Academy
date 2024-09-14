@@ -22,6 +22,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         name="title"
                         placeholder="Enter Course Name"
                         value={courseData.title}
+                        required
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -37,6 +38,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         id="course-description"
                         name="description"
                         rows="3"
+                        required
                         placeholder="Enter Course Description"
                         value={courseData.description}
                         onChange={handleInputChange}
@@ -53,6 +55,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                     <input
                         type="file"
                         id="course-image"
+                        required
                         name="courseimage"
                         onChange={handleInputChange}
                         className="w-full text-gray-600"
@@ -68,6 +71,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                     <input
                         type="file"
                         id="course-video"
+                        required
                         name="coursevideo"
                         onChange={handleInputChange}
                         className="w-full text-gray-600"
@@ -83,6 +87,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                     <input
                         type="text"
                         id="course-price"
+                        required
                         name="price"
                         placeholder="Enter Course Price"
                         value={courseData.price}
@@ -100,6 +105,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                     <input
                         type="text"
                         id="course-timing"
+                        required
                         name="timing"
                         placeholder="Enter Course Timing"
                         value={courseData.timing}
@@ -118,6 +124,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         type="text"
                         id="course-duration"
                         name="duration"
+                        required
                         placeholder="Enter Course Duration"
                         value={courseData.duration}
                         onChange={handleInputChange}
@@ -135,6 +142,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         type="text"
                         id="course-language"
                         name="language"
+                        required
                         placeholder="Enter Course Language"
                         value={courseData.language}
                         onChange={handleInputChange}
@@ -152,6 +160,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         type="text"
                         id="course-line"
                         name="line"
+                        required
                         placeholder="Enter Course Line"
                         value={courseData.line}
                         onChange={handleInputChange}
@@ -168,6 +177,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                     <input
                         type="text"
                         id="course-speaker"
+                        required
                         name="speaker"
                         placeholder="Enter Course Speaker"
                         value={courseData.speaker}
@@ -186,6 +196,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                         type="text"
                         id="course-discount"
                         name="discount"
+                        required
                         placeholder="Enter Course Discount"
                         value={courseData.discount}
                         onChange={handleInputChange}

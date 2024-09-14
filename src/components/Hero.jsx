@@ -1,3 +1,4 @@
+import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -43,7 +44,7 @@ function Hero() {
           <h2 className="text-white text-2xl lg:text-3xl lg:font-[500] tracking-tight">
             master the art of
           </h2>
-          <h1 className="mt-[-7px] text-white text-[2.6em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter">
+          <h1 className="mt-[-7px] text-white text-[2.6em] lg:text-[4em] font-[500] md:leading-tight lg:leading-none tracking-tighter pl-0">
           communication
           </h1>
           <p className="max-w-[350px] lg:w-full text-white lg:mt-2 font-[200] md:text-sm md:text-left text-center text-sm lg:text-base">
@@ -51,12 +52,12 @@ function Hero() {
             Empower Yourself to Lead, Influence, and Succeed.
           </p>
           <div className="mt-5 flex  md:flex-row gap-1 md:gap-3">
-            <Button>
+            <Button >
               <a href="">Get Started</a>
               <div className="hoverdiv"></div>
             </Button>
             <Button>
-              <a href="">Get Free Trial</a>
+              <a href="/master-class">MasterClass</a>
               <div className="hoverdiv"></div>
             </Button>
           </div>
@@ -70,7 +71,7 @@ export default Hero;
 
 const Button = styled.button`
   border: 0.5px solid white;
-  padding: 5px 15px;
+  padding: 10px 20px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;

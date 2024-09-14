@@ -178,7 +178,7 @@ function CoursePlayer(props) {
 						<div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-2">
 							<div>
 								<h4 className="text-lg font-semibold">Course Duration:</h4>
-								<p>{courseData && courseData.tableout?.course_duration?.N}</p>
+								<p>{courseData && courseData.tableout?.course_duration?.S}</p>
 							</div>
 							<div>
 								<h4 className="text-lg font-semibold">Course Language:</h4>

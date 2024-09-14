@@ -10,6 +10,11 @@ import Footer from './footer';
 
 export default function AdminHome() {
 
+    if (localStorage.getItem('role') !== 'admin') {
+        window.location.href = '/login';
+        return;
+    }
+
     return (
         <>
 
