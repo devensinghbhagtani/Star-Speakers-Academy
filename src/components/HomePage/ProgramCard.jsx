@@ -42,29 +42,22 @@ export default ProgramCard;
 const Card = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  max-width: 270px;
+  width: 240px;
+  height: 280px;
   border-radius: 15px;
-  max-height: 310px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
   transition: all ease-in 0.1s;
   cursor: pointer;
-  
+
   .pfp {
     position: relative;
     border-radius: 10px;
     width: 100%;
-    height: 50%;
+    height: 60%;
     overflow: hidden;
-    cursor: pointer;
   }
   .pfp img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    width: 100%;
   }
   &:hover {
     transform: scale(105%);

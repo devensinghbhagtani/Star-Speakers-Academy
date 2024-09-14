@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 
 export default function EditHome() {
@@ -24,7 +25,13 @@ export default function EditHome() {
         try {
             const response = await axios.post('http://localhost:8081/videos/addpopularcourse', data)
             console.log(response.data);
-            alert(response.data.message);
+            // alert(response.data.message);
+            Swal.fire({
+                icon: 'success',
+                title: 'Courses Updated',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } catch (error) {
             console.error('Error fetching videos:', error);
         }
@@ -61,7 +68,14 @@ export default function EditHome() {
         try {
             const response = await axios.post('http://localhost:8081/masterclass/addachievements', data)
             console.log(response.data);
-            alert(response.data.message);
+            // alert(response.data.message);
+            Swal.fire({
+                icon: 'success',
+                title: 'Achievements Updated',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
         } catch (error) {
             console.error('Error fetching videos:', error);
         }
@@ -104,7 +118,14 @@ export default function EditHome() {
                     <label for="role${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Role</label>
                     <input type="text" name="role${newFeedBackFile}" id="role${newFeedBackFile}" placeholder="Role" class="form-input w-full border border-gray-300 rounded p-2" />
                 </div>
-            <div class="my-3">
+                <div class="my-3">
+                    <label for="date${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Date</label>
+                    <input type="date" name="date${newFeedBackFile}" id="date${newFeedBackFile}" class="form-input w-full border border-gray-300 rounded p-2" />
+                </div>
+
+
+
+                <div class="my-3">
                     <label for="email${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Email</label>
                     <input type="email" name="email${newFeedBackFile}" id="email${newFeedBackFile}" placeholder="email" class="form-input w-full border border-gray-300 rounded p-2">
             </div>
@@ -113,10 +134,10 @@ export default function EditHome() {
                 <input type="date" name="date${newFeedBackFile}" id="date${newFeedBackFile}" class="form-input w-full border border-gray-300 rounded p-2">
             </div>
         
-            <div class="my-3">
-                <label for="feedback${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Feedback</label>
-                <textarea name="feedback${newFeedBackFile}" id="feedback${newFeedBackFile}" class="form-input w-full border border-gray-300 rounded p-2" rows="3"></textarea>
-            </div>
+                <div class="my-3">
+                    <label for="feedback${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Feedback</label>
+                    <textarea name="feedback${newFeedBackFile}" id="feedback${newFeedBackFile}" class="form-input w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+                </div>
             `;
             document.querySelector(".feedback-form").appendChild(newFileDiv);
         } else {
@@ -140,6 +161,13 @@ export default function EditHome() {
         const emails = [];
         console.log(document.getElementById(`feedback0`).value);
         for (let i = 0; i < newFeedBackFile; i++) {
+            // check if date is from the future
+            const today = new Date();
+            const date = new Date(document.getElementById(`date${i}`).value);
+            if (date > today) {
+                alert("Date for testimonial (" + (i + 1) + ") of " + document.getElementById(`name${i}`).value + " is from the future");
+                return;
+            }
             names.push(document.getElementById(`name${i}`).value);
             roles.push(document.getElementById(`role${i}`).value);
             dates.push(document.getElementById(`date${i}`).value);
@@ -153,10 +181,16 @@ export default function EditHome() {
         FeedbackData.dates = dates;
         FeedbackData.emails = emails;
         FeedbackData.feedbacks = feedbacks;
-        console.log(FeedbackData);
-
+        // console.log(FeedbackData);
         FeedbackData.names.map((name, index) => {
             sendfeedbackdata(name, FeedbackData.emails[index], FeedbackData.roles[index], FeedbackData.dates[index], FeedbackData.feedbacks[index]);
+        });
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Feedbacks Submitted',
+            showConfirmButton: false,
+            timer: 1500
         });
 
     }
@@ -185,10 +219,11 @@ export default function EditHome() {
                     <div className="form-control">
                         <div className="flex flex-col sm:flex-row my-3">
                             <div className="sm:w-1/3">
-                                <label htmlFor="course1" className="block text-gray-700 font-medium mb-1">Course 1</label>
+                                <label htmlFor="course1" className="block text-gray-700 font-medium mb-1 text-right pr-10">Course 1</label>
                             </div>
                             <div className="sm:w-2/3">
-                                <select name="course1" id="course1" className="form-control w-full p-2 border rounded">
+                                <select name="course1" id="course1" className="form-control w-full p-2 border rounded" required>
+                                    <option value="" disabled selected>Select Course</option>
                                     {info && info.map(course => <option key={course.coursename.S} value={course.coursename.S}>{course.coursename.S}</option>)}
                                 </select>
                             </div>
@@ -197,10 +232,11 @@ export default function EditHome() {
                     <div className="form-control">
                         <div className="flex flex-col sm:flex-row my-3">
                             <div className="sm:w-1/3">
-                                <label htmlFor="course2" className="block text-gray-700 font-medium mb-1">Course 2</label>
+                                <label htmlFor="course2" className="block text-gray-700 font-medium mb-1 text-right pr-10">Course 2</label>
                             </div>
                             <div className="sm:w-2/3">
-                                <select name="course2" id="course2" className="form-control w-full p-2 border rounded">
+                                <select name="course2" id="course2" className="form-control w-full p-2 border rounded" required>
+                                    <option value="" disabled selected>Select Course</option>
                                     {info && info.map(course => <option key={course.coursename.S} value={course.coursename.S}>{course.coursename.S}</option>)}
                                 </select>
                             </div>
@@ -209,58 +245,78 @@ export default function EditHome() {
                     <div className="form-control">
                         <div className="flex flex-col sm:flex-row my-3">
                             <div className="sm:w-1/3">
-                                <label htmlFor="course3" className="block text-gray-700 font-medium mb-1">Course 3</label>
+                                <label htmlFor="course3" className="block text-gray-700 font-medium mb-1 text-right pr-10">Course 3</label>
                             </div>
                             <div className="sm:w-2/3">
-                                <select name="course3" id="course3" className="form-control w-full p-2 border rounded">
+                                <select name="course3" id="course3" className="form-control w-full p-2 border rounded" required>
+                                    <option value="" disabled selected>Select Course</option>
                                     {info && info.map(course => <option key={course.coursename.S} value={course.coursename.S}>{course.coursename.S}</option>)}
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 my-2">Submit</button>
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 my-2 d-flex">Submit</button>
                 </div>
             </form>
             <br />
             <hr />
             <br />
 
-            <div className="form-control">
-                <h3>Change achievements</h3>
-                <div className="row my-3">
-                    <div className="col-md-4">
-                        <label htmlFor="students">Students</label>
+            <div className="p-4 border rounded-md shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">Change achievements</h3>
+                <div className="space-y-4">
+                    <div className="flex items-center">
+                        <label htmlFor="students" className="w-1/3 text-gray-700 font-medium mb-1 text-right pr-10">Students</label>
+                        <input
+                            type="number"
+                            name="students"
+                            id="noofStudents"
+                            placeholder="No of Students"
+                            className="w-2/3 border border-gray-300 rounded-md p-2"
+                            required
+                        />
                     </div>
-                    <div className="col-md-8">
-                        <input type="number" name="students" id="noofStudents" placeholder="No of Students" className="form-control" required />
+                    <div className="flex items-center">
+                        <label htmlFor="videos" className="w-1/3 text-gray-700 font-medium mb-1 text-right pr-10">Videos</label>
+                        <input
+                            type="number"
+                            name="videos"
+                            id="noofVideos"
+                            placeholder="No of Videos"
+                            className="w-2/3 border border-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="flex items-center">
+                        <label htmlFor="hours" className="w-1/3  text-gray-700 font-medium mb-1 text-right pr-10">Hours</label>
+                        <input
+                            type="number"
+                            name="hours"
+                            id="noofHours"
+                            placeholder="No of Hours"
+                            className="w-2/3 border border-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="flex items-center">
+                        <label htmlFor="instructors" className="w-1/3 text-gray-700 font-medium mb-1 text-right pr-10">Instructors</label>
+                        <input
+                            type="number"
+                            name="instructors"
+                            id="noofInstructors"
+                            placeholder="No of Instructors"
+                            className="w-2/3 border border-gray-300 rounded-md p-2"
+                            required
+                        />
                     </div>
                 </div>
-                <div className="row my-3">
-                    <div className="col-md-4">
-                        <label htmlFor="videos">Videos</label>
-                    </div>
-                    <div className="col-md-8">
-                        <input type="number" name="videos" id="noofVideos" placeholder="No of Videos" className="form-control" required />
-                    </div>
-                </div>
-                <div className="row my-3">
-                    <div className="col-md-4">
-                        <label htmlFor="hours">Hours</label>
-                    </div>
-                    <div className="col-md-8">
-                        <input type="number" name="hours" id="noofHours" placeholder="No of Hours" className="form-control" required />
-                    </div>
-                </div>
-                <div className="row my-3">
-                    <div className="col-md-4">
-                        <label htmlFor="instructors">Instructors</label>
-                    </div>
-                    <div className="col-md-8">
-                        <input type="number" name="instructors" id="noofInstructors" placeholder="No of Instructors" className="form-control" required />
-                    </div>
-                </div>
-                <button className="btn btn-primary my-2" onClick={SubmitAchievements}>Submit</button>
-            </div> { /* achievements ends here */}
+                <button
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                    onClick={SubmitAchievements}
+                >
+                    Submit
+                </button>
+            </div>
 
             <hr className="my-6" />
 

@@ -138,7 +138,7 @@ function CourseHero(props) {
 
   return (
     <div
-      className={`px-6 w-full min-h-[500px] md:min-h-[500px] lg:h-[500px] flex items-center justify-center relative pb-10`}
+      className={`px-6 w-full min-h-[500px] md:min-h-[500px] lg:h-[500px] flex items-center justify-center relative`}
     >
       <div className="absolute w-full h-full">
         <img
@@ -169,7 +169,7 @@ function CourseHero(props) {
             </h1>
             <div>
               <Button
-                className="lg:bg-white text-white lg:text-zinc-800 bg-[#20b486]"
+                className="lg:bg-white text-white lg:text-zinc-800 bg-[#20b486] mb-10"
                 onClick={() =>
                   handleNavigation(
                     `/course/videos/${props.data?.coursename?.S ?? "default"}`

@@ -27,7 +27,7 @@ export default function MasterClassEdit() {
 		}
 	}
 
-		
+
 	// const EventDetails = {
 	//     title: "",
 	//     date: "",
@@ -209,8 +209,8 @@ export default function MasterClassEdit() {
 			let fileInput = document.createElement("input");
 			fileInput.type = "file";
 			fileInput.name = "file" + (newFeedBackFile + 1);
-			fileInput.className = "form-control my-3";
-			let formControl = document.querySelector(".feedback-details");
+			fileInput.className = "border my-3 mx-2 p-2";
+			let formControl = document.querySelector(".feedback-file-details");
 			formControl?.appendChild(fileInput);
 		} else {
 			// alert("You can add only 5 new file inputs");
@@ -247,22 +247,23 @@ export default function MasterClassEdit() {
 					"Content-Type": "multipart/form-data",
 				},
 			});
-			console.log(response.data);
+			// console.log(response.data);
+			displayModal("Sucessfully submitted the Feedback", "success");
 			// Now do what you want with the response;
 		} catch (error) {
 			console.error("Error sending feedback:", error);
 		}
 	}
-	const [newFeedBackLink, setNewFeedBackLink] = React.useState(3);
+	const [newFeedBackLink, setNewFeedBackLink] = React.useState(0);
 
 	const AddNewFeedBackLink = () => {
 		setNewFeedBackLink(newFeedBackLink + 1);
 		if (newFeedBackLink < 5) {
 			let fileInput = document.createElement("input");
 			fileInput.type = "text";
-			fileInput.placeholder = "Link";
+			fileInput.placeholder = "Link " + (newFeedBackLink + 1);
 			fileInput.name = "yt-link" + (newFeedBackLink + 1);
-			fileInput.className = "form-control my-3";
+			fileInput.className = "border my-3 mx-2 p-2";
 			let formControl = document.querySelector(".feedback-link-details");
 			formControl?.appendChild(fileInput);
 		} else {
@@ -277,6 +278,8 @@ export default function MasterClassEdit() {
 		const links = [];
 		for (let i = 0; i < newFeedBackLink; i++) {
 			const link = data.get(`yt-link${i + 1}`);
+			console.log(link);
+
 			if (link && link !== "") {
 				console.log(link);
 				links.push({ S: link });
@@ -343,7 +346,8 @@ export default function MasterClassEdit() {
 			formdata.get("linkedin") === "" ||
 			formdata.get("youtube") === ""
 		) {
-			alert("Please enter all the followers count");
+			// alert("Please enter all the followers count");
+			displayModal("Please enter all the followers count", "error");
 		} else {
 			sendfollowers(
 				formdata.get("instagram"),
@@ -363,34 +367,36 @@ export default function MasterClassEdit() {
 			youtube: youtube,
 		});
 		console.log(data);
-		alert(data.message);
+		// alert(data.message);
+		
 		displayModal(data.message, "success");
 	}
 
 
-	const [newQuestion, setNewQuestion] = React.useState(0);
+	const [newQuestion, setNewQuestion] = React.useState(3);
 
 	const AddNewQuestion = () => {
 		setNewQuestion(newQuestion + 1);
 		if (newQuestion < 10) {
 			let question = document.createElement("input");
+			// i want a label on left and input on right side in 1 div use tailwind
+			let questionDiv = document.createElement("div");
+			questionDiv.className = "flex items-center justify-center";
 			question.type = "text";
-			question.className = "form-control my-3";
-			question.placeholder = "Question";
+			question.placeholder = "Your Question " + (newQuestion + 1);
 			question.name = "question" + (newQuestion + 1);
-
-			question.id = "Question";
-
-			let answer = document.createElement("textarea");
-			answer.className = "form-control";
-			answer.placeholder = "Answer";
-			answer.id = "Answer";
-			answer.name = "answer" + (newQuestion + 1);
-
+			question.className = "border  mb-2 w-1/3 rounded p-2 mr-3 ";
 			let formControl = document.querySelector(".faq-details");
-			formControl?.appendChild(question);
-			formControl?.appendChild(answer);
-			formControl?.appendChild(document.createElement("hr"));
+			let answer = document.createElement("input");
+			answer.type = "text";
+			answer.placeholder = "Answer";
+			answer.name = "answer" + (newQuestion + 1);
+			answer.className = "border  mb-2 w-1/3 rounded p-2 mr-3";
+			formControl?.appendChild(document.createElement("br"));
+			questionDiv.appendChild(question);
+			questionDiv.appendChild(answer);
+			formControl?.appendChild(questionDiv);
+
 		} else {
 			// alert("You can add only 5 new question inputs");
 			displayModal("You can add only 5 new question inputs", "error");
@@ -625,70 +631,77 @@ export default function MasterClassEdit() {
 					<div className="space-y-4">
 						<h3 className="text-xl font-semibold">User Feedback Screenshots</h3>
 						<hr className="my-4" />
-						<button
-							className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300"
-							type="button"
-							onClick={AddNewFeedBackFile}
-						>
-							Add New File
-						</button>
-						<form onSubmit={SubmitFeedback}>
-							
-							<hr className="my-4" />
-							<div className="space-y-4">
-								{[...Array(3)].map((_, i) => (
-									<input
-										key={i}
-										type="file"
-										className="border rounded p-2 flex mx-auto"
-										name={`file${i + 1}`}
-									/>
-								))}
-							</div>
+						<div className="row">
 							<button
-								type="submit"
-								className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300"
+								className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300 flex-col"
+								type="button"
+								onClick={AddNewFeedBackFile}
 							>
-								Submit
+								Add New File
 							</button>
+							
+								
+							
+						</div>
+						<form onSubmit={SubmitFeedback}>
+
+						<hr className="my-4" />
+						<div className="space-y-4 feedback-file-details">
+							Feedback input will be displayed here
+							<br />
+							{[...Array(3)].map((_, i) => (
+								<input
+									key={i}
+									type="file"
+									className="border my-3 mx-2 p-2"
+									name={`file${i + 1}`}
+								/>
+							))}
+							<br />
+							<button
+									type="submit"
+									className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300 flex-col"
+								>
+									Submit
+								</button>
+
+							<br />
+						</div>
 						</form>
 					</div>
 				</div>
-				
-				<hr className="my-8" />
-				<div>
+				{/* <hr className="" /> */}
+				<br />
+				{/* <div>
 					<div className="space-y-4">
 						<h3 className="text-xl font-semibold">User Feedback Videos</h3>
 						<hr className="my-4" />
-						<button
-							className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300"
-							onClick={AddNewFeedBackLink}
-						>
-							Add New File
-						</button>
-						<form onSubmit={SubmitFeedbackLink}>
-							
-							<hr className="my-4" />
-							<div className="space-y-4">
-								{[...Array(3)].map((_, i) => (
-									<input
-										key={i}
-										type="text"
-										className="border rounded p-2 flex mx-auto"
-										name={`link${i + 1}`}
-										placeholder="Feedback Link"
-									/>
-								))}
-							</div>
+						<div className="row">
 							<button
-								type="submit"
-								className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300"
+								className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300 flex-col "
+								onClick={AddNewFeedBackLink}
 							>
-								Submit
+								Add New File
 							</button>
-						</form>
+							<form onSubmit={SubmitFeedbackLink} className="flex-col">
+
+								<button
+									type="submit"
+									className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300 flex-col"
+								>
+									Submit
+								</button>
+							</form>
+						</div>
+						<hr className="my-4" />
+						<div className="space-y-4 feedback-link-details">
+							Feedback Links will be displayed here
+							<br />
+						</div>
+
+
 					</div>
-				</div>
+				</div> */}
 				<hr className="my-8" />
 				<div>
 					<div className="space-y-4">
@@ -723,17 +736,38 @@ export default function MasterClassEdit() {
 						<hr className="my-4" />
 						<form onSubmit={SubmitFollowers}>
 							<div className="space-y-4">
-								{[...Array(3)].map((_, i) => (
-									<div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-										<label className="items-center">Follower:</label>
-										<input
-											type="text"
-											className="border rounded p-2"
-											name={`follower${i + 1}`}
-											placeholder="Follower's Name"
-										/>
-									</div>
-								))}
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">Instagram:</label>
+									<input
+										type="number"
+										className="border rounded p-2"
+										name="instagram"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">Twitter:</label>
+									<input
+										type="number"
+										className="border rounded p-2"
+										name="twitter"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">Linkedin:</label>
+									<input
+										type="number"
+										className="border rounded p-2"
+										name="linkedin"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">Youtube:</label>
+									<input
+										type="number"
+										className="border rounded p-2"
+										name="youtube"
+									/>
+								</div>
 							</div>
 							<button
 								type="submit"
@@ -744,8 +778,8 @@ export default function MasterClassEdit() {
 						</form>
 					</div>
 				</div>
-				<hr className="my-8" />
-				<div>
+				{/* <hr className="my-8" /> */}
+				{/* <div>
 					<div className="space-y-4">
 						<h3 className="text-xl font-semibold">Speakers List</h3>
 						<hr className="my-4" />
@@ -754,7 +788,7 @@ export default function MasterClassEdit() {
 							className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300"
 							onClick={submitspeaker}
 						>
-							Add New Speaker
+							Add Speaker
 						</button>
 						<form onSubmit={SubmitForYou}>
 							<button
@@ -765,7 +799,7 @@ export default function MasterClassEdit() {
 							</button>
 						</form>
 					</div>
-				</div>
+				</div> */}
 				<hr className="my-8" />
 				<div>
 					<div className="">
@@ -779,25 +813,24 @@ export default function MasterClassEdit() {
 							Add New Question
 						</button>
 						<form onSubmit={SubmitQNA}>
-							
+
 							<hr className="my-4" />
-							<div className="">
+							<div className="faq-details grid grid-cols-1 md:grid-cols-1 items-center">
 								{[...Array(3)].map((_, i) => (
-									<div key={i} className="grid grid-cols-1 md:grid-cols-2 ">
-										<label className="items-center">Question:</label>
+									<div key={i} className=" ">
 										<input
 											type="text"
-											className="border  mb-2 w-1/2 rounded p-2"
+											className="border  mb-5 w-1/3 rounded p-2 mr-3"
 											name={`question${i + 1}`}
-											placeholder="Your Question"
+											placeholder={`Your Question ${i + 1}`}
 										/>
-										<label className="items-center">Answer:</label>
 										<input
 											type="text"
-											className="border w-1/2 mb-6 rounded p-2"
+											className="border w-1/3 rounded p-2"
 											name={`answer${i + 1}`}
 											placeholder="Answer"
 										/>
+										{/* <hr /> */}
 									</div>
 								))}
 							</div>
