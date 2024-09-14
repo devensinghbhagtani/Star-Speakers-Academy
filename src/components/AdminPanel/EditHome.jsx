@@ -103,6 +103,8 @@ export default function EditHome() {
 
     const AddNewFeedBack = () => {
         setNewFeedBackFile(newFeedBackFile + 1);
+        console.log(newFeedBackFile);
+        
         if (newFeedBackFile < 10) {
             const newFileDiv = document.createElement("div");
             newFileDiv.className = "my-4 p-4 border border-gray-300 rounded";
@@ -126,7 +128,11 @@ export default function EditHome() {
                 <div class="my-3">
                     <label for="email${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Email</label>
                     <input type="email" name="email${newFeedBackFile}" id="email${newFeedBackFile}" placeholder="email" class="form-input w-full border border-gray-300 rounded p-2">
-                </div>
+            </div>
+            <div class="my-3">
+                <label for="date${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Date</label>
+                <input type="date" name="date${newFeedBackFile}" id="date${newFeedBackFile}" class="form-input w-full border border-gray-300 rounded p-2">
+            </div>
         
                 <div class="my-3">
                     <label for="feedback${newFeedBackFile}" class="block text-gray-700 font-medium mb-1">Feedback</label>
@@ -153,7 +159,7 @@ export default function EditHome() {
         const dates = [];
         const feedbacks = [];
         const emails = [];
-
+        console.log(document.getElementById(`feedback0`).value);
         for (let i = 0; i < newFeedBackFile; i++) {
             // check if date is from the future
             const today = new Date();
@@ -168,6 +174,7 @@ export default function EditHome() {
             emails.push(document.getElementById(`email${i}`).value);
             feedbacks.push(document.getElementById(`feedback${i}`).value);
         }
+        // print(newFeedBackFile)
 
         FeedbackData.names = names;
         FeedbackData.roles = roles;

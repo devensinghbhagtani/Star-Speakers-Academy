@@ -17,7 +17,7 @@ function StaticNav(props) {
       <div className="w-full max-w-[1080px] flex nav min-h-16 py-2 justify-between items-center relative lg:px-0">
         <h1 className="text-white font-normal text-sm  md:text-xl w-48 md:w-auto text-center">
           {/* Starting At INR {props.masterclassinfo.priceat.N}/- */}
-          {props.masterclassinfo.accessat.S} {amount}
+          {props.masterclassinfo?.accessat?.S} {amount}
         </h1>
         <Button className="text-sm w-36 h-10 md:w-48 md:h-12 md:text-lg" onClick={handlepay}>
           <a>ENROLL NOW</a>
