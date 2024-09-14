@@ -8,12 +8,10 @@
 .moduleItem summary {
     font-size: 1.2rem;
     font-weight: bold;
-    
 }
 
-.mobileContent{
+.mobileContent {
     display: none;
-
 }
 
 .lecture-item {
@@ -50,8 +48,9 @@
 
 
 /* mobile view */
+
 @media (max-width: 768px) {
-    .mobileContent{
+    .mobileContent {
         display: block;
     }
     .verticleLine {
@@ -60,8 +59,72 @@
     .floatingDiv {
         display: none;
     }
-    .mainDiv{
+    .mainDiv {
         margin-left: 10px !important;
         margin-right: 10px !important;
     }
+}
+
+
+/* App Container */
+
+.app-container {
+    position: relative;
+}
+
+
+/* Blurred Content */
+
+.blurred {
+    filter: blur(10px);
+    pointer-events: none;
+    /* Prevent interaction with blurred content */
+}
+
+
+/* Normal Content */
+
+.content {
+    filter: none;
+}
+
+
+/* Overlay for Purchase */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.purchase-message {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.purchase-message h2 {
+    margin-bottom: 20px;
+}
+
+.purchase-message button {
+    padding: 10px 20px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+
+.purchase-message button:hover {
+    background-color: #4cafeb;
 }

@@ -105,7 +105,12 @@ export default function MasterClassEdit() {
 		) {
 			// alert("Please enter all the fields");
 			displayModal("Please enter all the fields", "error");
-		} else {
+		}
+		else if (data.get("inlineRadioOptions") === "Free" && data.get("priceat") !== "0") {
+			// alert("Please select the event type");
+			displayModal("If it is free then set price to 0", "error");
+		}
+		else {
 			senddata(
 				data.get("title"),
 				data.get("date"),
@@ -690,13 +695,13 @@ export default function MasterClassEdit() {
 						<hr className="my-4" />
 						<form onSubmit={SubmitDiscount}>
 							<div className="space-y-4">
-								{[...Array(2)].map((_, i) => (
+								{[...Array(1)].map((_, i) => (
 									<div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-4">
 										<label className="items-center">Offer Text:</label>
 										<input
 											type="text"
 											className="border rounded p-2"
-											name={`offerText${i + 1}`}
+											name={`discount`}
 										/>
 									</div>
 								))}

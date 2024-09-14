@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import styles from "./CoursePlayer.module.css";
 import { useCallback } from "react";
-
 import { Form, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Helper from "../VideoPlayer/main";
@@ -127,13 +126,28 @@ function CoursePlayer(props) {
 	const modules = [];
 
 	const handleFeedback = (event) => {
-		// event.preventDefault();
-		// const data = new FormData(event.target);
-		// console.log(data);
-		alert("Feedback Submitted");
+	    event.preventDefault();
+		const data = new FormData(event.target);
+		console.log(data.get('name')), console.log(data.get('Feedback')), console.log(data.get('designation'));
+		submitFeedback(folder, props.user?.Name?.S, data.get('Feedback'), data.get('designation'));
 		// submitFeedback(data.get('name'), data.get('Feedback'), folder);
 	}
 
+	async function submitFeedback(course, name, feedback, designation) {
+		try {
+			const url = 'http://localhost:8081/masterclass/addfeedbacktocourse';
+			const { data } = await axios.post(url, {
+				course: course,
+				name: name,
+				feedback: feedback,
+				designation: designation,
+			});
+			alert(data.message)
+		}
+		catch (error) {
+			console.error("Error in submitting feedback:", error);
+		}
+	}
 
 	const handleTabClick = (tab) => {
 		setSelectedTab(tab);
@@ -178,7 +192,7 @@ function CoursePlayer(props) {
 						<div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-2">
 							<div>
 								<h4 className="text-lg font-semibold">Course Duration:</h4>
-								<p>{courseData && courseData.tableout?.course_duration?.N}</p>
+								<p>{courseData && courseData.tableout?.course_duration?.S}</p>
 							</div>
 							<div>
 								<h4 className="text-lg font-semibold">Course Language:</h4>
@@ -311,7 +325,7 @@ function CoursePlayer(props) {
 						<h3 className="text-2xl font-bold mb-4">Feedback</h3>
 						<p>Share your feedback about the course:</p>
 						{/* feedback form */}
-						<Form className="mt-4">
+						<Form className="mt-4" onSubmit={handleFeedback}>
 							<div className="mb-4">
 								<label htmlFor="name" className="block text-base font-medium">
 									Name:
@@ -321,6 +335,17 @@ function CoursePlayer(props) {
 									className="w-full border border-gray-300 rounded p-2 mt-1"
 									id="name"
 									name="name"
+									disabled
+									value={props.user?.Name?.S}
+								/>
+								<label htmlFor="name" className="block text-base font-medium">
+									Designation:
+								</label>
+								<input
+									type="text"
+									className="w-full border border-gray-300 rounded p-2 mt-1"
+									id="designation"
+									name="designation"
 								/>
 
 								<label htmlFor="Feedback" className="block text-base font-medium mt-4">
@@ -335,7 +360,7 @@ function CoursePlayer(props) {
 
 								<button
 									type="submit"
-									onClick={handleFeedback}
+								
 									className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
 								>
 									Submit
@@ -559,10 +584,10 @@ function CoursePlayer(props) {
 		paymentObject.open();
 	}
 
-
-
 	return (
-		<div className={`container-fluid mx-10 pt-24 grid grid-cols-1 lg:grid-cols-3 gap-4 ${styles.mainDiv}`}>
+<div className={`container-fluid mx-10 pt-24 grid grid-cols-1 lg:grid-cols-3 gap-4 ${styles.mainDiv} 
+    ${props.user?.coursesinfo?.M && props.user?.coursesinfo?.M[folder] ? "" : "blur-sm pointer-events-none"}`} >
+
 			{/* Left Section - Video and Description */}
 			<div className="lg:col-span-2">
 				<div className="mb-4">
