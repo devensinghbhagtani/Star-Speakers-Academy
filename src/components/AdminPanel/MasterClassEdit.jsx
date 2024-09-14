@@ -654,6 +654,7 @@ export default function MasterClassEdit() {
 						</form>
 					</div>
 				</div>
+				
 				<hr className="my-8" />
 				<div>
 					<div className="space-y-4">
