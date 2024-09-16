@@ -46,14 +46,33 @@ function CourseHero(props) {
       }
       } else {
         console.error("Missing required information for payment.");
-        alert("Unable to proceed with payment due to missing information.");
+        // alert("Unable to proceed with payment due to missing information.");
+        displayModal("Unable to proceed with payment due to missing information.", "error");
       }
     }
   }else{
-  alert("Please Login to Enroll")
+  // alert("Please Login to Enroll")
+  displayModal("Please Login to Enroll", "error");
   }
   }
-
+  function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
   // function loadScript(src) {
   //   return new Promise((resolve) => {
   //     const script = document.createElement("script");

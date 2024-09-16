@@ -11,6 +11,25 @@ function Login() {
     redirectlogin(data.get("email"),data.get("password"));
   }
 
+  function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
+
   async function redirectlogin(email, password) {
     if(email === "starspeakers@admin.com" || password === "admin"){
       window.location.href = "/admin";
@@ -34,12 +53,14 @@ function Login() {
         if (response.ok) {
           window.location.href = "http://localhost:5173";
         } else {
-          alert("Login failed");
-          console.log("Login failed");
+          // alert("Login failed");
+          // console.log("Login failed");
+          displayModal("Login failed", "error");
         }
       } catch (error) {
-        alert("Error during login");
-        console.error("Error during login:", error);
+        // alert("Error during login");
+        // console.error("Error during login:", error);
+        displayModal("Error during login", "error");
       }
     }
   }

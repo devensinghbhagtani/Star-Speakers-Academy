@@ -10,18 +10,38 @@ export default function ChangeCards() {
         cvv: "",
         bankName: ""
     });
+    function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
 
     const addUserCard = (e) => {
         e.preventDefault();
         const { cardNumber, cardName, expiryDate, cvv, bankName } = e.target.elements;
 
         if (!cardNumber.value || !cardName.value || !expiryDate.value || !cvv.value || !bankName.value) {
-            alert("Please enter all the details");
+            // alert("Please enter all the details");
+            displayModal("Please enter all the details", "error");
             return;
         }
 
         if (cvv.value.length !== 3) {
-            alert("Please enter a valid CVV");
+            // alert("Please enter a valid CVV");
+            displayModal("Please enter a valid CVV", "error");
             return;
         }
 

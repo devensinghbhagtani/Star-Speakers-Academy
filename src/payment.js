@@ -1,6 +1,7 @@
 import React from "react";
 import { BadgePercent } from "lucide-react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -35,7 +36,8 @@ async function displayRazorpay(email, folder, amount) {
     });
 
     if (!result) {
-        alert("Server error. Are you online?");
+        // alert("Server error. Are you online?");
+        displayModal("Server error. Are you online?", "error");
         return;
     }
 
@@ -81,7 +83,8 @@ async function displayRazorpay(email, folder, amount) {
     console.log(amount);
     console.log(typeof amount)
     if (folder === "masterclass" && amount === 0) {
-        alert("You have successfully enrolled for the Masterclass check your email for further details");
+        // alert("You have successfully enrolled for the Masterclass check your email for further details");
+        displayModal("You have successfully enrolled for the Masterclass check your email for further details", "success");
     }
     if (amount !== 0) {
         console.log("inside");
@@ -90,14 +93,37 @@ async function displayRazorpay(email, folder, amount) {
     }
 }
 
+function displayModal(message, status) {
+    if (status === "success") {
+        Swal.fire({
+            title: "Success",
+            text: message,
+            icon: "success",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#20B486",
+        });
+    }
+    else {
+        Swal.fire({
+            title: "Error",
+            text: message,
+            icon: "error",
+            confirmButtonText: "OK",
+        });
+    }
+}
+
+
 function takeemail() {
     const email = prompt("Enter your email:");
     const reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (email == null || email == "" || !reg.test(email)) {
-        alert("Please enter a valid email");
+        // alert("Please enter a valid email");
+        displayModal("Please enter a valid email", "error");
         return null;
     } else {
-        console.log(email);
+        // console.log(email);
+        // displayModal("Email entered successfully", "success");
         return email;
     }
 }

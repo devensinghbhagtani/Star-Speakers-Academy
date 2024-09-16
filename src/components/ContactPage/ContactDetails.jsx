@@ -33,8 +33,28 @@ function ContactDetails() {
       subject: data.get("subject"),
       message: data.get("message"),
     });
-    alert(response.data.message);
+    // alert(response.data.message);
+    displayModal(response.data.message, "success");
   }
+
+  function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
 
   
   return (

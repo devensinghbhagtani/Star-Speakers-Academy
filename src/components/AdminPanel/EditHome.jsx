@@ -37,12 +37,32 @@ export default function EditHome() {
         }
     }
 
+    function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
+
 
     const SubmitCourses = (event) => {
         event.preventDefault();
         // alert("Courses Submitted");
         if (document.getElementById("course1").value === document.getElementById("course2").value || document.getElementById("course1").value === document.getElementById("course3").value || document.getElementById("course2").value === document.getElementById("course3").value) {
-            alert("Courses must be unique");
+            // alert("Courses must be unique");
+            displayModal("Courses must be unique", "error");
             return;
         }
         else {
@@ -141,7 +161,8 @@ export default function EditHome() {
             `;
             document.querySelector(".feedback-form").appendChild(newFileDiv);
         } else {
-            alert("You can add only 10 new inputs");
+            // alert("You can add only 10 new inputs");
+            displayModal("You can add only 10 new inputs", "error");
         }
     };
 
@@ -165,7 +186,8 @@ export default function EditHome() {
             const today = new Date();
             const date = new Date(document.getElementById(`date${i}`).value);
             if (date > today) {
-                alert("Date for testimonial (" + (i + 1) + ") of " + document.getElementById(`name${i}`).value + " is from the future");
+                // alert("Date for testimonial (" + (i + 1) + ") of " + document.getElementById(`name${i}`).value + " is from the future");
+                displayModal("Date for testimonial (" + (i + 1) + ") of " + document.getElementById(`name${i}`).value + " is from the future", "error");
                 return;
             }
             names.push(document.getElementById(`name${i}`).value);

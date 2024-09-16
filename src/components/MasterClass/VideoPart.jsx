@@ -18,10 +18,9 @@ function VideoPart(props) {
       <div className="w-full max-w-[1080px]  h-full flex flex-col lg:flex-row lg:justify-center lg:items-center items-center lg:gap-10 ">
         <div className=" min-w-[340px] w-[30px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10 lg:h-[320px] md:mb-3 lg:m-0">
           <iframe
-            className=" rounded-[20px] w-full h-full"
+            className=" rounded-[20px] w-full h-full border-none"
             src={props.masterclasstitle.videolink.S}
             title="YouTube video player"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
@@ -29,10 +28,10 @@ function VideoPart(props) {
         </div>
 
         <div className="mt-3 lg:mt-0 w-full lg:w-[40%] text-center flex flex-col items-center lg:items-start lg:text-left">
-          <h1 className="text-2xl md:w-full md:text-3xl  font-[500] tracking-tight">
+          {/* <h1 className="text-2xl md:w-full md:text-3xl  font-[500] tracking-tight">
            {props.masterclasstitle.title.S}
-          </h1>
-          <h1 className="font-[500] w-72  md:w-full tracking-tight bg-transparent md:text-5xl text-4xl text-[#20b486]">
+          </h1> */}
+          <h1 className="font-[500] w-72  md:w-full tracking-tight bg-transparent md:text-5xl text-4xl pl-0 text-[#20b486]">
             {props.masterclasstitle.title.S}
           </h1>
           <hr className="w-[200px] my-2 border-zinc-400 mx-auto lg:mx-0" />

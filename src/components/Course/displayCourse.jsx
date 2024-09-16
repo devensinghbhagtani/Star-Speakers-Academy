@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { Form, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Helper from "../VideoPlayer/main";
+import Swal from "sweetalert2";
 import { AlignHorizontalJustifyCenter } from "lucide-react";
 // import Helper from "../Play Course/main";
 function CoursePlayer(props) {
@@ -18,10 +19,29 @@ function CoursePlayer(props) {
 
 	console.log(folder)
 	// console.log(props.user);
+	function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
 
 	function logincheck() {
 		if (props.user == null) {
-			alert("Please login to view the course");
+			// alert("Please login to view the course");
+			displayModal("Please login to view the course", "error");
 			return false;
 		}
 		else {
@@ -101,10 +121,12 @@ function CoursePlayer(props) {
 				comment: comment,
 				folder: folder,
 			});
-			alert(data.message)
+			// alert(data.message)
+			displayModal(data.message, "success");
 		}
 		catch (error) {
-			console.error("Error in submitting comment:", error);
+			// console.error("Error in submitting comment:", error);
+			displayModal("Error in submitting comment", "error");
 		}
 	}
 
@@ -142,10 +164,12 @@ function CoursePlayer(props) {
 				feedback: feedback,
 				designation: designation,
 			});
-			alert(data.message)
+			// alert(data.message)
+			displayModal(data.message, "success");
 		}
 		catch (error) {
-			console.error("Error in submitting feedback:", error);
+			// console.error("Error in submitting feedback:", error);
+			displayModal("Error in submitting feedback", "error");
 		}
 	}
 
@@ -528,7 +552,8 @@ function CoursePlayer(props) {
 		);
 
 		if (!res) {
-			alert("Razorpay SDK failed to load. Are you online?");
+			// alert("Razorpay SDK failed to load. Are you online?");
+			displayModal("Razorpay SDK failed to load. Are you online?", "error");
 			return;
 		}
 
@@ -541,7 +566,8 @@ function CoursePlayer(props) {
 		);
 
 		if (!result) {
-			alert("Server error. Are you online?");
+			// alert("Server error. Are you online?");
+			displayModal("Server error. Are you online?", "error");
 			return;
 		}
 
@@ -565,7 +591,8 @@ function CoursePlayer(props) {
 
 				const result = await axios.post("http://localhost:8081/payment/success", data);
 
-				alert(result.data.msg);
+				// alert(result.data.msg);
+				displayModal(result.data.msg, "success");
 			},
 			prefill: {
 				name: "Star Speakers",

@@ -19,6 +19,24 @@ function Forgotpassword() {
   
 }
 
+function displayModal(message, status) {
+  if (status === "success") {
+    Swal.fire({
+      title: "Success",
+      text: message,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  }
+  else {
+    Swal.fire({
+      title: "Error",
+      text: message,
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+}
 
 async function actualchange(token,password,confirmpassword){
     try{
@@ -28,11 +46,13 @@ async function actualchange(token,password,confirmpassword){
             confirmpassword: confirmpassword
         });
         console.log(response);
-        alert(response.data.message);
+        // alert(response.data.message);
+        displayModal(response.data.message, "success");
     }
     catch(error){
-        console.error("Error during login:", error);
-        alert("Error in changing password");
+        // console.error("Error during login:", error);
+        // alert("Error in changing password");
+        displayModal("Error in changing password", "error");
     }
 }
 

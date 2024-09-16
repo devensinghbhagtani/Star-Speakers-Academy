@@ -85,7 +85,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                 </div>
                 <div className="w-full md:w-1/2">
                     <input
-                        type="text"
+                        type="number"
                         id="course-price"
                         required
                         name="price"
@@ -103,7 +103,7 @@ export default function CourseDetails({ courseData, setCourseData }) {
                 </div>
                 <div className="w-full md:w-1/2">
                     <input
-                        type="text"
+                        type="time"
                         id="course-timing"
                         required
                         name="timing"
@@ -121,11 +121,11 @@ export default function CourseDetails({ courseData, setCourseData }) {
                 </div>
                 <div className="w-full md:w-1/2">
                     <input
-                        type="text"
+                        type="number"
                         id="course-duration"
                         name="duration"
                         required
-                        placeholder="Enter Course Duration"
+                        placeholder="Enter Course Duration (in minutes)"
                         value={courseData.duration}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -193,11 +193,11 @@ export default function CourseDetails({ courseData, setCourseData }) {
                 </div>
                 <div className="w-full md:w-1/2">
                     <input
-                        type="text"
+                        type="number"
                         id="course-discount"
                         name="discount"
                         required
-                        placeholder="Enter Course Discount"
+                        placeholder="Enter Course Discount (in percent)"
                         value={courseData.discount}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"

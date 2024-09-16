@@ -76,9 +76,9 @@ export default function NavBar() {
                             } hover:text-[#ffffff8f]`
                           }
                     >
-                        View
+                        View Courses
                     </NavLink>
-                    <NavLink 
+                    {/* <NavLink 
                         to="/admin/editCourse" 
                         className={({ isActive }) =>
                             `text-white ${
@@ -87,7 +87,7 @@ export default function NavBar() {
                           }
                     >
                         Edit Course
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink 
                         to="/admin/EditHome" 
                         className={({ isActive }) =>

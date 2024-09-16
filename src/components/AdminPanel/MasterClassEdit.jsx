@@ -177,7 +177,7 @@ export default function MasterClassEdit() {
 			status: status,
 		});
 		console.log(data);
-		alert(data.message);
+		// alert(data.message);
 		displayModal(data.message, "success");
 	}
 
@@ -294,7 +294,7 @@ export default function MasterClassEdit() {
 			links: links,
 		});
 		console.log(data);
-		alert(data.message);
+		// alert(data.message);
 		displayModal(data.message, "success");
 	}
 
@@ -332,7 +332,7 @@ export default function MasterClassEdit() {
 			}
 		});
 		console.log(data);
-		alert(data.message);
+		// alert(data.message);
 		displayModal(data.message, "success");
 	}
 
@@ -426,7 +426,7 @@ export default function MasterClassEdit() {
 			faq: faq,
 		});
 		console.log(data);
-		alert(data.message);
+		// alert(data.message);
 		displayModal(data.message, "success");
 	}
 
@@ -446,7 +446,7 @@ export default function MasterClassEdit() {
 			foryou: foryou,
 		});
 
-		alert(data.message);
+		// alert(data.message);
 		displayModal(data.message, "success");
 	}
 

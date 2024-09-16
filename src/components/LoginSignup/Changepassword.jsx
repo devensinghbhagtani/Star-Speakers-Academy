@@ -3,13 +3,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Changepassword() {
+  function displayModal(message, status) {
+		if (status === "success") {
+			Swal.fire({
+				title: "Success",
+				text: message,
+				icon: "success",
+				confirmButtonText: "OK",
+			});
+		}
+		else {
+			Swal.fire({
+				title: "Error",
+				text: message,
+				icon: "error",
+				confirmButtonText: "OK",
+			});
+		}
+	}
 
   function handlepasswordchange(event){
     event.preventDefault();
     const data=new FormData(event.target);
     console.log(data.get("email"));
     if(data.get("email")==""){
-      alert("Please enter email");
+      // alert("Please enter email");
+      displayModal("Please enter email", "error");
       return;
     }
     sendconfirmeail(data.get("email"));
@@ -21,11 +40,13 @@ function Changepassword() {
             email: email,
         });
         console.log(response);
-        alert(response.data.message);
+        // alert(response.data.message);
+        displayModal(response.data.message, "success");
     }
     catch(error){
-        console.error("Error during login:", error);
-        alert("Email does not exist");
+        // console.error("Error during login:", error);
+        // alert("Email does not exist");
+        displayModal("Email does not exist", "error");
     }
   }
 

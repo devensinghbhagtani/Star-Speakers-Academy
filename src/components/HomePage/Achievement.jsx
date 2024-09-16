@@ -24,7 +24,7 @@ function Achievement() {
     <div className=" p-10 flex  w-full min-h-[550px]  justify-center overflow-hidden">
       <div className="w-[1080px] items-center flex flex-col md:flex-row ">
         <div className="md:w-[60%] flex flex-col md:items-start items-center">
-          <h1 className="text-4xl font-[500] text-center md:text-left">
+          <h1 className="text-4xl font-[500] text-center md:text-left pl-0">
             Our{" "}
             <mark className="bg-transparent text-[#20B486]">Achievement</mark>{" "}
           </h1>

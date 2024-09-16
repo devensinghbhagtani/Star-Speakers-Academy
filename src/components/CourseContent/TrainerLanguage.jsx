@@ -19,7 +19,7 @@ function TrainerLanguage(props) {
               title="Duration"
               details={props.data?.course_duration?.S}
               icon={<Clock color="#20B486" />}
-              more="(2 Hours)"
+              more="Hours"
             />
             <TrainerLanguageCard
               title="Language"

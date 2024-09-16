@@ -58,7 +58,13 @@ export default function EditProfile(props) {
             phone: formdata.get('phone'),
         })
         if (e.target.phone.value.length !== 10) {
-            alert("Please enter a valid mobile number")
+            // alert("Please enter a valid mobile number")
+            Swal.fire({
+                title: 'Error',
+                text: 'Please enter a valid mobile number',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
             return
         }
         // if (e.target.gender.value !== "Male" || e.target.gender.value !== "Female") {

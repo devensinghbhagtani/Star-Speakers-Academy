@@ -6,7 +6,7 @@ function Footer() {
       <div className="px-6 py-6 md:py-0 flex text-sm w-full min-h-[300px] bg-zinc-800 justify-center items-center overflow-hidden">
         <div className=" text-white w-[1080px] min-h-[200px]  items-center flex md:flex-row gap-10 flex-col justify-between">
           <div className="h-full contact flex flex-col  justify-between">
-            <img width={200} src=".././assets/Icons/logo.svg" alt="" />
+            <img width={200} src="../.././assets/Icons/logo.svg" alt="" />
             {/* <div>
               <h1 className="text-lg">Contact Us:</h1>
               <h1 className="text-sm font-[300] leading-4">Call: 7218572159</h1>
