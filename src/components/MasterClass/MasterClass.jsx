@@ -18,7 +18,7 @@ function MasterClass() {
 
   async function getinfo(){
     try {
-      const response = await axios.get('http://localhost:8081/masterclass/getmasterclass')
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}masterclass/getmasterclass`)
       console.log(response.data);
       console.log(response.data.masterclass);
       setMasterclass({

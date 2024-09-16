@@ -227,7 +227,7 @@ function CoursePlayer(props) {
 								<p>
 									{courseData &&
 										Object.values(courseData.tableout.Modules.M).reduce(
-											(sum, module) => sum + module.L.length,
+											(sum, module) => sum + module.M.lectures.L.length,
 											0
 										)}
 								</p>
@@ -407,6 +407,7 @@ function CoursePlayer(props) {
 	};
 
 	const renderLectures = (moduleName, lectures) => {
+		console.log("Lectures:", lectures);
 		return lectures.map((lecture, index) => (
 			<div
 				key={index}
@@ -448,6 +449,7 @@ function CoursePlayer(props) {
 			courseData.tableout.Modules.M
 		) {
 			const modules = courseData.tableout.Modules.M;
+			console.log("Modules:", modules);
 
 			for (let moduleName in modules) {
 				console.log("Module Name:", moduleName);
@@ -462,7 +464,7 @@ function CoursePlayer(props) {
 									{moduleName}
 								</summary>
 								<hr className="my-2 border-gray-300" />
-								{renderLectures(moduleName, modules[moduleName].L)}
+								{renderLectures(moduleName, modules[moduleName].M.lectures.L)}
 							</details>
 						</li>
 					);

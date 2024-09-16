@@ -21,7 +21,7 @@ export default function EditProfile(props) {
 
     async function sendupdatedetails(data) {
         console.log(data);
-        const url = 'http://localhost:8081/masterclass/updateuserdetails';
+        const url = `http://localhost:8081/masterclass/updateuserdetails`;
         try {
             const response = await axios.post(url, data, { withCredentials: true }, {
                 headers: {

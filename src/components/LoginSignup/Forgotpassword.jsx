@@ -40,7 +40,7 @@ function displayModal(message, status) {
 
 async function actualchange(token,password,confirmpassword){
     try{
-        const response = await axios.post("http://localhost:8081/auth/verifyandchangepassword", {
+        const response = await axios.post(`http://localhost:8081/auth/verifyandchangepassword`, {
             token: token,
             password: password,
             confirmpassword: confirmpassword
@@ -63,7 +63,7 @@ async function actualchange(token,password,confirmpassword){
 
   const validateToken = async () => {
     try {
-      const response = await axios.get(`http://localhost:8081/auth/validatetoken?token=${token}`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}auth/validatetoken?token=${token}`);
       if (response.data.valid) {
         setIsValid(true);
       } else {

@@ -16,14 +16,14 @@ function CourseCurriculum(props) {
 
         <div className="w-full justify-center items-center flex flex-col gap-4">
 
-          {props.data?.Modules?.M && Object.keys(props.data.Modules.M).map((module,key) => {
+          {props.data?.Modules?.M && Object.keys(props.data?.Modules?.M).map((module,key) => {
             return (
               <div className="w-full md:w-[80%] rounded-md overflow-hidden text-zinc-700" key={key}>
                 <div className="w-full bg-[#20b486] px-5 py-3 font-medium text-lg text-white">
                   <h1>{module}</h1>
                 </div>
                 <div className="flex flex-col ">
-                  {props.data.Modules.M[module].L.map((moduleContent,key) => {
+                  {props.data?.Modules?.M[module].M?.lectures?.L?.map((moduleContent,key) => {
                     return (
                       <ModuleContentTab title={moduleContent.S.split("/")[2]} key={key}/>
                     )

@@ -25,7 +25,7 @@ export default function ViewCourses() {
 
     async function fetchVideos() {
         try {
-            const response = await axios.get('http://localhost:8081/videos/videodetails')
+            const response = await axios.get(`http://localhost:8081/videos/videodetails`)
             console.log(response.data.response);
             setInfo(response.data.response);
             console.log(info)
