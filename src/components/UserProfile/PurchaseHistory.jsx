@@ -4,6 +4,8 @@ import { useUser } from "../UserContext";
 import styles from './UserProfile.module.css';
 
 export default function PurchaseHistory() {
+    
+
     const { user } = useUser();
     const [coursesData, setCoursesData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -15,22 +17,38 @@ export default function PurchaseHistory() {
                 if (user && user.coursesinfo && user.coursesinfo.M) {
                     const courses = Object.keys(user.coursesinfo.M);
                     const coursesPromises = courses.map(async (course) => {
-                        const response = await axios.get(
-                            `http://localhost:8081/videos/getvideodetails?folder=${course}`
-                        );
-
-                        const imageurl = await axios.get(`http://localhost:8081/masterclass/getcourseimage?course=${response.data.tableout.course_image.S}`)
-                        console.log(imageurl)
-                        return {
-                            courseName: course,
-                            imageUrl: imageurl.data.courseimage,
-                            ...response.data.tableout
-                        };
+                        try {
+                            const response = await axios.get(
+                                `http://localhost:8081/videos/getvideodetails?folder=${course}`
+                            );
+                            
+                            const courseImage = response?.data?.tableout?.course_image?.S;
+    
+                            // Default image URL if courseImage is not available
+                            const defaultImageUrl = 'https://thebestbiology.com/wp-content/uploads/2021/01/DELETED-COURSE.jpg.webp'; // Use a default image URL
+    
+                            // Fetch image URL
+                            const imageurl = courseImage
+                                ? await axios.get(`http://localhost:8081/masterclass/getcourseimage?course=${courseImage}`)
+                                : { data: { courseimage: defaultImageUrl } };
+    
+                            return {
+                                courseName: course,
+                                imageUrl: imageurl.data?.courseimage || defaultImageUrl,
+                                ...response.data.tableout
+                            };
+                        } catch (innerError) {
+                            console.error(`Error fetching details for course ${course}:`, innerError);
+                            return {
+                                courseName: course,
+                                imageUrl: 'https://thebestbiology.com/wp-content/uploads/2021/01/DELETED-COURSE.jpg.webp', // Fallback image URL
+                                // Optionally handle other course details
+                            };
+                        }
                     });
-
+    
                     const coursesDetails = await Promise.all(coursesPromises);
                     console.log(coursesDetails);
-                    console.log(user)
                     setCoursesData(coursesDetails);
                 }
             } catch (err) {
@@ -40,9 +58,11 @@ export default function PurchaseHistory() {
                 setLoading(false);
             }
         };
-
+    
         fetchCoursesData();
     }, [user]);
+    
+    
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error loading data: {error.message}</p>;
@@ -62,7 +82,7 @@ export default function PurchaseHistory() {
                             <div className="flex flex-col md:flex-row">
                                 <div className="md:w-1/3">
                                     <img
-                                        src={course.imageUrl}
+                                        src={course?.imageUrl}
                                         className={`w-full h-auto rounded-t-lg md:rounded-l-lg ${styles.imgCard}`}
                                         alt='Example'
                                     />
@@ -78,11 +98,9 @@ export default function PurchaseHistory() {
                                                         : "Price not available"}
                                                 </b></i>
                                             </p>
-                                            {/* Add more details here if needed */}
                                         </div>
                                     </div>
                                 </div>
-                                ))
                             </div>
                         </div>
                     ))

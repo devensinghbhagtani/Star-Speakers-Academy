@@ -9,7 +9,7 @@ function PopularCourses() {
 
   async function fetchPopularCourses() {
     try {
-      const response = await fetch("http://localhost:8081/videos/getpopularcourse");
+      const response = await fetch(`http://localhost:8081/videos/getpopularcourse`);
       const data = await response.json();
       console.log(data.response);
       setPopularCourses(data.response);

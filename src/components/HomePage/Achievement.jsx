@@ -9,7 +9,7 @@ function Achievement() {
   const [achievements, setAchievements] = useState(null);
 
   async function getaachievements() {
-    const response=await axios.get("http://localhost:8081/masterclass/getachievements");
+    const response=await axios.get(`http://localhost:8081/masterclass/getachievements`);
     console.log(response.data.response);
     setAchievements(response.data.response.M);
     console.log(achievements.hours);

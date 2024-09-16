@@ -19,7 +19,7 @@ function Login() {
       
     }else{
       try {
-        const response = await fetch("http://localhost:8081/auth/login", {
+        const response = await fetch(`http://localhost:8081/auth/login`, {
           credentials: "include",
           method: "POST",
           headers: {
@@ -46,7 +46,7 @@ function Login() {
 
   async function handlegoogle() {
     console.log("Google login");
-    window.open("http://localhost:8081/auth/google/callback", "_self");
+    window.open(`http://localhost:8081/auth/google/callback`, "_self");
   }
 
   return (

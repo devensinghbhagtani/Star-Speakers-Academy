@@ -71,7 +71,7 @@ export default function MasterClassEdit() {
 	};
 
 	async function masterclassskills(skill1, skill2, skill3, skill4, skill5) {
-		const url = "http://localhost:8081/masterclass/addmasterclassskills";
+		const url = `http://localhost:8081/masterclass/addmasterclassskills`;
 		const { data } = await axios.post(url, {
 			skill1: skill1,
 			skill2: skill2,
@@ -161,7 +161,7 @@ export default function MasterClassEdit() {
 		videolink,
 		status
 	) {
-		const url = "http://localhost:8081/masterclass/addmasterclass";
+		const url = `http://localhost:8081/masterclass/addmasterclass`;
 		const { data } = await axios.post(url, {
 			title: title,
 			date: date,
@@ -240,7 +240,7 @@ export default function MasterClassEdit() {
 			formData.append(`image`, file);
 		});
 
-		const url = "http://localhost:8081/masterclass/addmasterclasssfeedback";
+		const url = `http://localhost:8081/masterclass/addmasterclasssfeedback`;
 		try {
 			const response = await axios.post(url, formData, {
 				headers: {
@@ -289,7 +289,7 @@ export default function MasterClassEdit() {
 		sendfeedbacklinkserver(links);
 	};
 	async function sendfeedbacklinkserver(links) {
-		const url = "http://localhost:8081/masterclass/addmasterclassfeddbackvid";
+		const url = `http://localhost:8081/masterclass/addmasterclassfeddbackvid`;
 		const { data } = await axios.post(url, {
 			links: links,
 		});
@@ -307,7 +307,7 @@ export default function MasterClassEdit() {
 	};
 
 	async function senddiscount(discount) {
-		const url = "http://localhost:8081/masterclass/addmasterclassdiscount";
+		const url = `http://localhost:8081/masterclass/addmasterclassdiscount`;
 		const { data } = await axios.post(url, {
 			discount: discount,
 		});
@@ -325,7 +325,7 @@ export default function MasterClassEdit() {
 	}
 
 	async function sendspeakerdetails(formdata) {
-		const url = "http://localhost:8081/masterclass/addspeakerdetails";
+		const url = `http://localhost:8081/masterclass/addspeakerdetails`;
 		const { data } = await axios.post(url, formdata, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
@@ -359,7 +359,7 @@ export default function MasterClassEdit() {
 	}
 
 	async function sendfollowers(instagram, twitter, linkedin, youtube) {
-		const url = "http://localhost:8081/masterclass/addmasterclassfollowers";
+		const url = `http://localhost:8081/masterclass/addmasterclassfollowers`;
 		const { data } = await axios.post(url, {
 			instagram: instagram,
 			twitter: twitter,
@@ -421,7 +421,7 @@ export default function MasterClassEdit() {
 	};
 
 	async function sendfaq(faq) {
-		const url = "http://localhost:8081/masterclass/addmasterclassfaq";
+		const url = `http://localhost:8081/masterclass/addmasterclassfaq`;
 		const { data } = await axios.post(url, {
 			faq: faq,
 		});
@@ -441,7 +441,7 @@ export default function MasterClassEdit() {
 
 	async function sendforyou(foryou) {
 		console.log(foryou);
-		const url = "http://localhost:8081/masterclass/addmasterclassforyou";
+		const url = `http://localhost:8081/masterclass/addmasterclassforyou`;
 		const { data } = await axios.post(url, {
 			foryou: foryou,
 		});

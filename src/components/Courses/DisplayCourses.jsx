@@ -11,7 +11,7 @@ function DisplayCourses({ searchTerm, user }) {
 
   async function fetchVideos() {
     try {
-      const response = await axios.get('http://localhost:8081/videos/videodetails');
+      const response = await axios.get(`http://localhost:8081/videos/videodetails`);
       setInfo(response.data.response);
       setFilteredCourses(response.data.response); 
       if (user)
