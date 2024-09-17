@@ -59,7 +59,7 @@ function CoursePlayer(props) {
 		try {
 
 			const response = await axios.get(
-				`http://localhost:8081/videos/api/obfuscate-url?video_name=${video_name}`
+				`${import.meta.env.VITE_SERVER_URL}/videos/api/obfuscate-url?video_name=${video_name}`
 			);
 			setObfuscatedURL(response.data.obfuscatedURL);
 			console.log("Obfuscated URL:", response.data.obfuscatedURL);
@@ -77,7 +77,7 @@ function CoursePlayer(props) {
 			//console.log("Cached Data:", cacheddata);
 
 			const response = await axios.get(
-				`http://localhost:8081/videos/getvideodetails?folder=${folder}`
+				`${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${folder}`
 			);
 			console.log("Response:", response.data);
 			setvideoname(response.data.tableout.course_video.S);

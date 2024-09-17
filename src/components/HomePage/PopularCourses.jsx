@@ -9,7 +9,7 @@ function PopularCourses() {
 
   async function fetchPopularCourses() {
     try {
-      const response = await fetch(`http://localhost:8081/videos/getpopularcourse`);
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/videos/getpopularcourse`);
       const data = await response.json();
       console.log(data.response);
       setPopularCourses(data.response);
@@ -40,7 +40,7 @@ function PopularCourses() {
             <ArrowRight size={15} />
           </h2>
         </div>
-        <div className="flex flex-wrap lg:flex-nowrap gap-5">
+        <div className="flex flex-wrap lg:flex-nowrap gap-5 justify-center">
           {popularCourses && popularCourses.map((course,index) => (
             <ProgramCard 
             key={index}

@@ -64,7 +64,7 @@ function Login() {
 
     } else {
       try {
-        const response = await fetch(`http://localhost:8081/auth/login`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/login`, {
           credentials: "include",
           method: "POST",
           headers: {
@@ -93,7 +93,7 @@ function Login() {
 
   async function handlegoogle() {
     console.log("Google login");
-    window.open(`http://localhost:8081/auth/google/callback`, "_self");
+    window.open(`${import.meta.env.VITE_SERVER_URL}/auth/google/callback`, "_self");
   }
 
   return (

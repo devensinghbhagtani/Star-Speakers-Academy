@@ -26,7 +26,7 @@ function CourseDetails(props) {
     console.log("Folder:", folder);
     try {
       const response = await axios.get(
-        `http://localhost:8081/videos/getvideodetails?folder=${folder}`
+        `${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${folder}`
       );
       console.log("Response:", response.data.tableout);
       sessionStorage.setItem(
@@ -44,7 +44,7 @@ function CourseDetails(props) {
   const fetchObfuscatedURL = async (video_name) => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/videos/api/obfuscate-url?video_name=${video_name}`
+        `${import.meta.env.VITE_SERVER_URL}/videos/api/obfuscate-url?video_name=${video_name}`
       );
       setObfuscatedURL(response.data.obfuscatedURL);
       console.log("Obfuscated URL:", response.data.obfuscatedURL);

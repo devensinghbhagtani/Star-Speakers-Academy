@@ -26,7 +26,7 @@ function ContactDetails() {
     console.log(data.get("message"));
 
 
-    const response = await axios.post(`http://localhost:8081/email/contactemail`, {
+    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/email/contactemail`, {
       name: data.get("name"),
       email: data.get("email"),
       phone: data.get("phone"),

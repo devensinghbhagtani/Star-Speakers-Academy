@@ -29,7 +29,7 @@ async function displayRazorpay(email, folder, amount) {
         return;
     }
 
-    const result = await axios.post("http://localhost:8081/payment/orders", {
+    const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/payment/orders`, {
         folder: folder,
         email: email,
         amount: amount.toString(),
@@ -63,7 +63,7 @@ async function displayRazorpay(email, folder, amount) {
             };
 
             const result = await axios.post(
-                "http://localhost:8081/payment/success",
+                `${import.meta.env.VITE_SERVER_URL}payment/success`,
                 data, { withCredentials: true }
             );
 

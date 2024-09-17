@@ -36,7 +36,7 @@ function Changepassword() {
 
   async function sendconfirmeail(email){
     try{
-        const response = await axios.post(`http://localhost:8081/auth/changepassword`, {
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/changepassword`, {
             email: email,
         });
         console.log(response);

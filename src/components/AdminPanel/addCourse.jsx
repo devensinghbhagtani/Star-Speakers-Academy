@@ -132,7 +132,7 @@ export default function AddCourse() {
     async function handlefilesupload(formData,) {
         console.log(formData);
     
-        const url = `http://localhost:8081/masterclass/addcoursevideos`;
+        const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/addcoursevideos`;
         try {
             const response = await axios.post(url,formData, {
                 headers: {
@@ -156,7 +156,7 @@ export default function AddCourse() {
 
     
     const sendCourse = async (data) => {
-        const url = `http://localhost:8081/masterclass/addcourse`;
+        const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/addcourse`;
         try {
             const response = await axios.post(url, data, {
                 headers: {

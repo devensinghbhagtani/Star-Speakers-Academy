@@ -40,7 +40,7 @@ function displayModal(message, status) {
 
 async function actualchange(token,password,confirmpassword){
     try{
-        const response = await axios.post(`http://localhost:8081/auth/verifyandchangepassword`, {
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/verifyandchangepassword`, {
             token: token,
             password: password,
             confirmpassword: confirmpassword

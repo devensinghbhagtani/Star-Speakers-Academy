@@ -51,7 +51,7 @@ function Signup() {
   }
 
   async function sendregister(name,email,pass){
-    const url=`http://localhost:8081/email/send`
+    const url=`${import.meta.env.VITE_SERVER_URL}/email/send`
     const {data}=axios.post(url,{
         name: name,
         email: email,
@@ -63,7 +63,7 @@ function Signup() {
 
 async function handlegoogle() {
   console.log("Google login");
-  window.open(`http://localhost:8081/auth/google/callback`, "_self");
+  window.open(`${import.meta.env.VITE_SERVER_URL}/auth/google/callback`, "_self");
 }
 
 function displayModal(message, status) {

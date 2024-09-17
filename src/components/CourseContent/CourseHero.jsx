@@ -171,7 +171,7 @@ function CourseHero(props) {
           <div className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0"  style={fixedDiv}>
             {/* <iframe
               className=" rounded-[20px] w-full h-full border-none"
-              src={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
+              src={`${import.meta.env.VITE_SERVER_URL}/videos/sendvideo/${props.obfuscatedURL}`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -194,7 +194,7 @@ function Helper(props) {
           <ReactPlayer
             ref={playerRef} 
             download={false}
-            url={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
+            url={`${import.meta.env.VITE_SERVER_URL}/videos/sendvideo/${props.obfuscatedURL}`}
             pip={pip}
             className={`react-player ${styles.reactPlayer}`}
             playing={!playing}

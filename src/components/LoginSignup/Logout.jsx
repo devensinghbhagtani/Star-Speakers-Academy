@@ -7,7 +7,7 @@ function Logout() {
     useEffect(() => {
       const logoutUser = async () => {
         try {
-          await axios.get(`http://localhost:8081/auth/logout`, { withCredentials: true });
+          await axios.get(`${import.meta.env.VITE_SERVER_URL}/auth/logout`, { withCredentials: true });
   
           window.location.reload();
 

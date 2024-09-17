@@ -9,7 +9,7 @@ export default function EditHome() {
 
     async function fetchVideos() {
         try {
-            const response = await axios.get(`http://localhost:8081/videos/getcoursenames`)
+            const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/videos/getcoursenames`)
             console.log(response.data.response);
             setInfo(response.data.response);
 
@@ -23,7 +23,7 @@ export default function EditHome() {
 
     async function sendpopularcourse(data) {
         try {
-            const response = await axios.post(`http://localhost:8081/videos/addpopularcourse`, data)
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/videos/addpopularcourse`, data)
             console.log(response.data);
             // alert(response.data.message);
             Swal.fire({
@@ -86,7 +86,7 @@ export default function EditHome() {
 
     async function sendachievements(data) {
         try {
-            const response = await axios.post(`http://localhost:8081/masterclass/addachievements`, data)
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/addachievements`, data)
             console.log(response.data);
             // alert(response.data.message);
             Swal.fire({
@@ -220,7 +220,7 @@ export default function EditHome() {
 
     async function sendfeedbackdata(name, email, role, date, feedback) {
         console.log(name, email, role, date, feedback);
-        const response = await axios.post(`http://localhost:8081/feedback/postfeedback`,
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/feedback/postfeedback`,
             {
                 name: name,
                 email: email,

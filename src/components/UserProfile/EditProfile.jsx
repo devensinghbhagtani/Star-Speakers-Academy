@@ -21,7 +21,7 @@ export default function EditProfile(props) {
 
     async function sendupdatedetails(data) {
         console.log(data);
-        const url = `http://localhost:8081/masterclass/updateuserdetails`;
+        const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/updateuserdetails`;
         try {
             const response = await axios.post(url, data, { withCredentials: true }, {
                 headers: {

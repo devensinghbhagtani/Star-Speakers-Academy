@@ -19,7 +19,7 @@ export default function PurchaseHistory() {
                     const coursesPromises = courses.map(async (course) => {
                         try {
                             const response = await axios.get(
-                                `http://localhost:8081/videos/getvideodetails?folder=${course}`
+                                `${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${course}`
                             );
                             
                             const courseImage = response?.data?.tableout?.course_image?.S;
@@ -29,7 +29,7 @@ export default function PurchaseHistory() {
     
                             // Fetch image URL
                             const imageurl = courseImage
-                                ? await axios.get(`http://localhost:8081/masterclass/getcourseimage?course=${courseImage}`)
+                                ? await axios.get(`${import.meta.env.VITE_SERVER_URL}/masterclass/getcourseimage?course=${courseImage}`)
                                 : { data: { courseimage: defaultImageUrl } };
     
                             return {

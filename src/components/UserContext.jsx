@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
 
   const getUser = useCallback(async () => {
     try {
-      const url = `http://localhost:8081/auth/get-token`;
+      const url = `${import.meta.env.VITE_SERVER_URL}/auth/get-token`;
       const { data } = await axios.get(url, { withCredentials: true });
       console.log(data);
       setUser(data.userToken);

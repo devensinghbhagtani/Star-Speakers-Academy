@@ -35,7 +35,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
 
     async function deleteCourse(courseName) {
         try {
-            const response = await axios.post(`http://localhost:8081/videos/deletevideo`,
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/videos/deletevideo`,
                 { courseName },
                 {
                     headers: {
@@ -87,7 +87,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     const getCourseInfo = async (courseTitle) => {
 		try {
 			const response = await axios.get(
-				`http://localhost:8081/videos/getvideodetails?folder=${courseTitle}`
+				`${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${courseTitle}`
 			);
 			// console.log("Response:", response.data.tableout.Modules.M);
             setcoursemodules(Object.keys(response.data?.tableout?.Modules?.M));
