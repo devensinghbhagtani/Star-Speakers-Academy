@@ -4,7 +4,8 @@ import AboutDetails from "./AboutDetails";
 function About() {
   return (
     <>
-      <CommonHero heading={"about section"} />
+      <CommonHero heading={"About section"} />
+      <br /><br /><br />
       <AboutDetails />
     </>
   );

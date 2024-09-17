@@ -68,7 +68,8 @@ async function displayRazorpay(email, folder, amount) {
             );
 
             if (result.status === 200) {
-                alert("Payment Successful check your email for payment details");
+                // alert("Payment Successful check your email for payment details");
+                displayModal("Payment Successful check your email for payment details", "success");
 
             };
             window.location.reload();

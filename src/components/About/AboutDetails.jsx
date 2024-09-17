@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function AboutDetails() {
   return (
     <div>
-      <div className="flex  w-full   justify-center  items-center overflow-hidden ">
+      <div className="flex  w-full  justify-center  items-center overflow-hidden ">
         <div className="w-[1080px]  flex flex-col  gap-7  p-10 text-md md:text-lg leading-7  text-zinc-600 ">
           <div className="flex flex-col md:flex-row justify-center items-center">
             <div className=" w-[310px] md:w-[60%] flex flex-col md:gap-5 items-end">

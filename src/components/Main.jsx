@@ -14,7 +14,8 @@ function Main() {
       <Hero />
       <Colleges />
       <PopularCourses />
-      <Trainers />
+      <hr />
+      {/* <Trainers /> */}
       <Achievement />
       <Feedback />
       <VideoSection />

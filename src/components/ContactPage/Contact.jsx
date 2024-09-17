@@ -4,7 +4,8 @@ import ContactDetails from "./ContactDetails";
 function Contact() {
   return (
     <>
-      <CommonHero heading={"contact section"} />
+      <CommonHero heading={"Contact section"} />
+      <br /><br />
       <ContactDetails />
     </>
   );

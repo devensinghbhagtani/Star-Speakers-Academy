@@ -27,7 +27,8 @@ function AboutHero({ heading }) {
     <div
       className={`px-6 w-full h-[600px] md:h-[500px] lg:h-[600px] flex justify-center relative`}
     >
-      <div className="absolute w-full h-full">
+      
+      <div className="absolute mt-16 w-full h-full">
         <img
           className="w-full h-full object-cover lg:object-center"
           src={
@@ -40,9 +41,10 @@ function AboutHero({ heading }) {
       </div>
       <div className="pt-20  px-5 md:px-10 w-full lg:w-[1080px] z-[1] flex  justify-center md:items-center md:justify-end  ">
         <div className="text-center pt-20 md:pt-0 items-center md:items-start leading-tight flex flex-col   ]  relative">
-          <h1 className="mt-[-7px] text-white text-5xl lg:text-6xl font-[500] md:leading-tight lg:leading-none tracking-tighter">
+          <h1 className="mt-[-7px] text-white text-5xl lg:text-6xl font-[500] md:leading-tight lg:leading-none pl-0 tracking-tighter">
             {heading}
           </h1>
+          
         </div>
       </div>
     </div>

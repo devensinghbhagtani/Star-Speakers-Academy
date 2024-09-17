@@ -1,16 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Signup() {
+  function displayModal(message, status) {
+    if (status === "success") {
+        Swal.fire({
+            title: "Success",
+            text: message,
+            icon: "success",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#20B486",
+        });
+    }
+    else {
+        Swal.fire({
+            title: "Error",
+            text: message,
+            icon: "error",
+            confirmButtonText: "OK",
+        });
+    }
+}
+
 
   function handleform(event){
     event.preventDefault();
     const data=new FormData(event.target);
-    console.log(data.get("name"));
-    console.log(data.get("email"));
-    console.log(data.get("password"));
-    sendregister(data.get("name"),data.get("email"),data.get("password"));
+    // console.log(data.get("name"));
+    // console.log(data.get("email"));
+    // console.log(data.get("password"));
+
+    if(!data.get("name") || !data.get("email") || !data.get("password")){
+      alert("Please fill all the fields");
+      return;
+    }
+
+    // if password is less than 8 characters and it must conrtain a special character and a number
+    if(data.get("password").length < 8 || !data.get("password").match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/)){
+      // alert("Password must contain atleast 8 characters, a number and a special character");
+      displayModal("Password must contain atleast 8 characters, a number and a special character", "error");
+      return;
+    } else{
+
+      sendregister(data.get("name"),data.get("email"),data.get("password"));
+    }
+
 
   }
 
@@ -21,13 +57,35 @@ function Signup() {
         email: email,
         password: pass
     });
-    console.log(data);
+    // console.log(data);
+    displayModal("Mail has been sent! Please verify your account.", "success");
 }
 
 async function handlegoogle() {
   console.log("Google login");
   window.open(`http://localhost:8081/auth/google/callback`, "_self");
 }
+
+function displayModal(message, status) {
+  if (status === "success") {
+      Swal.fire({
+          title: "Success",
+          text: message,
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#20B486",
+      });
+  }
+  else {
+      Swal.fire({
+          title: "Error",
+          text: message,
+          icon: "error",
+          confirmButtonText: "OK",
+      });
+  }
+}
+
 
 
   return (
@@ -72,7 +130,7 @@ async function handlegoogle() {
                 name="password"
               />
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <div className="flex gap-2 text-zinc-500 text-xs">
                 <input type="checkbox" name="news" id="news" />
                 <label htmlFor="news">
@@ -80,7 +138,7 @@ async function handlegoogle() {
                   (optional)
                 </label>
               </div>
-            </div>
+            </div> */}
             <div className="flex mt-2 flex-col gap-5">
               <button className="w-full bg-[#20b486] active:bg-[#1e9771] hover:bg-[#1e9771] py-3 rounded-lg text-white" type="submit">
                 Signup

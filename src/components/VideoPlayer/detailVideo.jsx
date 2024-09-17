@@ -199,6 +199,7 @@ function Helper(props) {
             className={`react-player ${styles.reactPlayerDetail}`}
             playing={!playing}
             controls={true}
+            download={false}
             light={light}
             loop={false}
             playbackRate={playbackRate}

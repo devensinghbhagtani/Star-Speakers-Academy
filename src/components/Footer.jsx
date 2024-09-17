@@ -15,7 +15,7 @@ function Footer() {
             </div> */}
           </div>
           <div className="explore h-full flex flex-col items-center md:items-start gap-4">
-            <h1 className="underline text-xl ">Explore</h1>
+            <h1 className="underline text-xl pl-0">Explore</h1>
             <ul className="items-center md:items-start flex flex-col gap-2  font-[200]">
               <li className="hover:text-[#ffffff8f] ease-in transition-all">
                 <a href="">Home</a>
@@ -46,12 +46,11 @@ function Footer() {
             </ul>
           </div> */}
           <div className="items-center md:items-start h-full flex flex-col  gap-2">
-            <h1 className="underline text-xl ">Subscribe</h1>
+            <h1 className="underline text-xl pl-0">Contact</h1>
             <h2 className="text-center md:text-start text-sm font-[200] w-[250px]">
-              Stay updated with the latest courses and exclusive
-              offers—subscribe to our newsletter today!
+              Want to connect? Reach out to us at: <a href="mailto:connect@starspeakersacademy.com" className="text-[#20B486]">connect@starspeakersacademy.com</a>
             </h2>
-            <form
+            {/* <form
               className="flex flex-col items-center md:items-start w-64"
               action=""
             >
@@ -62,12 +61,12 @@ function Footer() {
               <button className="bg-[#20B486] mt-3 px-2 py-1 rounded-lg text-sm text-white font-[500] hover:bg-[#0D865F]">
                 Subscribe Now
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
       <div className="w-full h-12 bg-zinc-900 text-sm font-[400] text-zinc-600 flex justify-center items-center">
-        All Rights Reserved || Designed by Deven.
+        All Rights Reserved || StarSpeakers Academy.
       </div>
     </div>
   );

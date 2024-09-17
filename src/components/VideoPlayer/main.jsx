@@ -193,22 +193,26 @@ function Helper(props) {
           {props.obfuscatedURL && (
           <ReactPlayer
             ref={playerRef} 
-            
+            download={false}
             url={`http://localhost:8081/videos/sendvideo/${props.obfuscatedURL}`}
             pip={pip}
             className={`react-player ${styles.reactPlayer}`}
             playing={!playing}
-            controls={true}
+            controls
+            
             light={light}
             loop={false}
             playbackRate={playbackRate}
             volume={volume}
             muted={!muted}
             onProgress={handleProgress}
+            onContextMenu={(e) => e.preventDefault()} 
+            
             config={{
               file: {
                 attributes: {
                   crossorigin: "anonymous",
+                  controlsList: "nodownload",
                 },
               },
             }}

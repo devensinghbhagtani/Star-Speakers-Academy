@@ -53,7 +53,7 @@ function Hero() {
           </p>
           <div className="mt-5 flex  md:flex-row gap-1 md:gap-3">
             <Button >
-              <a href="">Get Started</a>
+              <a href="/courses">Get Started</a>
               <div className="hoverdiv"></div>
             </Button>
             <Button>

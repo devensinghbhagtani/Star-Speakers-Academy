@@ -19,15 +19,16 @@ export default function AdminDisplay() {
                     <div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
                         <h2 className="text-xl font-semibold mb-2"> <a href="/admin/viewCourses">View Courses</a></h2>
                         <p className="text-gray-700">
-                            This section displays all the uploaded courses. You can view details of each course, including descriptions, instructors, and other relevant information.
+                            This section displays all the uploaded courses. You can view details of each course, including descriptions, instructors, and other relevant information. <br />
+                            <b>You can also edit or delete courses as needed.</b>
                         </p>
                     </div>
-                    <div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    {/* <div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
                         <h2 className="text-xl font-semibold mb-2"> <a href="/admin/editCourse">Edit Course</a></h2>
                         <p className="text-gray-700">
                             Here, you can edit existing courses. Update course details as needed and ensure that all changes are accurate before saving.
                         </p>
-                    </div>
+                    </div> */}
                     <div className="p-4 border border-gray-200 rounded-lg bg-gray-50">
                         <h2 className="text-xl font-semibold mb-2"> <a href="/admin/EditHome">Edit Home</a></h2>
                         <p className="text-gray-700">

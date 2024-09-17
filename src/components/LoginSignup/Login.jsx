@@ -1,42 +1,68 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Login() {
 
-  function handlelogin(event){
+  function displayModal(message, status) {
+    if (status === "success") {
+      Swal.fire({
+        title: "Success",
+        text: message,
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#20B486",
+      });
+    }
+    else {
+      Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }
+
+  function handlelogin(event) {
     event.preventDefault();
-    const data=new FormData(event.target);
+    const data = new FormData(event.target);
     console.log(data.get("email"));
     console.log(data.get("password"));
-    redirectlogin(data.get("email"),data.get("password"));
+    if (!data.get("email") || !data.get("password")) {
+      // alert("Please enter email and password");
+      displayModal("Please enter email and password", "error");
+      return;
+    }
+    redirectlogin(data.get("email"), data.get("password"));
   }
 
   function displayModal(message, status) {
-		if (status === "success") {
-			Swal.fire({
-				title: "Success",
-				text: message,
-				icon: "success",
-				confirmButtonText: "OK",
-			});
-		}
-		else {
-			Swal.fire({
-				title: "Error",
-				text: message,
-				icon: "error",
-				confirmButtonText: "OK",
-			});
-		}
-	}
+    if (status === "success") {
+      Swal.fire({
+        title: "Success",
+        text: message,
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+    }
+    else {
+      Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }
 
   async function redirectlogin(email, password) {
-    if(email === "starspeakers@admin.com" || password === "admin"){
+    if (email === "starspeakers@admin.com" || password === "admin") {
       window.location.href = "/admin";
       // set local storage role to admin
       localStorage.setItem("role", "admin");
-      
-    }else{
+
+    } else {
       try {
         const response = await fetch(`http://localhost:8081/auth/login`, {
           credentials: "include",
@@ -49,7 +75,7 @@ function Login() {
             password: password,
           }),
         });
-  
+
         if (response.ok) {
           window.location.href = "http://localhost:5173";
         } else {
@@ -96,7 +122,7 @@ function Login() {
               <label className="text-sm text-zinc-500" htmlFor="email">
                 Email
               </label>{" "}
-              <input className=" rounded-md p-2 border-2 w-full" type="email" name="email"/>
+              <input className=" rounded-md p-2 border-2 w-full" type="email" name="email" />
             </div>
             <div className="flex flex-col w-full">
               <label className="text-sm text-zinc-500" htmlFor="email">
@@ -109,7 +135,7 @@ function Login() {
                 <input type="checkbox" name="rememberme" id="rememberme" />
                 <label htmlFor="rememberme">Remember Me</label>
               </div> */}
-              <a className="flex underline gap-1 text-[#20b486] text-sm" href="/changepassword"> 
+              <a className="flex underline gap-1 text-[#20b486] text-sm" href="/changepassword">
                 Forgot Password
               </a>
             </div>
@@ -118,13 +144,13 @@ function Login() {
                 Login
               </button>
               <hr className="border-[1px] border-zinc-200" />
-              <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3"type="button"  onClick={handlegoogle}>
+              <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3" type="button" onClick={handlegoogle}>
                 <img src="./assets/Icons/google.svg" alt="" />
                 Login with Google
               </button>
               <div className="w-full justify-center flex text-sm gap-1">
                 <h1>Need an Account?</h1>
-                <a className="text-[#20b486] underline" href="">
+                <a className="text-[#20b486] underline" href="/signup">
                   Sign up
                 </a>
               </div>
