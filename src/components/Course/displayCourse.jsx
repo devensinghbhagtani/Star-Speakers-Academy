@@ -114,7 +114,7 @@ function CoursePlayer(props) {
 
 	async function submitcomment(name, email, comment, folder) {
 		try {
-			const url = 'http://localhost:8081/videos/addcomment';
+			const url = `${import.meta.env.VITE_SERVER_URL}/videos/addcomment`;
 			const { data } = await axios.post(url, {
 				name: name,
 				email: email,
@@ -132,7 +132,7 @@ function CoursePlayer(props) {
 
 	// async function submitFeedback(name, feedback, folder) {
 	// 	try {
-	// 		const url = 'http://localhost:8081/videos/addfeedback';
+	// 		const url = `${import.meta.env.VITE_SERVER_URL}/videos/addfeedback`;
 	// 		const { data } = await axios.post(url, {
 	// 			name: name,
 	// 			feedback: feedback,
@@ -157,7 +157,7 @@ function CoursePlayer(props) {
 
 	async function submitFeedback(course, name, feedback, designation) {
 		try {
-			const url = 'http://localhost:8081/masterclass/addfeedbacktocourse';
+			const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/addfeedbacktocourse`;
 			const { data } = await axios.post(url, {
 				course: course,
 				name: name,
@@ -559,7 +559,7 @@ function CoursePlayer(props) {
 			return;
 		}
 
-		const result = await axios.post("http://localhost:8081/payment/orders",
+		const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/payment/orders`,
 			{
 				folder: folder,
 				email: props.user.email,
@@ -591,7 +591,7 @@ function CoursePlayer(props) {
 					razorpaySignature: response.razorpay_signature,
 				};
 
-				const result = await axios.post("http://localhost:8081/payment/success", data);
+				const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/payment/success`, data);
 
 				// alert(result.data.msg);
 				displayModal(result.data.msg, "success");

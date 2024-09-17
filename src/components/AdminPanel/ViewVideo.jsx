@@ -102,7 +102,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     }, []);
 
     async function updatecourseinfo(courseTitle, param, value){
-        const res = await axios.post('http://localhost:8081/masterclass/editcourse', {
+        const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/editcourse`, {
             course: courseTitle,
             param: param,
             value: value
@@ -127,7 +127,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     }
 
     async function editmodule(courseTitle, module, moduleName){
-        const res = await axios.post('http://localhost:8081/masterclass/editmodulename', {
+        const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/editmodulename`, {
             course: courseTitle,
             moduleold: module,
             modulenew: moduleName
@@ -151,7 +151,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     }
 
     async function deletemodule(courseTitle, module){
-        const res = await axios.post('http://localhost:8081/masterclass/deletemodule', {
+        const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/deletemodule`, {
             course: courseTitle,
             module: module
         });
@@ -208,7 +208,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     }
 
     async function addModule(courseTitle, moduleName){
-        const res = await axios.post('http://localhost:8081/masterclass/addnewmodule', {
+        const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/addnewmodule`, {
             course: courseTitle,
             module: moduleName
         });
@@ -245,7 +245,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     }
 
     async function addlec(data){
-        const res = await axios.post('http://localhost:8081/masterclass/editaddlec', 
+        const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/editaddlec`, 
         data,
         {
             headers: {

@@ -97,7 +97,7 @@ function CourseHero(props) {
   //     return;
   //   }
 
-  //   const result = await axios.post("http://localhost:8081/payment/orders", {
+  //   const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}/payment/orders`, {
   //     folder: folder,
   //     email: props.user?.email,
   //     amount:((props.data?.price?.N ?? 0) *(1 - (props.data?.discount?.N ?? 0) / 100)).toString(),
@@ -127,7 +127,7 @@ function CourseHero(props) {
   //       };
 
   //       const result = await axios.post(
-  //         "http://localhost:8081/payment/success",
+  //         `${import.meta.env.VITE_SERVER_URL}/payment/success`,
   //         data
   //       );
 
