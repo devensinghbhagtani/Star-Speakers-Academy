@@ -10,9 +10,9 @@ function Achievement() {
 
   async function getaachievements() {
     const response=await axios.get(`${import.meta.env.VITE_SERVER_URL}/masterclass/getachievements`);
-    console.log(response.data.response);
+    // console.log(response.data.response);
     setAchievements(response.data.response.M);
-    console.log(achievements.hours);
+     //console.log(achievements.hours);
   }
   
   useEffect(() => {
@@ -70,7 +70,7 @@ function Achievement() {
         <div className="w-[290px] md:w-[40%]">
           <img
             className=" lg:scale-[80%]"
-            src="./assets/Images/pfpatul.png"
+            src="/assets/Images/pfpatul.png"
             alt=""
           />
         </div>

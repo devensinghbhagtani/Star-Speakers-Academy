@@ -48,7 +48,7 @@ export default function PurchaseHistory() {
                     });
     
                     const coursesDetails = await Promise.all(coursesPromises);
-                    console.log(coursesDetails);
+                    //  console.log(coursesDetails);
                     setCoursesData(coursesDetails);
                 }
             } catch (err) {

@@ -45,11 +45,11 @@ export default function MasterClassEdit() {
 	const SubmitAboutMasterClass = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log(data.get("skill1"));
-		console.log(data.get("skill2"));
-		console.log(data.get("skill3"));
-		console.log(data.get("skill4"));
-		console.log(data.get("skill5"));
+		//  console.log(data.get("skill1"));
+		//  console.log(data.get("skill2"));
+		//  console.log(data.get("skill3"));
+		//  console.log(data.get("skill4"));
+		//  console.log(data.get("skill5"));
 		if (
 			data.get("skill1") === "" ||
 			data.get("skill2") === "" ||
@@ -79,7 +79,7 @@ export default function MasterClassEdit() {
 			skill4: skill4,
 			skill5: skill5,
 		});
-		console.log(data);
+		//  console.log(data);
 		// alert(data.message);
 		displayModal(data.message, "success");
 	}
@@ -144,7 +144,7 @@ export default function MasterClassEdit() {
 		// if (event.title === "" || event.date === "" || event.speaker === "" || event.time === "" || event.venue === "" || event.language === "" || event.price === "" || event.link === "" || event.btnText === "" || event.accessText === "" || event.eventType === "") {
 		//     alert("Please enter all the fields");
 		// }
-		// console.log(event);
+		//  console.log(event);
 	};
 
 	async function senddata(
@@ -176,7 +176,7 @@ export default function MasterClassEdit() {
 			videolink: videolink,
 			status: status,
 		});
-		console.log(data);
+		//  console.log(data);
 		// alert(data.message);
 		displayModal(data.message, "success");
 	}
@@ -229,7 +229,7 @@ export default function MasterClassEdit() {
 				files.push(file);
 			}
 		}
-		console.log(files);
+		//  console.log(files);
 		sendfeedbackserver(files);
 	};
 
@@ -247,7 +247,7 @@ export default function MasterClassEdit() {
 					"Content-Type": "multipart/form-data",
 				},
 			});
-			// console.log(response.data);
+			//  console.log(response.data);
 			displayModal("Sucessfully submitted the Feedback", "success");
 			// Now do what you want with the response;
 		} catch (error) {
@@ -278,14 +278,14 @@ export default function MasterClassEdit() {
 		const links = [];
 		for (let i = 0; i < newFeedBackLink; i++) {
 			const link = data.get(`yt-link${i + 1}`);
-			console.log(link);
+			//  console.log(link);
 
 			if (link && link !== "") {
-				console.log(link);
+				//  console.log(link);
 				links.push({ S: link });
 			}
 		}
-		console.log(links);
+		//  console.log(links);
 		sendfeedbacklinkserver(links);
 	};
 	async function sendfeedbacklinkserver(links) {
@@ -293,7 +293,7 @@ export default function MasterClassEdit() {
 		const { data } = await axios.post(url, {
 			links: links,
 		});
-		console.log(data);
+		//  console.log(data);
 		// alert(data.message);
 		displayModal(data.message, "success");
 	}
@@ -301,7 +301,7 @@ export default function MasterClassEdit() {
 	const SubmitDiscount = (event) => {
 		event.preventDefault();
 		const formdata = new FormData(event.currentTarget);
-		console.log(formdata.get("discount"));
+		//  console.log(formdata.get("discount"));
 		const discount = formdata.get("discount");
 		senddiscount(String(discount));
 	};
@@ -318,9 +318,9 @@ export default function MasterClassEdit() {
 	function submitspeaker(event) {
 		event.preventDefault();
 		const formdata = new FormData(event.currentTarget);
-		console.log(formdata.get("speakername"));
-		console.log(formdata.get("speakerimage"));
-		console.log(formdata.get("speakerbio"));
+		//  console.log(formdata.get("speakername"));
+		//  console.log(formdata.get("speakerimage"));
+		//  console.log(formdata.get("speakerbio"));
 		sendspeakerdetails(formdata);
 	}
 
@@ -331,7 +331,7 @@ export default function MasterClassEdit() {
 				'Content-Type': 'multipart/form-data'
 			}
 		});
-		console.log(data);
+		//  console.log(data);
 		// alert(data.message);
 		displayModal(data.message, "success");
 	}
@@ -366,7 +366,7 @@ export default function MasterClassEdit() {
 			linkedin: linkedin,
 			youtube: youtube,
 		});
-		console.log(data);
+		//  console.log(data);
 		// alert(data.message);
 		
 		displayModal(data.message, "success");
@@ -406,7 +406,7 @@ export default function MasterClassEdit() {
 	const SubmitQNA = (event) => {
 		const op = []
 		event.preventDefault();
-		console.log("QNA Submitted");
+		//  console.log("QNA Submitted");
 		const data = new FormData(event.currentTarget);
 		for (let i = 0; i <= newQuestion; i++) {
 			if (data.get(`question${i}`) && data.get(`answer${i}`)
@@ -417,7 +417,7 @@ export default function MasterClassEdit() {
 		if (op.length !== 0) {
 			sendfaq(op);
 		}
-		console.log(op);
+		//  console.log(op);
 	};
 
 	async function sendfaq(faq) {
@@ -425,7 +425,7 @@ export default function MasterClassEdit() {
 		const { data } = await axios.post(url, {
 			faq: faq,
 		});
-		console.log(data);
+		//  console.log(data);
 		// alert(data.message);
 		displayModal(data.message, "success");
 	}
@@ -433,14 +433,14 @@ export default function MasterClassEdit() {
 	function SubmitForYou(event) {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log(data.get('ip1'));
+		//  console.log(data.get('ip1'));
 		if (data.get('ip1') && data.get('ip2') && data.get('ip3') && data.get('ip4') && data.get('ip5') && data.get('ip6') && data.get('heading') && data.get('description')) {
 			sendforyou({ ip1: data.get('ip1'), ip2: data.get('ip2'), ip3: data.get('ip3'), ip4: data.get('ip4'), ip5: data.get('ip5'), ip6: data.get('ip6'), heading: data.get('heading'), description: data.get('description') });
 		}
 	}
 
 	async function sendforyou(foryou) {
-		console.log(foryou);
+		//  console.log(foryou);
 		const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/addmasterclassforyou`;
 		const { data } = await axios.post(url, {
 			foryou: foryou,

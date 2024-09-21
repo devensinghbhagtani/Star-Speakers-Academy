@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Changepassword() {
   function displayModal(message, status) {
@@ -25,7 +26,7 @@ function Changepassword() {
   function handlepasswordchange(event){
     event.preventDefault();
     const data=new FormData(event.target);
-    console.log(data.get("email"));
+    //  console.log(data.get("email"));
     if(data.get("email")==""){
       // alert("Please enter email");
       displayModal("Please enter email", "error");
@@ -39,7 +40,7 @@ function Changepassword() {
         const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/changepassword`, {
             email: email,
         });
-        console.log(response);
+        //  console.log(response);
         // alert(response.data.message);
         displayModal(response.data.message, "success");
     }
@@ -53,7 +54,7 @@ function Changepassword() {
 //   function handlesecuirtycode(event){
 //     event.preventDefault();
 //     const data=new FormData(event.target);
-//     console.log(data.get("security"));
+//      console.log(data.get("security"));
 //     }
 
 
@@ -62,7 +63,7 @@ function Changepassword() {
     <>
       <div className="w-full h-[80px] md:h-[60px] bg-zinc-700 fixed flex items-center justify-center">
         <Link to="/">
-          <img className="size-32" src="./assets/Icons/logo.svg" alt="" />
+          <img className="size-32" src="/assets/Icons/logo.svg" alt="" />
         </Link>
       </div>
       <div className=" w-full h-screen flex flex-col justify-center items-center bg-white md:bg-zinc-100 pt-5">

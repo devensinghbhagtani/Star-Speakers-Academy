@@ -8,7 +8,7 @@ export default function Membership() {
     const getSelectedPlan = (e) => {
         e.preventDefault();
         setplan(e.target.plan.value)
-        console.log(plan)
+        //  console.log(plan)
     }
 
     return (

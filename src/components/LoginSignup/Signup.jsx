@@ -28,9 +28,9 @@ function Signup() {
   function handleform(event){
     event.preventDefault();
     const data=new FormData(event.target);
-    // console.log(data.get("name"));
-    // console.log(data.get("email"));
-    // console.log(data.get("password"));
+    //  console.log(data.get("name"));
+    //  console.log(data.get("email"));
+    //  console.log(data.get("password"));
 
     if(!data.get("name") || !data.get("email") || !data.get("password")){
       alert("Please fill all the fields");
@@ -57,12 +57,12 @@ function Signup() {
         email: email,
         password: pass
     });
-    // console.log(data);
+    //  console.log(data);
     displayModal("Mail has been sent! Please verify your account.", "success");
 }
 
 async function handlegoogle() {
-  console.log("Google login");
+  //  console.log("Google login");
   window.open(`${import.meta.env.VITE_SERVER_URL}/auth/google/callback`, "_self");
 }
 
@@ -92,7 +92,7 @@ function displayModal(message, status) {
     <>
       <div className="w-full h-[80px] md:h-[60px] bg-zinc-700 fixed flex items-center justify-center">
         <Link to="/">
-          <img className="size-32" src="./assets/Icons/logo.svg" alt="" />
+          <img className="size-32" src="/assets/Icons/logo.svg" alt="" />
         </Link>
       </div>
       <div className=" w-full  flex flex-col justify-center items-center bg-white md:bg-zinc-100 pt-5">
@@ -145,7 +145,7 @@ function displayModal(message, status) {
               </button>
               <hr className="border-[1px] border-zinc-200" />
               <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3" type="button" onClick={handlegoogle}>
-                <img src="./assets/Icons/google.svg" alt="" />
+                <img src="/assets/Icons/google.svg" alt="" />
                 Continue with Google
               </button>
               <div className="w-full justify-center flex text-sm gap-1">

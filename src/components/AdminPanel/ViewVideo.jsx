@@ -26,7 +26,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // console.log(`Deleting ${courseTitle}`);
+                //  console.log(`Deleting ${courseTitle}`);
                 deleteCourse(courseTitle);
             }
         });
@@ -43,7 +43,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
                     },
                 }
             );
-            console.log(response.data);
+            //  console.log(response.data);
             // alert(response.data.message);
             Swal.fire({
                 title: 'Success',
@@ -80,7 +80,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
         event.preventDefault();
         const edit = document.getElementById('edit').value;
         const newvalue = document.getElementById('newvalue').value;
-        console.log(courseTitle, edit, newvalue);
+        //  console.log(courseTitle, edit, newvalue);
        updatecourseinfo(courseTitle,edit, newvalue);
     }
 
@@ -89,7 +89,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
 			const response = await axios.get(
 				`${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${courseTitle}`
 			);
-			// console.log("Response:", response.data.tableout.Modules.M);
+			//  console.log("Response:", response.data.tableout.Modules.M);
             setcoursemodules(Object.keys(response.data?.tableout?.Modules?.M));
             
 
@@ -107,7 +107,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
             param: param,
             value: value
         });
-        console.log(res.data);
+        //  console.log(res.data);
         if(res.status === 200){
             Swal.fire({
                 title: "Success",
@@ -183,12 +183,12 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
         const module = document.getElementById('module').value;
         const moduleName = document.getElementById('module-name').value;
 
-        console.log(courseTitle, module, moduleName, buttonName);
+        //  console.log(courseTitle, module, moduleName, buttonName);
     
         if (buttonName === 'update') {
             editmodule(courseTitle, module, moduleName);
         } else if (buttonName === 'delete') {
-            console.log(courseTitle, module);
+            //  console.log(courseTitle, module);
             deletemodule(courseTitle, module);
         }
     }    
@@ -203,7 +203,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
     const handleAddModuleEdit = (e) => {
         e.preventDefault();
         const data = new FormData(e.target);
-        console.log(data.get('module-name'));
+        //  console.log(data.get('module-name'));
         addModule(courseTitle, data.get('module-name'));
     }
 
@@ -212,7 +212,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
             course: courseTitle,
             module: moduleName
         });
-        console.log(res);
+        //  console.log(res);
         if(res.status === 200){
             Swal.fire({
                 title: "Success",
@@ -253,7 +253,7 @@ export default function ViewVideo({ courseTitle, courseDesc, onCourseClick, cour
             }
         });
             
-        console.log(res);
+        //  console.log(res);
         if(res.status === 200){
             Swal.fire({
                 title: "Success",

@@ -9,7 +9,7 @@ import ChangeCards from "./ChangeCards";
 import ViewCards from "./ViewCards";
 
 export default function DisplayProfile(props) {
-    console.log(props.user);
+    //  console.log(props.user);
     // i want state to change to edit profile or membership or purchase history or credit/debit card
 
     const [changePage, setchangePage] = useState("Edit Profile");

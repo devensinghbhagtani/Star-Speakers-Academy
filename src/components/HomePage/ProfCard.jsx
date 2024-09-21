@@ -6,7 +6,7 @@ function ProfCard() {
   return (
     <ProCard className="h-[360px] w-[280px] flex flex-col items-center">
       <div className="pfp">
-        <img src="./assets/Images/ppfp1.png" alt="" />
+        <img src="/assets/Images/ppfp1.png" alt="" />
       </div>
       <h3 className="mt-1 text-lg font-[500] flex items-center gap-1">
         Jacob Jones <BadgeCheck size={20} color="#20B486" />

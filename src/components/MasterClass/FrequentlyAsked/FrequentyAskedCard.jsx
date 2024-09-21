@@ -3,7 +3,7 @@ import { CircleArrowUp } from "lucide-react";
 import React, { useState } from "react";
 
 function FrequentyAskedCard({question,answer}) {
-  console.log(question);
+  //  console.log(question);
   const [display, setDisplay] = useState(false);
   return (
     <Card

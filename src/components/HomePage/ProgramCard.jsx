@@ -18,7 +18,7 @@ function ProgramCard(props) {
         </h3>
         {/* <div className="mt-3 star flex gap-2 items-center ">
           <div className="total-stars w-[120px] flex justify-center ">
-            <img src="./assets/stars.svg" alt="Stars" />
+            <img src="/assets/stars.svg" alt="Stars" />
           </div>
           <h4 className="text-sm">(15)</h4>
         </div> */}

@@ -73,22 +73,22 @@ async function displayRazorpay(email, folder, amount) {
 
             };
             window.location.reload();
-            console.log(result);
+            //  console.log(result);
             return result.status;
         },
         theme: {
             color: "#61dafb",
         },
     };
-    console.log(folder);
-    console.log(amount);
-    console.log(typeof amount)
+    //  console.log(folder);
+    //  console.log(amount);
+    //  console.log(typeof amount)
     if (folder === "masterclass" && amount === 0) {
         // alert("You have successfully enrolled for the Masterclass check your email for further details");
         displayModal("You have successfully enrolled for the Masterclass check your email for further details", "success");
     }
     if (amount !== 0) {
-        console.log("inside");
+        //  console.log("inside");
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
     }
@@ -123,7 +123,7 @@ function takeemail() {
         displayModal("Please enter a valid email", "error");
         return null;
     } else {
-        // console.log(email);
+        //  console.log(email);
         // displayModal("Email entered successfully", "success");
         return email;
     }

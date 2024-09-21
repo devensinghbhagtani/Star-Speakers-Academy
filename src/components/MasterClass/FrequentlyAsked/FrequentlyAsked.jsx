@@ -3,7 +3,7 @@ import FrequentyAskedCard from "./FrequentyAskedCard";
 import styled from "styled-components";
 
 function FrequentlyAsked(props) {
-  console.log(props.faq);
+  //  console.log(props.faq);
   return (
     <div className="p-8 w-full min-h-[500px] flex justify-center  md:p-10">
       <div className="flex flex-col items-center w-full md:w-[1080px] h-full">

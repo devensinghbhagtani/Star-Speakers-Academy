@@ -10,7 +10,7 @@ export default function EditHome() {
     async function fetchVideos() {
         try {
             const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/videos/getcoursenames`)
-            console.log(response.data.response);
+            //  console.log(response.data.response);
             setInfo(response.data.response);
 
         } catch (error) {
@@ -24,7 +24,7 @@ export default function EditHome() {
     async function sendpopularcourse(data) {
         try {
             const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/videos/addpopularcourse`, data)
-            console.log(response.data);
+            //  console.log(response.data);
             // alert(response.data.message);
             Swal.fire({
                 icon: 'success',
@@ -71,9 +71,9 @@ export default function EditHome() {
                 { S: document.getElementById("course2").value },
                 { S: document.getElementById("course3").value }
             ]);
-            console.log(document.getElementById("course1").value);
-            console.log(document.getElementById("course2").value);
-            console.log(document.getElementById("course3").value);
+            //  console.log(document.getElementById("course1").value);
+            //  console.log(document.getElementById("course2").value);
+            //  console.log(document.getElementById("course3").value);
         }
     };
 
@@ -87,7 +87,7 @@ export default function EditHome() {
     async function sendachievements(data) {
         try {
             const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/masterclass/addachievements`, data)
-            console.log(response.data);
+            //  console.log(response.data);
             // alert(response.data.message);
             Swal.fire({
                 icon: 'success',
@@ -116,14 +116,14 @@ export default function EditHome() {
             hours: { N: achievements.hours },
             instructors: { N: achievements.instructors }
         });
-        console.log(achievements);
+        //  console.log(achievements);
     }
 
     const [newFeedBackFile, setNewFeedBackFile] = useState(0);
 
     const AddNewFeedBack = () => {
         setNewFeedBackFile(newFeedBackFile + 1);
-        console.log(newFeedBackFile);
+        //  console.log(newFeedBackFile);
         
         if (newFeedBackFile < 10) {
             const newFileDiv = document.createElement("div");
@@ -180,7 +180,7 @@ export default function EditHome() {
         const dates = [];
         const feedbacks = [];
         const emails = [];
-        console.log(document.getElementById(`feedback0`).value);
+        //  console.log(document.getElementById(`feedback0`).value);
         for (let i = 0; i < newFeedBackFile; i++) {
             // check if date is from the future
             const today = new Date();
@@ -203,7 +203,7 @@ export default function EditHome() {
         FeedbackData.dates = dates;
         FeedbackData.emails = emails;
         FeedbackData.feedbacks = feedbacks;
-        // console.log(FeedbackData);
+        //  console.log(FeedbackData);
         FeedbackData.names.map((name, index) => {
             sendfeedbackdata(name, FeedbackData.emails[index], FeedbackData.roles[index], FeedbackData.dates[index], FeedbackData.feedbacks[index]);
         });
@@ -219,7 +219,7 @@ export default function EditHome() {
 
 
     async function sendfeedbackdata(name, email, role, date, feedback) {
-        console.log(name, email, role, date, feedback);
+        //  console.log(name, email, role, date, feedback);
         const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/feedback/postfeedback`,
             {
                 name: name,
@@ -229,7 +229,7 @@ export default function EditHome() {
                 feedback: feedback
 
             });
-        console.log(response.data);
+        //  console.log(response.data);
 
     }
 

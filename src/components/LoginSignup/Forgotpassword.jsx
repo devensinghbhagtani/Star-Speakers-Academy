@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link , useLocation, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function Forgotpassword() {
 
@@ -13,8 +14,8 @@ function Forgotpassword() {
 
     event.preventDefault();
     const data=new FormData(event.target);
-    console.log(data.get("password"));
-    console.log(data.get("confirmpassword"));
+    //  console.log(data.get("password"));
+    //  console.log(data.get("confirmpassword"));
     actualchange(token,data.get("password"),data.get("confirmpassword"));
   
 }
@@ -45,7 +46,7 @@ async function actualchange(token,password,confirmpassword){
             password: password,
             confirmpassword: confirmpassword
         });
-        console.log(response);
+        //  console.log(response);
         // alert(response.data.message);
         displayModal(response.data.message, "success");
     }
@@ -63,7 +64,7 @@ async function actualchange(token,password,confirmpassword){
 
   const validateToken = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}auth/validatetoken?token=${token}`);
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/auth/validatetoken?token=${token}`);
       if (response.data.valid) {
         setIsValid(true);
       } else {
@@ -88,7 +89,7 @@ async function actualchange(token,password,confirmpassword){
     <>
       <div className="w-full h-[80px] md:h-[60px] bg-zinc-700 fixed flex items-center justify-center">
         <Link to="/">
-          <img className="size-32" src="./assets/Icons/logo.svg" alt="" />
+          <img className="size-32" src="/assets/Icons/logo.svg" alt="" />
         </Link>
       </div>
       <div className=" w-full h-screen flex flex-col justify-center items-center bg-white md:bg-zinc-100 pt-5">

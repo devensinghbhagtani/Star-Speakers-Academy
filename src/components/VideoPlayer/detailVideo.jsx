@@ -102,7 +102,7 @@ function Helper(props) {
     seeking: false,
   });
 
-  // console.log(obfuscatedURL.title);
+  //  console.log(obfuscatedURL.title);
   
 
   const playerRef = useRef(null);
@@ -146,7 +146,7 @@ function Helper(props) {
 
   
   const handleMouseMove = () => {
-    console.log("mousemove");
+    //  console.log("mousemove");
     controlsRef.current.style.visibility = "visible";
     count = 0;
   };

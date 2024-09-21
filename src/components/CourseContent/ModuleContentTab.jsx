@@ -2,7 +2,7 @@ import { ArrowRightCircle, NotepadText, Play } from "lucide-react";
 import React from "react";
 
 function ModuleContentTab(props) {
-  console.log(props.title);
+  //  console.log(props.title);
   return (
     <div className="cursor-pointer flex flex-col gap-1">
       <div className=" active:bg-zinc-50 active:text-[rgb(32,180,134)] hover:bg-zinc-50  px-5 py-3 w-full bg-white flex justify-between">

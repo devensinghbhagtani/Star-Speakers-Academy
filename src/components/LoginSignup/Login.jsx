@@ -27,8 +27,8 @@ function Login() {
   function handlelogin(event) {
     event.preventDefault();
     const data = new FormData(event.target);
-    console.log(data.get("email"));
-    console.log(data.get("password"));
+    //  console.log(data.get("email"));
+    //  console.log(data.get("password"));
     if (!data.get("email") || !data.get("password")) {
       // alert("Please enter email and password");
       displayModal("Please enter email and password", "error");
@@ -64,6 +64,7 @@ function Login() {
 
     } else {
       try {
+        
         const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/login`, {
           credentials: "include",
           method: "POST",
@@ -77,10 +78,10 @@ function Login() {
         });
 
         if (response.ok) {
-          window.location.href = "http://localhost:5173";
+          window.location.href = "/";
         } else {
           // alert("Login failed");
-          // console.log("Login failed");
+          //  console.log("Login failed");
           displayModal("Login failed", "error");
         }
       } catch (error) {
@@ -92,7 +93,7 @@ function Login() {
   }
 
   async function handlegoogle() {
-    console.log("Google login");
+    //  console.log("Google login");
     window.open(`${import.meta.env.VITE_SERVER_URL}/auth/google/callback`, "_self");
   }
 
@@ -100,7 +101,7 @@ function Login() {
     <>
       <div className="w-full h-[80px] md:h-[60px] bg-zinc-700 fixed flex items-center justify-center">
         <Link to="/">
-          <img className="size-32" src="./assets/Icons/logo.svg" alt="" />
+          <img className="size-32" src="/assets/Icons/logo.svg" alt="" />
         </Link>
       </div>
       <div className=" w-full h-screen flex flex-col justify-center items-center bg-white md:bg-zinc-100 pt-5">
@@ -145,7 +146,7 @@ function Login() {
               </button>
               <hr className="border-[1px] border-zinc-200" />
               <button className="w-full py-3 rounded-lg border-2 flex  active:bg-zinc-100 hover:bg-zinc-50 text-zinc-700 items-center justify-center gap-3" type="button" onClick={handlegoogle}>
-                <img src="./assets/Icons/google.svg" alt="" />
+                <img src="/assets/Icons/google.svg" alt="" />
                 Login with Google
               </button>
               <div className="w-full justify-center flex text-sm gap-1">

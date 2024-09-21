@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { displayRazorpay, takeemail } from "../../payment";
 
 function VideoPart(props) {
-  console.log(props.masterclasstitle.videolink.S);
+  //  console.log(props.masterclasstitle.videolink.S);
   const amount = props.masterclasstitle.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
   function handlepay(){
     const email = takeemail();

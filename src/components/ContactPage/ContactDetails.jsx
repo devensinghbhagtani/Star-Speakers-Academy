@@ -19,11 +19,11 @@ function ContactDetails() {
   async function sendemail(event) {
     event.preventDefault();
     const data = new FormData(event.target);
-    console.log(data.get("name"));
-    console.log(data.get("email"));
-    console.log(data.get("phone"));
-    console.log(data.get("subject"));
-    console.log(data.get("message"));
+    //  console.log(data.get("name"));
+    //  console.log(data.get("email"));
+    //  console.log(data.get("phone"));
+    //  console.log(data.get("subject"));
+    //  console.log(data.get("message"));
 
 
     const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/email/contactemail`, {
@@ -66,7 +66,7 @@ function ContactDetails() {
       >
         <img
           className={`h-full w-full object-cover`}
-          src={`../../../assets/Gallery/pfp${imageNumber}.png`}
+          src={`../.././assets/Gallery/pfp${imageNumber}.png`}
           alt=""
         />
       </div>
@@ -206,7 +206,7 @@ function ContactDetails() {
             >
               <img
                 className={`h-full w-full object-cover`}
-                src={`../../../assets/Gallery/pfp${imageNumber}.png`}
+                src={`../.././assets/Gallery/pfp${imageNumber}.png`}
                 alt=""
               />
             </div>

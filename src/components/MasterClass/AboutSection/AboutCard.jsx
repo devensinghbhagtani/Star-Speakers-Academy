@@ -6,7 +6,7 @@ function AboutCard({ n, text, b = true }) {
       <div className="w-[80px] md:min-w-[80px] md:h-[80px] bg-emerald-100 rounded-full">
         <img
           className="w-full h-full"
-          src={`./assets/Illustrations/${n}.png`}
+          src={`/assets/Illustrations/${n}.png`}
           alt=""
         />
       </div>

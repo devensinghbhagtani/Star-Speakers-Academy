@@ -130,7 +130,7 @@ export default function AddCourse() {
     };
     
     async function handlefilesupload(formData,) {
-        console.log(formData);
+        //  console.log(formData);
     
         const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/addcoursevideos`;
         try {
@@ -139,7 +139,7 @@ export default function AddCourse() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            // console.log(response);
+            //  console.log(response);
             displayModal("Files uploaded successfully", "success");
         } catch (error) {
             // console.error('Error uploading files:', error);
@@ -163,7 +163,7 @@ export default function AddCourse() {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(response);
+            //  console.log(response);
         } catch (error) {
             // console.error('Error sending course data:', error);
             // displayModal("Error adding course", "error");

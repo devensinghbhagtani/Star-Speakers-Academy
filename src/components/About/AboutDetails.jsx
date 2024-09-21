@@ -17,7 +17,7 @@ function AboutDetails() {
               <h1 className="italic">-Atul Shinde</h1>
             </div>
             <div className="w-[310px] md:w-[40%]">
-              <img className="" src="./assets/Images/pfpatul.png" alt="" />
+              <img className="" src="/assets/Images/pfpatul.png" alt="" />
             </div>
           </div>
           <div>

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { displayRazorpay, takeemail } from "../../payment";
 
 function StaticNav(props) {
-  console.log(props.masterclassinfo)
-  console.log(props.discount)
+  //  console.log(props.masterclassinfo)
+  //  console.log(props.discount)
   const amount = props.masterclassinfo.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
 
 

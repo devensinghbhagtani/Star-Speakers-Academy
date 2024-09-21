@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
     try {
       const url = `${import.meta.env.VITE_SERVER_URL}/auth/get-token`;
       const { data } = await axios.get(url, { withCredentials: true });
-      console.log(data);
+      console.log("Token: ", data);
       setUser(data.userToken);
     } catch (err) {
       console.error(err);

@@ -41,7 +41,7 @@ const MainApp = () => {
 
   const ProfileWithUser = () => {
     const { user } = useUser();
-    console.log(user);
+    //  console.log(user);
     return <DisplayProfile user={user} />;
   };
 

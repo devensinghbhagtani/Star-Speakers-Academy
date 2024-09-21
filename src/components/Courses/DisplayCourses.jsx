@@ -20,7 +20,7 @@ function DisplayCourses({ searchTerm, user }) {
       console.error('Error fetching videos:', error);
     }
   }
-  // console.log(user?.coursesinfo?.M);
+  //  console.log(user?.coursesinfo?.M);
   useEffect(() => {
     fetchVideos();
   }, []);

@@ -17,8 +17,8 @@ function CoursePlayer(props) {
 	const [obfuscatedURL, setObfuscatedURL] = useState(null);
 	const [videoname, setvideoname] = useState(null);
 
-	console.log(folder)
-	// console.log(props.user);
+	//  console.log(folder)
+	//  console.log(props.user);
 	function displayModal(message, status) {
 		if (status === "success") {
 			Swal.fire({
@@ -51,18 +51,18 @@ function CoursePlayer(props) {
 
 	const fetchObfuscatedURL = async (video_name) => {
 
-		console.log("Video Name:", video_name);
+		//  console.log("Video Name:", video_name);
 		//  if(checkvideo(video_name)){
-		console.log("Fetching obfuscated URL for video:", video_name);
+		//  console.log("Fetching obfuscated URL for video:", video_name);
 
-		//console.log(checkvideo(video_name));
+		// console.log(checkvideo(video_name));
 		try {
 
 			const response = await axios.get(
 				`${import.meta.env.VITE_SERVER_URL}/videos/api/obfuscate-url?video_name=${video_name}`
 			);
 			setObfuscatedURL(response.data.obfuscatedURL);
-			console.log("Obfuscated URL:", response.data.obfuscatedURL);
+			//  console.log("Obfuscated URL:", response.data.obfuscatedURL);
 		} catch (error) {
 			console.error("Error fetching obfuscated URL:", error);
 		}
@@ -71,23 +71,23 @@ function CoursePlayer(props) {
 
 
 	const getCourseInfo = useCallback(async () => {
-		console.log("Folder:", folder);
+		//  console.log("Folder:", folder);
 		try {
 			const cacheddata = sessionStorage.getItem(`courseData-${folder}`);
-			//console.log("Cached Data:", cacheddata);
+			// console.log("Cached Data:", cacheddata);
 
 			const response = await axios.get(
 				`${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${folder}`
 			);
-			console.log("Response:", response.data);
+			//  console.log("Response:", response.data);
 			setvideoname(response.data.tableout.course_video.S);
 			// sessionStorage.setItem(
 			//   `courseData-${folder}`,
 			//   JSON.stringify(response.data)
 			// )
 			setCourseData(response.data);
-			console.log(courseData);
-			console.log(response.data.tableout.course_video.S);
+			//  console.log(courseData);
+			//  console.log(response.data.tableout.course_video.S);
 			fetchObfuscatedURL(response.data.tableout.course_video.S);
 
 		} catch (error) {
@@ -108,7 +108,7 @@ function CoursePlayer(props) {
 	function handlecomments(event) {
 		event.preventDefault();
 		const data = new FormData(event.target);
-		console.log(data);
+		//  console.log(data);
 		submitcomment(data.get('name'), data.get('email'), data.get('comment'), folder);
 	}
 
@@ -150,7 +150,7 @@ function CoursePlayer(props) {
 	const handleFeedback = (event) => {
 	    event.preventDefault();
 		const data = new FormData(event.target);
-		console.log(data.get('name')), console.log(data.get('Feedback')), console.log(data.get('designation'));
+		//  console.log(data.get('name')),  console.log(data.get('Feedback')),  console.log(data.get('designation'));
 		submitFeedback(folder, props.user?.Name?.S, data.get('Feedback'), data.get('designation'));
 		// submitFeedback(data.get('name'), data.get('Feedback'), folder);
 	}
@@ -202,7 +202,7 @@ function CoursePlayer(props) {
 						<div className="flex items-center">
 							<h3 className="text-2xl font-bold">Course Instructor: </h3>
 							<h3 className="text-2xl font-bold text-blue-500 ml-2">
-								<a href="https://starspeakers">
+								<a href="#">
 									{courseData && courseData.tableout.course_speaker.S}
 								</a>
 							</h3>
@@ -407,7 +407,7 @@ function CoursePlayer(props) {
 	};
 
 	const renderLectures = (moduleName, lectures) => {
-		console.log("Lectures:", lectures);
+		//  console.log("Lectures:", lectures);
 		return lectures.map((lecture, index) => (
 			<div
 				key={index}
@@ -449,10 +449,10 @@ function CoursePlayer(props) {
 			courseData.tableout.Modules.M
 		) {
 			const modules = courseData.tableout.Modules.M;
-			console.log("Modules:", modules);
+			//  console.log("Modules:", modules);
 
 			for (let moduleName in modules) {
-				console.log("Module Name:", moduleName);
+				//  console.log("Module Name:", moduleName);
 				if (modules.hasOwnProperty(moduleName)) {
 					modulesArray.push(
 						<li
@@ -483,7 +483,7 @@ function CoursePlayer(props) {
 	//     const sortedModuleNames = Object.keys(modules).sort(); // Sort module names alphabetically
 
 	//     for (let moduleName of sortedModuleNames) {
-	//       console.log("Module Name:", moduleName);
+	//        console.log("Module Name:", moduleName);
 	//       if (modules.hasOwnProperty(moduleName)) {
 	//         modulesArray.push(
 	//           <li key={moduleName} className={`list-group-item module-item ${styles.moduleItem}`}>
@@ -620,7 +620,7 @@ function CoursePlayer(props) {
 			{/* Left Section - Video and Description */}
 			<div className="lg:col-span-2">
 				<div className="mb-4">
-					{console.log("Obfuscated URL:", obfuscatedURL)}
+					{/* { console.log("Obfuscated URL:", obfuscatedURL)} */}
 					<Helper obfuscatedURL={obfuscatedURL} title={folder} />
 					<hr className="my-4" />
 				</div>

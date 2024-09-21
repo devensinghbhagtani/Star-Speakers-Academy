@@ -46,7 +46,7 @@ function WorkshopFor(props) {
           <div className="h-[300px] w-full md:w-[20%] flex items-center justify-center">
             <img
               className="absolute object-cover z-10 h-[300px] transition-all ease-in duration-1000"
-              src={`./assets/Illustrations/${image}.png`}
+              src={`/assets/Illustrations/${image}.png`}
               alt=""
             />
           </div>

@@ -8,7 +8,7 @@ function CourseTab(props) {
   const navigate=useNavigate();
   return (
     <div>
-      <Card onClick={()=>{navigate(`/course/details/${props.coursename}`)}}>
+      <Card onClick={()=>{navigate(`${import.meta.env.VITE_SERVER_URL}/course/details/${props.coursename}`)}}>
         <div className="pfp">
           <img src={props.course_image} alt=""/>
         </div>
@@ -17,7 +17,7 @@ function CourseTab(props) {
         </h2>
         <div className="mt-3 star flex gap-2 items-center ">
           {/* <div className="total-stars w-[120px] flex justify-center ">
-            <img src="./assets/stars.svg" alt="Stars" />
+            <img src="/assets/stars.svg" alt="Stars" />
           </div> */}
           {/* <h4 className="text-sm">(15)</h4> */}
         </div>

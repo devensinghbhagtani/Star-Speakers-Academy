@@ -21,8 +21,8 @@ function MasterClass() {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/masterclass/getmasterclass`
       );
-      console.log(response.data);
-      console.log(response.data.masterclass);
+      //  console.log(response.data);
+      //  console.log(response.data.masterclass);
       setMasterclass({
         followers: response.data.masterclass[0],
         speakerdetails: response.data.masterclass[1],
@@ -36,9 +36,15 @@ function MasterClass() {
 
     } catch (error) {
       console.error('Error fetching videos:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong! There was an error while fetching the data, please try again later. If the problem persists, please contact us.',
+        confirmButtonColor: '#f54748',
+      });
     }
   }
-  console.log(masterclass);
+  //  console.log(masterclass);
   useEffect(() => {
     getinfo();
   }, []);

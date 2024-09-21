@@ -2,7 +2,7 @@ import React from "react";
 import { Quote } from "lucide-react";
 
 function FeedbackCard(props) {
-  console.log(props.name);
+  //  console.log(props.name);
   return (
     <div className="bg-white w-full h-auto  rounded-2xl p-6 flex flex-col justify-between">
       <div className="flex justify-between items-center">

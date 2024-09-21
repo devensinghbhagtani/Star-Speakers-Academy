@@ -11,7 +11,7 @@ function PopularCourses() {
     try {
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/videos/getpopularcourse`);
       const data = await response.json();
-      console.log(data.response);
+      //  //console.log(data.response);
       setPopularCourses(data.response);
     } catch (error) {
       console.error(error);

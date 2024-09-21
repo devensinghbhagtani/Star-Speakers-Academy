@@ -20,21 +20,21 @@ function CourseDetails(props) {
   const [obfuscatedURL, setObfuscatedURL] = useState(null);
 
   const { folder } = useParams();
-  console.log(props.user);
+  //  console.log(props.user);
   
   const getCourseInfo = useCallback(async () => {
-    console.log("Folder:", folder);
+    //  console.log("Folder:", folder);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/videos/getvideodetails?folder=${folder}`
       );
-      console.log("Response:", response.data.tableout);
+      //  console.log("Response:", response.data.tableout);
       sessionStorage.setItem(
         courseData-`${folder}`,
         JSON.stringify(response.data)
       );
       setCourseData(response.data.tableout);
-      console.log(response.data.tableout.course_video.S);
+      //  console.log(response.data.tableout.course_video.S);
       fetchObfuscatedURL(response.data.tableout.course_video.S);
     } catch (error) {
       console.error("Error fetching course information:", error);
@@ -47,7 +47,7 @@ function CourseDetails(props) {
         `${import.meta.env.VITE_SERVER_URL}/videos/api/obfuscate-url?video_name=${video_name}`
       );
       setObfuscatedURL(response.data.obfuscatedURL);
-      console.log("Obfuscated URL:", response.data.obfuscatedURL);
+      //  console.log("Obfuscated URL:", response.data.obfuscatedURL);
     } catch (error) {
       console.error("Error fetching obfuscated URL:", error);
     }
@@ -86,7 +86,7 @@ function CourseDetails(props) {
             modules={[Pagination, Navigation]}
             className="swiper-container mt-5 pb-10"
           >
-            {console.log(courseData?.feedback?.L[0].M)}
+            {/* { console.log(courseData?.feedback?.L[0].M)} */}
             {courseData?.feedback?.L?.map((info, key) => 
             (
               <SwiperSlide key={key}>

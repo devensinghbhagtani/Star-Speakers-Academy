@@ -12,7 +12,7 @@ function MeetCoach(props) {
           <div className="order-2 md:order-1 w-[400px] lg:w-[40%] h-full">
             <img
               className="relative scale-[1.2]   md:bottom-0"
-              src="./assets/Images/shinde.png"
+              src="/assets/Images/shinde.png"
               alt=""
             />
           </div>

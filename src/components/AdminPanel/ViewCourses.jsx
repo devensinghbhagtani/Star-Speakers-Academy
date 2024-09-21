@@ -11,8 +11,8 @@ export default function ViewCourses() {
 
     const handleCourseClick = (title) => {
         // setSelectedCourseTitle(title); // Update state with the clicked course title
-        // console.log(`Selected Course: ${title}`); // Log the clicked course title
-        window.location.href = `/course/details/${title}`;
+        //  console.log(`Selected Course: ${title}`); // Log the clicked course title
+        window.location.href = `${import.meta.env.VITE_SERVER_URL}/s/${title}`;
         // yaha se we can add the function that will show the course details
     };
 
@@ -26,9 +26,9 @@ export default function ViewCourses() {
     async function fetchVideos() {
         try {
             const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/videos/videodetails`)
-            console.log(response.data.response);
+            //  console.log(response.data.response);
             setInfo(response.data.response);
-            console.log(info)
+            //  console.log(info)
         
         } catch (error) {
             console.error('Error fetching videos:', error);

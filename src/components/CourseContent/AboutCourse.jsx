@@ -16,14 +16,14 @@ function AboutCourse(props) {
     const finalAmount = price * (1 - discount / 100);
 
     if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
-      console.log("Already enrolled");
+      //  console.log("Already enrolled");
       navigate(url);
     } else {
-      console.log("Not enrolled");
+      //  console.log("Not enrolled");
 
-      console.log("Email:", userEmail);
-      console.log("Course Name:", courseName);
-      console.log("Final Amount:", finalAmount);
+      //  console.log("Email:", userEmail);
+      //  console.log("Course Name:", courseName);
+      //  console.log("Final Amount:", finalAmount);
 
       if (userEmail && courseName && finalAmount > 0) {
         displayRazorpay(userEmail, courseName, finalAmount);

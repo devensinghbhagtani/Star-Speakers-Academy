@@ -13,7 +13,7 @@ export default function NavBar ({checkedCount, totalCount}) {
         <div>
             <nav className={`${styles.navbarChange} navbar navbar-expand-lg py-3 `}>
                 <div className="container-fluid">
-                    <a className={`navbar-brand`} href="#">Star Speakers</a>
+                    <a className={`navbar-brand`} href="/">Star Speakers</a>
                     <div className={styles.verticleLine}></div> {/* This will now work correctly */}
                     <button className={`${styles.navbarChange} navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className={`${styles.navbarChange} navbar-toggler-icon`} ></span>

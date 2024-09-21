@@ -33,8 +33,8 @@ function Hero() {
           className="w-full h-full object-cover lg:object-center"
           src={
             bgImage
-              ? "./assets/Images/Hero2.jpg"
-              : "./assets/Images/heromobile.jpg"
+              ? "/assets/Images/Hero2.jpg"
+              : "/assets/Images/heromobile.jpg"
           }
           alt="Hero"
         />

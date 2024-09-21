@@ -13,10 +13,11 @@ import axios from "axios";
 import Helper from "../VideoPlayer/detailVideo";
 import ReactPlayer from "react-player";
 import { displayRazorpay } from "../../payment";
+import Swal from "sweetalert2";
 
 function CourseHero(props) {
-  console.log(props.data);
-  console.log(props.user);
+  //  console.log(props.data);
+  //  console.log(props.user);
   const navigate = useNavigate();
   const { folder } = useParams();
 
@@ -30,14 +31,14 @@ function CourseHero(props) {
     if(props.user){
 
     if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
-      console.log("Already enrolled");
+      //  console.log("Already enrolled");
       navigate(url);
     } else {
-      console.log("Not enrolled");
+      //  console.log("Not enrolled");
 
-      console.log("Email:", userEmail);
-      console.log("Course Name:", courseName);
-      console.log("Final Amount:", finalAmount);
+      //  console.log("Email:", userEmail);
+      //  console.log("Course Name:", courseName);
+      //  console.log("Final Amount:", finalAmount);
 
       if (userEmail && courseName && finalAmount > 0) {
       const res =  await displayRazorpay(userEmail, courseName, finalAmount);
@@ -162,7 +163,7 @@ function CourseHero(props) {
       <div className="absolute w-full h-full">
         <img
           className="w-full h-full object-cover lg:object-center"
-          src="../.././assets/Images/coursebanner.jpg"
+          src="../..//assets/Images/coursebanner.jpg"
           alt="Hero"
         />
       </div>

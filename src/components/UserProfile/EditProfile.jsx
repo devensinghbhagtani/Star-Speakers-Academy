@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 
 
 export default function EditProfile(props) {
-    console.log(props.user);
+    //  console.log(props.user);
     const [userDetail, setUserDetails] = useState({})
 
 
@@ -20,7 +20,7 @@ export default function EditProfile(props) {
     }
 
     async function sendupdatedetails(data) {
-        console.log(data);
+        //  console.log(data);
         const url = `${import.meta.env.VITE_SERVER_URL}/masterclass/updateuserdetails`;
         try {
             const response = await axios.post(url, data, { withCredentials: true }, {
@@ -28,7 +28,7 @@ export default function EditProfile(props) {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(response.data.userData);
+            //  console.log(response.data.userData);
             Swal.fire({
                 title: 'Success',
                 text: 'Details updated successfully',
@@ -72,7 +72,7 @@ export default function EditProfile(props) {
         //     return
         // }
 
-        console.log("Updating details..")
+        //  console.log("Updating details..")
 
         setUserDetails({
             name: e.target.name.value,
@@ -83,7 +83,7 @@ export default function EditProfile(props) {
             gender: e.target.gender.value,
             address: e.target.address.value,
         })
-        console.log(userDetail)
+        //  console.log(userDetail)
     }
 
     return (

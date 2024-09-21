@@ -17,8 +17,8 @@ function Feedback() {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/masterclass/getmasterclassfeedbackss`
       );
-      console.log("Response:", response);
-      console.log("Response:", response.data.masterclassfeedback);
+      //  console.log("Response:", response);
+      //  console.log("Response:", response.data.masterclassfeedback);
       setFeedback(response.data.masterclassfeedback);
       setIsMasterclass(true);
     } catch (error) {
@@ -34,7 +34,7 @@ function Feedback() {
       if (response.data.feedback) {
         setFeedback(response.data.feedback);
       }
-      console.log("Response:", response.data.feedback);
+      //  console.log("Response:", response.data.feedback);
       setIsMasterclass(false);
     } catch (error) {
       console.error("Error fetching feedback:", error);
