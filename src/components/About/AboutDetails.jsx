@@ -7,7 +7,7 @@ function AboutDetails() {
         <div className="w-[1080px]  flex flex-col  gap-7  p-10 text-md md:text-lg leading-7  text-zinc-600 ">
           <div className="flex flex-col md:flex-row justify-center items-center">
             <div className=" w-[310px] md:w-[60%] flex flex-col md:gap-5 items-end">
-              <h1 className="text-3xl font-semibold italic tracking-tighter ">
+              <h1 className="text-3xl font-semibold italic tracking-tighter pl-0">
                 “Make sure all the choices you make in life come{" "}
                 <mark className="text-zinc-600 bg-[#FFC27A]">
                   from a point of awareness
@@ -22,7 +22,7 @@ function AboutDetails() {
           </div>
           <div>
             <div className="border-b-2 pb-2 mb-2">
-              <h1 className="text-2xl font-semibold">
+              <h1 className="text-2xl font-semibold pl-0">
                 My entrepreneurial journey
               </h1>
               <h2 className="text-md italic">2020-2024</h2>

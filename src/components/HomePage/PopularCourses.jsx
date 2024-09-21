@@ -4,12 +4,13 @@ import ProgramCard from "./ProgramCard";
 import { ArrowRight, Key } from "lucide-react";
 
 function PopularCourses() {
-
   const [popularCourses, setPopularCourses] = useState(null);
 
   async function fetchPopularCourses() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/videos/getpopularcourse`);
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/videos/getpopularcourse`
+      );
       const data = await response.json();
       //  //console.log(data.response);
       setPopularCourses(data.response);
@@ -22,14 +23,12 @@ function PopularCourses() {
     fetchPopularCourses();
   }, []);
 
-
-
   return (
-    <div className="w-full flex justify-center py-10 ">
-      <div className=" flex flex-col lg:flex-row items-center  w-[1080px] min-h-[300px] justify-center lg:justify-between">
-        <div className="title flex flex-col items-center lg:items-start text-center lg:text-left ">
-          <h1 className="text-lg font-[300]">EXPLORE PROGRAMS:</h1>
-          <h1 className="text-4xl leading-9 font-[500] w-[250px] md:w-full lg:max-w-[200px] ">
+    <div className="w-full flex justify-center py-10">
+      <div className=" flex flex-col lg:flex-row items-center w-[1080px] min-h-[300px] justify-center lg:justify-between">
+        <div className="title flex flex-col items-center  lg:items-start text-center lg:text-left ">
+          <h1 className="text-lg font-[300] pl-0 ">EXPLORE PROGRAMS:</h1>
+          <h1 className="text-4xl leading-9 pl-0 font-[500] w-[250px] md:w-full lg:max-w-[200px] ">
             <mark className="bg-transparent text-[rgb(32,180,134)]">
               Most Popular{" "}
             </mark>
@@ -41,14 +40,15 @@ function PopularCourses() {
           </h2>
         </div>
         <div className="flex flex-wrap lg:flex-nowrap gap-5 justify-center">
-          {popularCourses && popularCourses.map((course,index) => (
-            <ProgramCard 
-            key={index}
-            coursename={course?.coursename} 
-            price={course?.price}
-            courseimage={course?.course_image_url}
-             />
-          ))}
+          {popularCourses &&
+            popularCourses.map((course, index) => (
+              <ProgramCard
+                key={index}
+                coursename={course?.coursename}
+                price={course?.price}
+                courseimage={course?.course_image_url}
+              />
+            ))}
         </div>
       </div>
     </div>

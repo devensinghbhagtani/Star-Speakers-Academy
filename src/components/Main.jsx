@@ -14,11 +14,10 @@ function Main() {
       <Hero />
       <Colleges />
       <PopularCourses />
-      <hr />
       {/* <Trainers /> */}
       <Achievement />
-      <Feedback />
       <VideoSection />
+      <Feedback />
     </main>
   );
 }

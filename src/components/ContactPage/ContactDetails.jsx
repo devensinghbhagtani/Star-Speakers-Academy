@@ -15,7 +15,7 @@ function ContactDetails() {
   const [showGallery, setShowGallery] = useState(false);
   const [imageNumber, setImageNumber] = useState(1);
   const [opacity, setOpacity] = useState(false);
-  
+
   async function sendemail(event) {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -25,38 +25,38 @@ function ContactDetails() {
     //  console.log(data.get("subject"));
     //  console.log(data.get("message"));
 
-
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/email/contactemail`, {
-      name: data.get("name"),
-      email: data.get("email"),
-      phone: data.get("phone"),
-      subject: data.get("subject"),
-      message: data.get("message"),
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_SERVER_URL}/email/contactemail`,
+      {
+        name: data.get("name"),
+        email: data.get("email"),
+        phone: data.get("phone"),
+        subject: data.get("subject"),
+        message: data.get("message"),
+      }
+    );
     // alert(response.data.message);
     displayModal(response.data.message, "success");
   }
 
   function displayModal(message, status) {
-		if (status === "success") {
-			Swal.fire({
-				title: "Success",
-				text: message,
-				icon: "success",
-				confirmButtonText: "OK",
-			});
-		}
-		else {
-			Swal.fire({
-				title: "Error",
-				text: message,
-				icon: "error",
-				confirmButtonText: "OK",
-			});
-		}
-	}
+    if (status === "success") {
+      Swal.fire({
+        title: "Success",
+        text: message,
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }
 
-  
   return (
     <div>
       <div
@@ -74,7 +74,7 @@ function ContactDetails() {
       <div className="flex w-full p-10 lg:justify-center  lg:items-center overflow-hidden ">
         <div className="w-[1080px] lg:items-center h-full flex flex-col lg:flex-row gap-7   text-md md:text-lg leading-7 lg:justify-between text-zinc-600 ">
           <div className="h-full w-full ">
-            <h1 className="text-3xl tracking-tight font-medium">
+            <h1 className="text-3xl tracking-tight font-medium pl-0">
               Send us an Email
             </h1>
             {/* <div className="flex gap-2 mt-2">

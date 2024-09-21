@@ -18,7 +18,7 @@ function VideoPart() {
         </div>
 
         <div className="max-w-[350px] mt-5 md:w-[500px] flex flex-col gap-2 items-center lg:items-start lg:w-[40%] text-center lg:text-left">
-          <h1 className="text-4xl  font-[500] tracking-tight ">
+          <h1 className="text-4xl  font-[500] tracking-tight pl-0 ">
             Expand Your Horizons with{" "}
             <mark className="bg-transparent text-[#20b486]">
               Expert Trainers

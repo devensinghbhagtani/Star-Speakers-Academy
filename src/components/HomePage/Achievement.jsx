@@ -5,23 +5,23 @@ import { Users, TvMinimalPlay, GraduationCap } from "lucide-react";
 import AchievementTabs from "./AchievementTabs";
 
 function Achievement() {
-
   const [achievements, setAchievements] = useState(null);
 
   async function getaachievements() {
-    const response=await axios.get(`${import.meta.env.VITE_SERVER_URL}/masterclass/getachievements`);
+    const response = await axios.get(
+      `${import.meta.env.VITE_SERVER_URL}/masterclass/getachievements`
+    );
     // console.log(response.data.response);
     setAchievements(response.data.response.M);
-     //console.log(achievements.hours);
+    //console.log(achievements.hours);
   }
-  
+
   useEffect(() => {
     getaachievements();
   }, []);
 
-  
   return (
-    <div className=" p-10 flex  w-full min-h-[550px]  justify-center overflow-hidden">
+    <div className=" bg-[#EAEAEA] p-10 flex  w-full min-h-[550px]  justify-center overflow-hidden">
       <div className="w-[1080px] items-center flex flex-col md:flex-row ">
         <div className="md:w-[60%] flex flex-col md:items-start items-center">
           <h1 className="text-4xl font-[500] text-center md:text-left pl-0">
