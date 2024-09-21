@@ -4,11 +4,11 @@ import styled from "styled-components";
 function Colleges() {
   return (
     <div className="bg-[#EAEAEA] flex flex-col justify-center items-center overflow-hidden h-[180px] md:h-[200px] py-5">
-      <h1 className=" md:text-lg tracking-wider font-[500] text-[#8C8C8C] mb-5">
+      <h1 className=" md:text-lg tracking-wider font-[500] text-[#8C8C8C] mb-3">
         COLLEGES WORKED WITH:
       </h1>
       <Marquee>
-        <div className="[&>img]:w-[6%] lg:[&>img]:w-[6%] md:[&>img]:w-[4%]">
+        <div className="[&>img]:w-[50%] [&>img]:h-[80px] md:[&>img]:w-[50%] md:[&>img]:h-[100px] lg:[&>img]:w-[50%] lg:[&>img]:h-[100px]">
           <img src="/assets/Logos/Artboard 1.png" alt="" />
           <img src="/assets/Logos/Artboard 2.png" alt="" />
           <img src="/assets/Logos/Artboard 3.png" alt="" />
@@ -38,7 +38,7 @@ const Marquee = styled.div`
   overflow: hidden;
   div {
     display: flex;
-    gap: 50px;
+    gap: 20px;
     animation: marquee 20s linear infinite;
   }
   @keyframes marquee {
