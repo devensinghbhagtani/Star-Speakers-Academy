@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import GalleryCard from "./GalleryCard";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function ContactDetails() {
   const [showGallery, setShowGallery] = useState(false);

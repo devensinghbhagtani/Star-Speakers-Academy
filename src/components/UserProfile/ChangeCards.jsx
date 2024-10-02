@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './UserProfile.module.css';
+import Swal from "sweetalert2";
 
 export default function ChangeCards() {
 

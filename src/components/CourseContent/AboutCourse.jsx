@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { displayRazorpay } from "../../payment";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function AboutCourse(props) {
   const navigate = useNavigate();
