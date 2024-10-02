@@ -14,7 +14,7 @@ function GalleryCard({ setOpacity, setImageNumber, card }) {
     >
       <img
         className="w-full h-full  object-cover"
-        src={`../.././assets/Gallery/pfp${card}.png`}
+        src={`../.././assets/Gallery/image_${card}.JPG`}
         alt=""
       />
     </div>

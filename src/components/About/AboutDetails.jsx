@@ -7,12 +7,12 @@ function AboutDetails() {
         <div className="w-[1080px]  flex flex-col  gap-7  p-10 text-md md:text-lg leading-7  text-zinc-600 ">
           <div className="flex flex-col md:flex-row justify-center items-center">
             <div className=" w-[310px] md:w-[60%] flex flex-col md:gap-5 items-end">
-              <h1 className="text-3xl font-semibold italic tracking-tighter pl-0">
-                “Make sure all the choices you make in life come{" "}
-                <mark className="text-zinc-600 bg-[#FFC27A]">
-                  from a point of awareness
+              <h1 className="text-2xl font-semibold italic tracking-tighter pl-0">
+                “Effective communication is not just about speaking; it's about listening, understanding, and connecting.{" "}
+                <mark className="text-zinc-700 bg-[#FFC27A]">
+                Master the art of communication,
                 </mark>{" "}
-                and not ignorance.”
+                and you'll master the art of influence.”
               </h1>
               <h1 className="italic">-Atul Shinde</h1>
             </div>

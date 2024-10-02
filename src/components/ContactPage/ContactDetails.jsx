@@ -66,7 +66,7 @@ function ContactDetails() {
       >
         <img
           className={`h-full w-full object-cover`}
-          src={`../.././assets/Gallery/pfp${imageNumber}.png`}
+          src={`../.././assets/Gallery/image_${imageNumber}.JPG`}
           alt=""
         />
       </div>
@@ -206,8 +206,8 @@ function ContactDetails() {
             >
               <img
                 className={`h-full w-full object-cover`}
-                src={`../.././assets/Gallery/pfp${imageNumber}.png`}
-                alt=""
+                src={`../.././assets/Gallery/image_${imageNumber}.JPG`}
+                alt="image"
               />
             </div>
           </div>

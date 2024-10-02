@@ -11,6 +11,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import FrequentlyAsked from "./FrequentlyAsked/FrequentlyAsked";
 import AboutCourse from "./AboutSection/AboutCourse";
+import Swal from "sweetalert2";
 
 function MasterClass() {
 
