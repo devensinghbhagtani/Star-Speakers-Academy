@@ -8,9 +8,10 @@ function AboutDetails() {
           <div className="flex flex-col md:flex-row justify-center items-center">
             <div className=" w-[310px] md:w-[60%] flex flex-col md:gap-5 items-end">
               <h1 className="text-2xl font-semibold italic tracking-tighter pl-0">
-                “Effective communication is not just about speaking; it's about listening, understanding, and connecting.{" "}
+                “Effective communication is not just about speaking; it's about
+                listening, understanding, and connecting.{" "}
                 <mark className="text-zinc-700 bg-[#FFC27A]">
-                Master the art of communication,
+                  Master the art of communication,
                 </mark>{" "}
                 and you'll master the art of influence.”
               </h1>
@@ -22,42 +23,41 @@ function AboutDetails() {
           </div>
           <div>
             <div className="border-b-2 pb-2 mb-2">
-              <h1 className="text-2xl font-semibold pl-0">
-                My entrepreneurial journey
-              </h1>
-              <h2 className="text-md italic">2020-2024</h2>
+              <h1 className="text-2xl font-semibold pl-0">Our Mission</h1>
+              {/* <h2 className="text-md italic">2020-2024</h2> */}
             </div>
             <div className="flex flex-col gap-10">
               <p className="">
-                Atul Shinde is an esteemed educator, mentor, and entrepreneur,
-                specializing in teaching speaking skills and other soft skills.
-                Based in India, Atul is the proud owner of Star Speakers
-                Academy, a premier institution dedicated to transforming
-                individuals into masterful communicators. With a substantial
-                following across various social media platforms, Atul attributes
-                much of his success to his exceptional communication abilities.
+                At the Communication Success Coaching System, our mission is to
+                empower individuals by transforming their communication skills,
+                enabling them to excel in both their personal and professional
+                lives. We aim to eradicate the barriers caused by poor
+                communication, ensuring that no one is discriminated against or
+                held back due to their ability to express themselves. Our
+                community is dedicated to helping individuals build confidence,
+                improve their public speaking, and enhance their overall
+                presentation skills.
               </p>
-
-              <p>
-                Today, Atul Shinde is invited to speak at top colleges and
-                companies worldwide, addressing audiences in the hundreds and
-                thousands. From being a fearful speaker, Atul now thrives on
-                stage, captivating his audience with confidence and charisma. He
-                is a bestselling author and has been writing a daily blog since
-                2005, sharing insights and experiences that inspire many. Atul
-                considers listening as his superpower, making everyone he
-                interacts with feel like the center of his universe.
-              </p>
-              <p>
-                Atul Shinde brings to you, for the first time ever, the
-                techniques and exercises that worked for him, through his
-                programs at Star Speakers Academy. These simple yet effective
-                concepts, coupled with rigorous exercises, are designed to help
-                you become a masterful communicator. Whether you're looking to
-                enhance your public speaking skills or develop other essential
-                soft skills, Atul Shinde's expertise and personalized approach
-                will guide you towards achieving your goals.
-              </p>
+              <div>
+                <div className="border-b-2 pb-2 mb-2">
+                  <h1 className="text-2xl font-semibold pl-0">
+                    My entrepreneurial journey
+                  </h1>
+                  {/* <h2 className="text-md italic">2020-2024</h2> */}
+                </div>
+                <p>
+                  My journey to this niche is deeply personal. In college, my
+                  inability to communicate effectively left me feeling isolated
+                  and excluded from presentation groups. This painful experience
+                  ignited a passion in me to ensure that others wouldn't face
+                  the same challenges. From a young age, I observed that good
+                  communication skills attracted smart people and had a
+                  significant impact on influencing others. Feedback from
+                  friends, mentors, and leaders throughout my life confirmed
+                  that this passion was inherent in me, driving me to start
+                  training others.
+                </p>
+              </div>
             </div>
           </div>
         </div>
