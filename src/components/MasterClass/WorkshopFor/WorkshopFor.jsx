@@ -5,8 +5,9 @@ import { displayRazorpay, takeemail } from "../../../payment";
 
 function WorkshopFor(props) {
   const [image, setImage] = useState(1);
-  const amount = props.masterclasstitle.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
-  function handlepay(){
+  const amount =
+    props.masterclasstitle.priceat.N * (1 - props.discount.N / 100).toFixed(2);
+  function handlepay() {
     const email = takeemail();
     displayRazorpay(email, "masterclass", amount);
   }
@@ -23,23 +24,17 @@ function WorkshopFor(props) {
           <div className="h-full gap-5 md:h-[400px] w-full md:w-[50%] flex flex-col justify-between z-20">
             <div className="flex justify-center md:justify-end w-full">
               <div onMouseEnter={() => setImage(1)}>
-                <WorkshopCard 
-                text={props.foryou.ip1.S}
-                />
+                <WorkshopCard text={props.foryou.ip1.S} />
               </div>
             </div>
             <div className="flex justify-center w-full">
               <div onMouseEnter={() => setImage(2)}>
-                <WorkshopCard  
-                 text={props.foryou.ip2.S}
-                />
+                <WorkshopCard text={props.foryou.ip2.S} />
               </div>
             </div>
             <div className="flex justify-center md:justify-end w-full">
               <div onMouseEnter={() => setImage(3)}>
-                <WorkshopCard 
-                 text={props.foryou.ip3.S}
-                />
+                <WorkshopCard text={props.foryou.ip3.S} />
               </div>
             </div>
           </div>
@@ -53,23 +48,17 @@ function WorkshopFor(props) {
           <div className="h-full gap-5 md:h-[400px] w-full md:w-[50%] flex flex-col justify-between z-20">
             <div className="flex justify-center w-full">
               <div onMouseEnter={() => setImage(4)}>
-                <WorkshopCard
-                 text={props.foryou.ip4.S}
-                />
+                <WorkshopCard text={props.foryou.ip4.S} />
               </div>
             </div>
             <div className="flex justify-center md:justify-end w-full">
               <div onMouseEnter={() => setImage(5)}>
-                <WorkshopCard
-                 text={props.foryou.ip5.S}
-                />
+                <WorkshopCard text={props.foryou.ip5.S} />
               </div>
             </div>
             <div className="flex justify-center w-full">
               <div onMouseEnter={() => setImage(6)}>
-                <WorkshopCard 
-                 text={props.foryou.ip6.S}
-                />
+                <WorkshopCard text={props.foryou.ip6.S} />
               </div>
             </div>
           </div>
@@ -81,14 +70,15 @@ function WorkshopFor(props) {
           </mark>
         </h1>
         <h1 className="w-[340px] text-md md:text-md md:w-[730px] text-zinc-700 font-medium text-center mb-4">
-          "Because In The Next 3 Days, <u>I Am Going To Guide You</u> Through{" "}
-          <b>
-            <i>The Transformative Power Of NLP,</i>
-          </b>{" "}
-          Unlocking Your Full Potential And Helping You Achieve Profound
-          Personal Growth"
+          ""Then this workshop is the perfect place to{" "}
+          <u>enhance your communication skills,</u> boost confidence for
+          interviews, and{" "}
+          <b>improve your overall personal and professional interactions.</b>"
         </h1>
-        <Button1 className=" px-20 py-2 md:px-52 md:py-4 lg:px-24 lg:py-2 md:text-xl" onClick={handlepay}>
+        <Button1
+          className=" px-20 py-2 md:px-52 md:py-4 lg:px-24 lg:py-2 md:text-xl"
+          onClick={handlepay}
+        >
           <a href="">ENROLL NOW</a>
           <div className="hoverdiv"></div>
         </Button1>
