@@ -70,10 +70,10 @@ function WorkshopFor(props) {
           </mark>
         </h1>
         <h1 className="w-[340px] text-md md:text-md md:w-[730px] text-zinc-700 font-medium text-center mb-4">
-          ""Then this workshop is the perfect place to{" "}
+          "Then this workshop is the perfect place to{" "}
           <u>enhance your communication skills,</u> boost confidence for
-          interviews, and{" "}
-          <b>improve your overall personal and professional interactions.</b>"
+          interviews, and improve your overall personal and professional
+          interactions."
         </h1>
         <Button1
           className=" px-20 py-2 md:px-52 md:py-4 lg:px-24 lg:py-2 md:text-xl"
