@@ -24,6 +24,13 @@ function Colleges() {
           <img src="/assets/Logos/Artboard 13.png" alt="" />
           <img src="/assets/Logos/Artboard 14.png" alt="" />
           <img src="/assets/Logos/Artboard 15.png" alt="" />
+          <img src="/assets/Logos/Artboard 1.png" alt="" />
+          <img src="/assets/Logos/Artboard 2.png" alt="" />
+          <img src="/assets/Logos/Artboard 3.png" alt="" />
+          <img src="/assets/Logos/Artboard 4.png" alt="" />
+          <img src="/assets/Logos/Artboard 5.png" alt="" />
+          <img src="/assets/Logos/Artboard 6.png" alt="" />
+          <img src="/assets/Logos/Artboard 7.png" alt="" />
         </div>
       </Marquee>
     </div>
