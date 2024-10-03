@@ -4,7 +4,7 @@ function ErrorPage() {
   return (
     <>
       <div className="w-full h-[60px] bg-zinc-700 fixed flex items-center justify-center">
-        <img className="size-32" src="./assets/Icons/logo.svg" alt="" />
+        <img className="size-32" src="../assets/Icons/logo.svg" alt="" />
       </div>
       <div className="w-full h-screen flex flex-col justify-center items-center">
         <div className="flex flex-col items-center gap-10">

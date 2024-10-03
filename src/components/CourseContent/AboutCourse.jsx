@@ -31,7 +31,10 @@ function AboutCourse(props) {
       } else {
         console.error("Missing required information for payment.");
         // alert("Unable to proceed with payment due to missing information.");
-        displayModal("Unable to proceed with payment due to missing information.", "error");
+        displayModal(
+          "Unable to proceed with payment due to missing information.",
+          "error"
+        );
       }
     }
   }
@@ -43,8 +46,7 @@ function AboutCourse(props) {
         icon: "success",
         confirmButtonText: "OK",
       });
-    }
-    else {
+    } else {
       Swal.fire({
         title: "Error",
         text: message,
@@ -56,14 +58,16 @@ function AboutCourse(props) {
 
   return (
     <div className="pb-10 px-5 text-zinc-800 w-full  flex justify-center">
-
       <div className=" flex flex-col items-center h-full w-[1080px] mt-4 ">
         <br />
         <h1 className="text-4xl text-center font-[500]  mb-5 text-zinc-700">
           About the{" "}
           <mark className="bg-transparent text-[#20b486]">Course</mark>
         </h1>
-        <div className="flex flex-col gap-7  md:text-lg" style={{ textAlign: "justify" }}>
+        <div
+          className="flex flex-col gap-7  md:text-lg"
+          style={{ textAlign: "justify" }}
+        >
           {props.data?.course_description?.S}
           {/* <p>
             Building something you love. <br />
@@ -88,25 +92,31 @@ function AboutCourse(props) {
             confidently.
           </p> */}
           <h1 className="w-full bg-[#FFC27A] rounded-md text-zinc-700 font-[500]  text-center text-lg md:text-xl px-10 py-3  tracking-tighter">
-            Through expert insights and proven strategies, you’ll be equipped
-            with the knowledge and mindset to navigate the startup ecosystem
-            confidently.
+            "Unlock your true potential by mastering communication skills that
+            will empower you to succeed in interviews, presentations, and all
+            aspects of personal and professional life."
           </h1>
         </div>
-        <Button className="mt-5  text-white  bg-[#20b486]" onClick={() => handleNavigation(`/course/videos/${props.data?.coursename?.S ?? "default"}`)}>
-          <a
-            className="flex gap-2  justify-center items-center text-xl "
-
-          >
-            {props.user?.coursesinfo?.M && props.user.coursesinfo.M[props.data?.coursename?.S] ? "Go to Course" :
+        <Button
+          className="mt-5  text-white  bg-[#20b486]"
+          onClick={() =>
+            handleNavigation(
+              `/course/videos/${props.data?.coursename?.S ?? "default"}`
+            )
+          }
+        >
+          <a className="flex gap-2  justify-center items-center text-xl ">
+            {props.user?.coursesinfo?.M &&
+            props.user.coursesinfo.M[props.data?.coursename?.S] ? (
+              "Go to Course"
+            ) : (
               <div className="flex items-center">
                 Enroll Now for
                 <IndianRupee size={20} strokeWidth={3} />
-                {(props.data?.price?.N ?? 0) * (1 - (props.data?.discount?.N ?? 0) / 100)}
+                {(props.data?.price?.N ?? 0) *
+                  (1 - (props.data?.discount?.N ?? 0) / 100)}
               </div>
-            }
-
-
+            )}
           </a>
           <div className="hoverdiv"></div>
         </Button>

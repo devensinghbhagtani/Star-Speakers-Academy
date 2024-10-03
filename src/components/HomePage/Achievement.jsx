@@ -29,16 +29,27 @@ function Achievement() {
             <mark className="bg-transparent text-[#20B486]">Achievement</mark>{" "}
           </h1>
           <h2 className=" mt-2 text-center md:text-left max-w-[500px] md:max-w-full md:w-full">
-            At Star Speakers Academy, we pride ourselves on our outstanding
-            track record of excellence and growth. Over the years,{" "}
-            <strong className="font-[500]">
-              <em>
-                we have empowered thousands of students, collaborated with
-                numerous industry leaders, and achieved significant milestones{" "}
-              </em>{" "}
-            </strong>
-            that reflect our commitment to quality education and professional
-            development.
+            <p>
+              At Star Speakers Academy, we transform students and empower
+              companies through our communication training programs. We have{" "}
+              <strong className="font-[500]">
+                <em>trained over 10,000 students,</em>
+              </strong>{" "}
+              helping them improve their academic performance, boost confidence,
+              and win prestigious public speaking competitions. Our programs
+              also develop leadership skills, with many students taking on
+              leadership roles and experiencing personal growth.
+            </p>
+            <p>
+              For companies, we have conducted over{" "}
+              <strong className="font-[500]">
+                <em>500 corporate training sessions,</em>
+              </strong>{" "}
+              improving workplace communication by 30% and enhancing leadership
+              capabilities for over 2,000 leaders. With a 95% client
+              satisfaction rate, we take pride in helping individuals and
+              organizations communicate with confidence and impact.
+            </p>
           </h2>
           <div className="flex flex-col lg:gap-4 mt-5">
             <div className="flex gap-2 lg:gap-4">
