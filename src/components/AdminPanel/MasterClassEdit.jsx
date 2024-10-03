@@ -368,7 +368,7 @@ export default function MasterClassEdit() {
 		});
 		//  console.log(data);
 		// alert(data.message);
-		
+
 		displayModal(data.message, "success");
 	}
 
@@ -639,34 +639,34 @@ export default function MasterClassEdit() {
 							>
 								Add New File
 							</button>
-							
-								
-							
+
+
+
 						</div>
 						<form onSubmit={SubmitFeedback}>
 
-						<hr className="my-4" />
-						<div className="space-y-4 feedback-file-details">
-							Feedback input will be displayed here
-							<br />
-							{[...Array(3)].map((_, i) => (
-								<input
-									key={i}
-									type="file"
-									className="border my-3 mx-2 p-2"
-									name={`file${i + 1}`}
-								/>
-							))}
-							<br />
-							<button
+							<hr className="my-4" />
+							<div className="space-y-4 feedback-file-details">
+								Feedback input will be displayed here
+								<br />
+								{[...Array(3)].map((_, i) => (
+									<input
+										key={i}
+										type="file"
+										className="border my-3 mx-2 p-2"
+										name={`file${i + 1}`}
+									/>
+								))}
+								<br />
+								<button
 									type="submit"
 									className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300 flex-col"
 								>
 									Submit
 								</button>
 
-							<br />
-						</div>
+								<br />
+							</div>
 						</form>
 					</div>
 				</div>
@@ -800,6 +800,75 @@ export default function MasterClassEdit() {
 						</form>
 					</div>
 				</div> */}
+				<hr className="my-8" />
+				<div>
+					<div className="space-y-4">
+						<h3 className="text-xl font-semibold">For You Section</h3>
+						<hr className="my-4" />
+						<form onSubmit={SubmitForYou}>
+							<div className="space-y-4">
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">For you 1</label>
+									<input
+										type="text"
+										className="border rounded p-2"
+										name="ip1"
+										placeholder="For you 1"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">For you 2</label>
+									<input
+										type="text"
+										className="border rounded p-2"
+										name="ip2"
+										placeholder="For you 2"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">For you 3:</label>
+									<input
+										type="text"
+										className="border rounded p-2"
+										name="ip3"
+										placeholder="For you 3"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">For you 4:</label>
+									<input
+										type="text"
+										className="border rounded p-2"
+										name="ip4"
+										placeholder="For you 4"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">For you 5:</label>
+									<input
+										type="text"
+										className="border rounded p-2"
+										name="ip5"
+										placeholder="For you 5"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<label className="items-center">For you 6:</label>
+									<input
+										type="text"
+										className="border rounded p-2"
+										name="ip6"
+										placeholder="For you 6"
+									/>
+								</div>
+								<button
+									type="submit"
+									className="bg-custom-green text-white px-4 py-2 rounded mt-4 hover:bg-[#0d865f] transition-all duration-300"
+								>Submit For you</button>
+							</div>
+						</form>
+					</div>
+				</div>
 				<hr className="my-8" />
 				<div>
 					<div className="">
