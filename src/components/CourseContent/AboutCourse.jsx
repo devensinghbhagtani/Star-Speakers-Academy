@@ -14,7 +14,9 @@ function AboutCourse(props) {
     const courseName = props.data?.coursename?.S;
     const price = parseFloat(props.data?.price?.N ?? 0);
     const discount = parseFloat(props.data?.discount?.N ?? 0);
-    const finalAmount = Math.floor(price * (1 - discount / 100));
+    const finalAmount = Math.ceil(
+      (props.data?.price?.N ?? 0) * (1 - (props.data?.discount?.N ?? 0) / 100)
+    );
 
     if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
       //  console.log("Already enrolled");
@@ -113,8 +115,7 @@ function AboutCourse(props) {
               <div className="flex items-center">
                 Enroll Now for
                 <IndianRupee size={20} strokeWidth={3} />
-                {(props.data?.price?.N ?? 0) *
-                  (1 - (props.data?.discount?.N ?? 0) / 100)}
+                {finalAmount}
               </div>
             )}
           </a>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CourseTab from "./CourseTab";
-import axios from 'axios';
+import axios from "axios";
 import Feedback from "../Feedback";
 import SearchSection from "./SearchSection";
 
@@ -11,13 +11,14 @@ function DisplayCourses({ searchTerm, user }) {
 
   async function fetchVideos() {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/videos/videodetails`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/videos/videodetails`
+      );
       setInfo(response.data.response);
-      setFilteredCourses(response.data.response); 
-      if (user)
-      setBoughtCourses(user?.coursesinfo?.M);
+      setFilteredCourses(response.data.response);
+      if (user) setBoughtCourses(user?.coursesinfo?.M);
     } catch (error) {
-      console.error('Error fetching videos:', error);
+      console.error("Error fetching videos:", error);
     }
   }
   //  console.log(user?.coursesinfo?.M);
@@ -30,7 +31,7 @@ function DisplayCourses({ searchTerm, user }) {
       setFilteredCourses(info);
     } else {
       setFilteredCourses(
-        info.filter(course => 
+        info.filter((course) =>
           course.coursename.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
@@ -41,18 +42,15 @@ function DisplayCourses({ searchTerm, user }) {
     <div className="px-10 w-full h-full flex justify-center">
       <div className="">
         <div className="flex mb-20 gap-x-7 gap-y-4 flex-wrap min-h-[350px] items-center justify-center">
-          {
-            filteredCourses.map((item, key) => (
-              <CourseTab 
-                key={key}
-                coursename={item.coursename}
-                price={item.price}
-                course_image={item.course_image_url} 
-
-                boughtcourses = {item.coursename in boughtcourses}
-              />
-            ))
-          }
+          {filteredCourses.map((item, key) => (
+            <CourseTab
+              key={key}
+              coursename={item.coursename}
+              price={item.price}
+              course_image={item.course_image_url}
+              boughtcourses={item.coursename in boughtcourses}
+            />
+          ))}
         </div>
       </div>
     </div>

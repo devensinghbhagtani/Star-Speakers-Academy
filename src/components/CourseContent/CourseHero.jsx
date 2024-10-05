@@ -26,7 +26,9 @@ function CourseHero(props) {
     const courseName = props.data?.coursename?.S;
     const price = parseFloat(props.data?.price?.N ?? 0);
     const discount = parseFloat(props.data?.discount?.N ?? 0);
-    const finalAmount = Math.floor(price * (1 - discount / 100));
+    const finalAmount = Math.ceil(
+      (props.data?.price?.N ?? 0) * (1 - (props.data?.discount?.N ?? 0) / 100)
+    );
 
     if (props.user) {
       if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
@@ -209,8 +211,7 @@ function CourseHero(props) {
                     <div className="flex items-center">
                       Enroll now for
                       <IndianRupee size={20} strokeWidth={3} />
-                      {(props.data?.price?.N ?? 0) *
-                        (1 - (props.data?.discount?.N ?? 0) / 100)}
+                      {finalAmount}
                     </div>
                   )}
                 </a>

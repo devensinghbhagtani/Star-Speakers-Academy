@@ -122,10 +122,7 @@ function Navigation() {
                       <>
                         <div className="bg-[#20B486] absolute w-full h-1 inset-0 "></div>
                         <Link to="/profile" onClick={reloadPage}>
-                          Edit Profile
-                        </Link>
-                        <Link to="/purchase-history" onClick={reloadPage}>
-                          Purchase History
+                          User Profile
                         </Link>
                         <Link to="/logout" onClick={reloadPage}>
                           Log out
