@@ -40,6 +40,7 @@ function Achievement() {
               also develop leadership skills, with many students taking on
               leadership roles and experiencing personal growth.
             </p>
+            <br />
             <p>
               For companies, we have conducted over{" "}
               <strong className="font-[500]">

@@ -38,7 +38,6 @@ const MainApp = () => {
   const [user, setUser] = useState(null);
   const [info, handleInfo] = useState(null);
 
-
   const ProfileWithUser = () => {
     const { user } = useUser();
     //  console.log(user);
@@ -55,11 +54,10 @@ const MainApp = () => {
     return <CourseDetails user={user} />;
   };
 
-  const EnrollCourse = ()  => {
+  const EnrollCourse = () => {
     const { user } = useUser();
     return <Courses user={user} />;
-  }
-
+  };
 
   // Create routes
   const router = createBrowserRouter(
@@ -73,7 +71,7 @@ const MainApp = () => {
           <Route path="profile" element={<ProfileWithUser />} />
           <Route path="course/videos/:folder" element={<CoursesWithUser />} />
           <Route path="course" element={<CourseHome />} />
-          <Route path="course/details/:folder" element={<CourseHomePage/>} />
+          <Route path="course/details/:folder" element={<CourseHomePage />} />
           {/* <Route path="course1" element={<CourseDetails />} /> */}
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />

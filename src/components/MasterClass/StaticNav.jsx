@@ -5,10 +5,11 @@ import { displayRazorpay, takeemail } from "../../payment";
 function StaticNav(props) {
   //  console.log(props.masterclassinfo)
   //  console.log(props.discount)
-  const amount = props.masterclassinfo.priceat.N * (1 - (props.discount.N / 100)).toFixed(2);
+  const amount = Math.floor(
+    props.masterclassinfo.priceat.N * (1 - props.discount.N / 100)
+  );
 
-
-  function handlepay(){
+  function handlepay() {
     const email = takeemail();
     displayRazorpay(email, "masterclass", amount);
   }
@@ -19,7 +20,10 @@ function StaticNav(props) {
           {/* Starting At INR {props.masterclassinfo.priceat.N}/- */}
           {props.masterclassinfo?.accessat?.S} {amount}
         </h1>
-        <Button className="text-sm w-36 h-10 md:w-48 md:h-12 md:text-lg" onClick={handlepay}>
+        <Button
+          className="text-sm w-36 h-10 md:w-48 md:h-12 md:text-lg"
+          onClick={handlepay}
+        >
           <a>ENROLL NOW</a>
           <div className="hoverdiv"></div>
         </Button>

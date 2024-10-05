@@ -26,54 +26,55 @@ function CourseHero(props) {
     const courseName = props.data?.coursename?.S;
     const price = parseFloat(props.data?.price?.N ?? 0);
     const discount = parseFloat(props.data?.discount?.N ?? 0);
-    const finalAmount = price * (1 - discount / 100);
+    const finalAmount = Math.floor(price * (1 - discount / 100));
 
-    if(props.user){
-
-    if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
-      //  console.log("Already enrolled");
-      navigate(url);
-    } else {
-      //  console.log("Not enrolled");
-
-      //  console.log("Email:", userEmail);
-      //  console.log("Course Name:", courseName);
-      //  console.log("Final Amount:", finalAmount);
-
-      if (userEmail && courseName && finalAmount > 0) {
-      const res =  await displayRazorpay(userEmail, courseName, finalAmount);
-      if(res == 200){
+    if (props.user) {
+      if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
+        //  console.log("Already enrolled");
         navigate(url);
-      }
       } else {
-        console.error("Missing required information for payment.");
-        // alert("Unable to proceed with payment due to missing information.");
-        displayModal("Unable to proceed with payment due to missing information.", "error");
+        //  console.log("Not enrolled");
+
+        //  console.log("Email:", userEmail);
+        //  console.log("Course Name:", courseName);
+        //  console.log("Final Amount:", finalAmount);
+
+        if (userEmail && courseName && finalAmount > 0) {
+          const res = await displayRazorpay(userEmail, courseName, finalAmount);
+          if (res == 200) {
+            navigate(url);
+          }
+        } else {
+          console.error("Missing required information for payment.");
+          // alert("Unable to proceed with payment due to missing information.");
+          displayModal(
+            "Unable to proceed with payment due to missing information.",
+            "error"
+          );
+        }
       }
+    } else {
+      // alert("Please Login to Enroll")
+      displayModal("Please Login to Enroll", "error");
     }
-  }else{
-  // alert("Please Login to Enroll")
-  displayModal("Please Login to Enroll", "error");
-  }
   }
   function displayModal(message, status) {
-		if (status === "success") {
-			Swal.fire({
-				title: "Success",
-				text: message,
-				icon: "success",
-				confirmButtonText: "OK",
-			});
-		}
-		else {
-			Swal.fire({
-				title: "Error",
-				text: message,
-				icon: "error",
-				confirmButtonText: "OK",
-			});
-		}
-	}
+    if (status === "success") {
+      Swal.fire({
+        title: "Success",
+        text: message,
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }
   // function loadScript(src) {
   //   return new Promise((resolve) => {
   //     const script = document.createElement("script");
@@ -167,9 +168,15 @@ function CourseHero(props) {
           alt="Hero"
         />
       </div>
-      <div className="w-full lg:w-[1080px]  z-[1] justify-center md:items-center" style={{marginTop: "100px"}}>
+      <div
+        className="w-full lg:w-[1080px]  z-[1] justify-center md:items-center"
+        style={{ marginTop: "100px" }}
+      >
         <div className="w-full max-w-[1080px] flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-10 ">
-          <div className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0"  style={fixedDiv}>
+          <div
+            className=" min-w-[340px] w-[360px] h-[215px] md:min-w-full lg:min-w-[565px] md:h-[400px] lg:p-0 md:px-10  lg:h-[320px] md:mb-3 lg:m-0"
+            style={fixedDiv}
+          >
             {/* <iframe
               className=" rounded-[20px] w-full h-full border-none"
               src={`${import.meta.env.VITE_SERVER_URL}/videos/sendvideo/${props.obfuscatedURL}`}
@@ -179,9 +186,7 @@ function CourseHero(props) {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe> */}
-            <Helper 
-            obfuscatedURL={props.obfuscatedURL} 
-            />
+            <Helper obfuscatedURL={props.obfuscatedURL} />
           </div>
           <div className=" w-[350px]  md:w-[80%] text-center lg:text-left lg:w-full flex flex-col items-center justify-center lg:items-start gap-4">
             <h1 className="  mt-[-7px] text-black text-4xl  md:text-5xl font-[500] pl-0 md:leading-tight lg:leading-none tracking-tighter text-white">
@@ -197,7 +202,6 @@ function CourseHero(props) {
                 }
               >
                 <a className="flex gap-2 justify-center items-center text-xl">
-                  
                   {props.user?.coursesinfo?.M &&
                   props.user.coursesinfo.M[props.data?.coursename?.S] ? (
                     "Go to Course"
@@ -209,7 +213,6 @@ function CourseHero(props) {
                         (1 - (props.data?.discount?.N ?? 0) / 100)}
                     </div>
                   )}
-                
                 </a>
                 <div className="hoverdiv"></div>
               </Button>

@@ -14,7 +14,7 @@ function AboutCourse(props) {
     const courseName = props.data?.coursename?.S;
     const price = parseFloat(props.data?.price?.N ?? 0);
     const discount = parseFloat(props.data?.discount?.N ?? 0);
-    const finalAmount = price * (1 - discount / 100);
+    const finalAmount = Math.floor(price * (1 - discount / 100));
 
     if (props.user?.coursesinfo?.M && props.user.coursesinfo.M[courseName]) {
       //  console.log("Already enrolled");

@@ -108,7 +108,7 @@ function Login() {
       <div className=" w-full  flex flex-col justify-center items-center bg-white md:bg-zinc-100 pt-5">
         <div className="mt-20 mb-20 min-w-[380px] md:w-[450px] min-h-[530px] bg-white p-8 md:p-10 rounded-2xl flex flex-col items-center justify-center text-zinc-700">
           <div className="w-full ">
-            <h1 className="text-3xl font-medium tracking-tight pl-0 text-zinc-600">
+            <h1 className="text-3xl mb-2 font-medium tracking-tight pl-0 text-zinc-600">
               Welcome!
             </h1>
             <h1 className="text-sm pl-0">
