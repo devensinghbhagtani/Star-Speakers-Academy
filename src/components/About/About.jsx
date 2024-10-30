@@ -5,7 +5,9 @@ function About() {
   return (
     <>
       <CommonHero heading={"About section"} />
-      <br /><br /><br />
+      <br />
+      <br />
+      <br />
       <AboutDetails />
     </>
   );

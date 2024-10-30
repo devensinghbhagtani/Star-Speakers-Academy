@@ -33,6 +33,7 @@ import { UserProvider, useUser } from "./components/UserContext.jsx";
 import "./index.css";
 import AboutCourse from "./components/CourseContent/AboutCourse.jsx";
 import AdminDisplay from "./components/AdminPanel/AdminDisplay.jsx";
+import TermsConditions from "./components/Terms/TermsConditions.jsx";
 
 const MainApp = () => {
   const [user, setUser] = useState(null);
@@ -77,6 +78,8 @@ const MainApp = () => {
           <Route path="signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/resetpassword" element={<Forgotpassword />} />
+          <Route path="/terms" element={<TermsConditions />} />
+
           <Route path="changepassword" element={<Changepassword />} />
         </Route>
         <Route path="master-class" element={<MasterClass />} />
